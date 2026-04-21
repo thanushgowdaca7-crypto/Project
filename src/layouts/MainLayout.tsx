@@ -1,4 +1,5 @@
-import { Menu, ArrowRight, UserCircle, LogOut, Globe, Bell } from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X, ArrowRight, UserCircle, LogOut, Globe, Bell } from 'lucide-react';
 import { NavLink, Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -7,6 +8,7 @@ import type { LanguageCode } from '../context/LanguageContext';
 const MainLayout = () => {
   const { user, logout } = useAuth();
   const { language, setLanguage, t } = useLanguage();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen w-full bg-black font-inter text-white selection:bg-white/20 flex flex-col">
@@ -77,11 +79,66 @@ const MainLayout = () => {
           </div>
 
           {/* Mobile Hamburger */}
-          <div className="lg:hidden text-white cursor-pointer hover:bg-white/10 p-2 rounded-lg transition-colors">
-            <Menu className="h-6 w-6" />
+          <div 
+            className="lg:hidden text-white cursor-pointer hover:bg-white/10 p-2 rounded-lg transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-40 bg-[#0a0a0a] pt-28 px-6 flex flex-col gap-6 overflow-y-auto">
+          <div className="flex flex-col gap-4 text-xl font-medium">
+            <NavLink to="/" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_home')}</NavLink>
+            <NavLink to="/directory" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_directory')}</NavLink>
+            <NavLink to="/departments" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_departments')}</NavLink>
+            <NavLink to="/campus-map" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_campus_map')}</NavLink>
+            <NavLink to="/events" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_events')}</NavLink>
+            <NavLink to="/lost-and-found" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_lost_found')}</NavLink>
+          </div>
+          
+          <div className="flex flex-col gap-6 mt-4 pb-12">
+            <div className="relative flex items-center gap-3 text-white/80 bg-white/5 p-4 rounded-xl">
+              <Globe className="w-5 h-5 text-white/50" />
+              <select 
+                className="appearance-none bg-transparent text-white/80 text-lg font-medium border-0 focus:ring-0 cursor-pointer outline-none flex-1"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as LanguageCode)}
+              >
+                <option value="en" className="bg-[#121212] text-white">English (EN)</option>
+                <option value="hi" className="bg-[#121212] text-white">हिंदी (HI)</option>
+                <option value="kn" className="bg-[#121212] text-white">ಕನ್ನಡ (KN)</option>
+              </select>
+            </div>
+
+            {user ? (
+              <div className="flex flex-col gap-4 bg-white/5 p-4 rounded-xl">
+                <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                  <UserCircle className="w-8 h-8 text-[#64CEFB]" />
+                  <div className="flex flex-col">
+                    <span className="text-base font-medium text-white/90">
+                      {user.id}
+                    </span>
+                    <span className="text-sm text-white/50">{user.role}</span>
+                  </div>
+                </div>
+                <button onClick={() => { logout(); setIsMobileMenuOpen(false); }} className="flex items-center gap-2 text-red-400 font-medium w-fit py-1">
+                  <LogOut className="w-5 h-5" />
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center gap-2 text-lg text-black bg-[#64CEFB] font-semibold py-3 rounded-xl transition-colors">
+                Login
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Main Content Area */}
       <Outlet />
