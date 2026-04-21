@@ -7,6 +7,9 @@ import Departments from './pages/Departments';
 import CampusMap from './pages/CampusMap';
 import Schedules from './pages/Schedules';
 import FAQ from './pages/FAQ';
+import Events from './pages/Events';
+import LostAndFound from './pages/LostAndFound';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -14,10 +17,13 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
           <Route path="directory" element={<Directory />} />
           <Route path="directory/:id" element={<FacultyProfile />} />
           <Route path="departments" element={<Departments />} />
           <Route path="campus-map" element={<CampusMap />} />
+          <Route path="events" element={<Events />} />
+          <Route path="lost-and-found" element={<LostAndFound />} />
           <Route path="schedules" element={<Schedules />} />
           <Route path="faq" element={<FAQ />} />
         </Route>
