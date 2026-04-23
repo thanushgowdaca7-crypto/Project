@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { CalendarDays, MapPin, Clock, Trophy, FileCheck, Send, CheckCircle2 } from 'lucide-react';
+import { CalendarDays, MapPin, Clock, Trophy, FileCheck, Send, CheckCircle2, Users, Rocket, Code } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Events = () => {
   const { t } = useLanguage();
@@ -18,11 +19,38 @@ const Events = () => {
     }, 3000);
   };
 
+  const upcomingClubEvents = [
+    {
+      title: "Open Source Contribution Bootcamp",
+      club: "Open-Source Community",
+      date: "Next Wednesday, 4:00 PM",
+      location: "Lab 1",
+      icon: Code,
+      color: "bg-green-500/10 text-green-400 border-green-500/20"
+    },
+    {
+      title: "Model Rocketry Workshop",
+      club: "Rocketry Club",
+      date: "Friday, 2:00 PM",
+      location: "Mechanical Block",
+      icon: Rocket,
+      color: "bg-red-500/10 text-red-400 border-red-500/20"
+    },
+    {
+      title: "Ideathon: Smart Campus Solutions",
+      club: "Entrepreneurship Cell-ASPERA",
+      date: "Saturday, 10:00 AM",
+      location: "Seminar Hall",
+      icon: Users,
+      color: "bg-[#64CEFB]/10 text-[#64CEFB] border-[#64CEFB]/20"
+    }
+  ];
+
   return (
     <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 flex-1 flex flex-col pt-8">
       <div className="mb-12 text-center max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold tracking-tight text-white mb-4">{t('nav_events')}</h1>
-        <p className="text-white/60 text-lg">Stay updated with ongoing technical fests, hackathons, and campus activities.</p>
+        <p className="text-white/60 text-lg">Stay updated with ongoing technical fests, hackathons, and campus activities organized by our vibrant student clubs.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -35,6 +63,11 @@ const Events = () => {
           <div className="rounded-3xl border border-[#64CEFB]/30 bg-gradient-to-br from-[#64CEFB]/10 to-purple-500/10 backdrop-blur-xl p-8 relative overflow-hidden group">
             <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-[#64CEFB] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
             
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-[#64CEFB] mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#64CEFB] animate-ping"></span>
+              Organized by Vector flow Club
+            </div>
+
             <h3 className="text-3xl font-black text-white mb-4">Tech-A-Thon 24hrs</h3>
             <p className="text-white/80 mb-6 leading-relaxed">Join the biggest state-level Hackathon hosted by VVCE. Build solutions for smart cities, healthcare, and educational empowerment!</p>
             
@@ -161,6 +194,44 @@ const Events = () => {
           </div>
         </div>
       </div>
+
+      {/* Upcoming Club Events */}
+      <div className="mt-24">
+        <div className="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold text-white flex items-center gap-3">
+            <Users className="w-8 h-8 text-[#64CEFB]" />
+            Upcoming Club Activities
+          </h2>
+          <Link to="/clubs" className="text-sm font-semibold text-[#64CEFB] hover:text-white transition-colors bg-[#64CEFB]/10 px-4 py-2 rounded-lg">
+            Explore All Clubs
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {upcomingClubEvents.map((event, i) => (
+            <div key={i} className="bg-[#121212]/60 border border-white/5 rounded-2xl p-6 hover:border-white/20 transition-colors group cursor-pointer">
+              <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-6 ${event.color}`}>
+                <event.icon className="w-6 h-6" />
+              </div>
+              <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">
+                {event.club}
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#64CEFB] transition-colors">{event.title}</h3>
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-white/70">
+                  <CalendarDays className="w-4 h-4 mr-2 opacity-50" />
+                  {event.date}
+                </div>
+                <div className="flex items-center text-sm text-white/70">
+                  <MapPin className="w-4 h-4 mr-2 opacity-50" />
+                  {event.location}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };

@@ -16,7 +16,7 @@ const MainLayout = () => {
       <nav className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 relative z-50">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/home" className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white">
               <div className="h-3 w-3 rounded-full bg-white"></div>
             </div>
@@ -26,7 +26,7 @@ const MainLayout = () => {
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center rounded-full border border-white/10 bg-[#121212]/50 px-4 py-2 backdrop-blur-md shadow-xl">
             <div className="flex items-center gap-6 text-sm text-white/80">
-              <NavLink to="/" className={({ isActive }) => `transition-colors hover:text-white ${isActive ? 'text-white font-medium' : ''}`}>{t('nav_home')}</NavLink>
+              <NavLink to="/home" className={({ isActive }) => `transition-colors hover:text-white ${isActive ? 'text-white font-medium' : ''}`}>{t('nav_home')}</NavLink>
               <NavLink to="/directory" className={({ isActive }) => `transition-colors hover:text-white ${isActive ? 'text-white font-medium' : ''}`}>{t('nav_directory')}</NavLink>
               <NavLink to="/departments" className={({ isActive }) => `transition-colors hover:text-white ${isActive ? 'text-white font-medium' : ''}`}>{t('nav_departments')}</NavLink>
               <NavLink to="/campus-map" className={({ isActive }) => `transition-colors hover:text-white ${isActive ? 'text-white font-medium' : ''}`}>{t('nav_campus_map')}</NavLink>
@@ -92,7 +92,7 @@ const MainLayout = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-40 bg-[#0a0a0a] pt-28 px-6 flex flex-col gap-6 overflow-y-auto">
           <div className="flex flex-col gap-4 text-xl font-medium">
-            <NavLink to="/" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_home')}</NavLink>
+            <NavLink to="/home" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_home')}</NavLink>
             <NavLink to="/directory" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_directory')}</NavLink>
             <NavLink to="/departments" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_departments')}</NavLink>
             <NavLink to="/campus-map" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `transition-colors py-2 border-b border-white/5 ${isActive ? 'text-[#64CEFB]' : 'text-white/80'}`}>{t('nav_campus_map')}</NavLink>

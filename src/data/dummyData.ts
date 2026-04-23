@@ -111,3 +111,177 @@ export const departmentsData = [
   'Civil Engineering',
   'Electrical & Elecs'
 ];
+
+export interface Club {
+  name: string;
+  description: string;
+  iconName: string;
+}
+
+export const clubsData: Club[] = [
+  {
+    name: 'The Mind Mesh',
+    description: 'Collective Minds. Limitless Intelligence. Vision The vision of THE MIND MESH is to create a dynamic and inclusive ecosystem where students can explore ideas, develop...',
+    iconName: 'Brain'
+  },
+  {
+    name: 'FORGE NEXUS',
+    description: 'INTRODUCTION OF THE CLUB Forge Nexus is a Student R&D Club that provides a multidisciplinary platform to empower students and faculty to collaborate across all...',
+    iconName: 'Hammer'
+  },
+  {
+    name: 'Shiksha Club',
+    description: 'Shiksha is a venture of VVCE, to spread social awareness to young budding minds through Inspiring hearts. It is the ability to take the perspective...',
+    iconName: 'BookOpen'
+  },
+  {
+    name: 'VVCE IEEE IES SBC',
+    description: '(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Industrial Electronics Society Student Branch Chapter) The effective date of this Student Branch Chapter formation...',
+    iconName: 'Cpu'
+  },
+  {
+    name: 'Entrepreneurship Cell-ASPERA',
+    description: 'About Entrepreneurship Cell - ASPERA The Entrepreneurship Cell - E Cell ASPERA of Vidyavardhaka College of Engineering, Mysuru is set up to encourage entrepreneurship among...',
+    iconName: 'Lightbulb'
+  },
+  {
+    name: 'Nirvaaha - The VVCE Management Excellence Club',
+    description: 'Nirvaaha is the official Management Excellence Club of Vidyavardhaka College of Engineering (VVCE), launched with a mission to nurture leadership, innovation, and professional excellence among...',
+    iconName: 'TrendingUp'
+  },
+  {
+    name: 'Research Studio- Discovering New Knowledge',
+    description: 'Research Studio at VVCE is a hub dedicated to igniting the spirit of inquiry and fostering a culture of discovery among students. The club organizes...',
+    iconName: 'Microscope'
+  },
+  {
+    name: 'Susthiraa Club- A Centre for Sustainable Development',
+    description: 'Susthiraa, VVCE\'s Centre for Sustainable Development, fosters a deep understanding and commitment to environmental responsibility among students. The club actively promotes the UN\'s Sustainable Development...',
+    iconName: 'Leaf'
+  },
+  {
+    name: 'Nirmaan Club-Build With nature',
+    description: 'Nirmaan, the "Build With Nature" civil club at VVCE, serves as a dynamic platform forstudents to delve into the practical aspects of their field. The...',
+    iconName: 'Building'
+  },
+  {
+    name: 'ESPIN',
+    description: 'ESPIN - Electrical Students Project Inventory Network Objectives of ESPIN - Electrical Students Project Innovative Network Activities Conducted during 2023-24 2. Organized Barcamp on "Innovative...',
+    iconName: 'Zap'
+  },
+  {
+    name: 'Yuvaa Club',
+    description: 'Mission: To empower students by providing a supportive environment where they can explore, develop and showcase their talents, fostering personal growth and enhancing essential life...',
+    iconName: 'Users'
+  },
+  {
+    name: 'Vector flow',
+    description: 'Aim: Aim of Vector flow club is to promote self learning and skill development through live project implementations, codeathons or learnathons. Club also aims in...',
+    iconName: 'Activity'
+  },
+  {
+    name: 'ELEVATE U',
+    description: 'The ElevateU Club, established under the Department of CSE-AIML, is dedicated to enhancing personality development, networking, soft skills, confidence-building, and talent recognition among students. It...',
+    iconName: 'Award'
+  },
+  {
+    name: 'Orators Club',
+    description: 'OBJECTIVES SHORT TERM GOALS LONG TERM GOALS BENEFITS TO THE STUDENTS It caters to help the students to express themselves confidently and realize their hidden...',
+    iconName: 'Mic'
+  },
+  {
+    name: 'Advika',
+    description: 'The inaugural event of the Advika Club was conducted on 16-08-2023 . The club aimed to celebrate Kannada language and culture, promote cultural exchange. Logo...',
+    iconName: 'Globe'
+  },
+  {
+    name: 'Hitha Srushti',
+    description: 'An outreach activity club The Department of CSE (Artificial Intelligence & Machine Learning) inaugurated an outreach activity club Hitha Srushti on 07th December, 2022 The...',
+    iconName: 'Heart'
+  },
+  {
+    name: 'ISHRAE',
+    description: 'Objective Spread awareness about Heating, Ventilation, Refrigeration and Air conditioning ISHRAE VVCE Mysore Students Chapter celebrated "Students Day" on the occasion of \'Engineer\'s Day\' on...',
+    iconName: 'Wind'
+  },
+  {
+    name: 'Astronomy and Space Science Club',
+    description: 'Objective Spread awareness about astronomy, astrophysics, observational astronomy Activities On the occasion of National Space Day Nearly 320 students from various schools and PU colleges...',
+    iconName: 'Star'
+  },
+  {
+    name: 'Rotaract Club',
+    description: 'Objective To spread awareness about Social Service...',
+    iconName: 'Activity'
+  },
+  {
+    name: 'Rocketry Club',
+    description: 'Objective - Students gain and understand the meaning of rocket science, as well as build connections between physics, mathematics and engineering and get to apply...',
+    iconName: 'Rocket'
+  },
+  {
+    name: 'SAE BAJA CLUB',
+    description: 'Objective: Highlights: ...',
+    iconName: 'Wrench'
+  },
+  {
+    name: 'Vruthanth Club',
+    description: 'CLUB OBJECTIVES The initiative to establish this club is to promote healthy adventure activities, especially camping, trekking, and climbing etc. through following objectives: Club Activities...',
+    iconName: 'Mountain'
+  },
+  {
+    name: 'IEEE - Information Theory Society',
+    description: 'The IEEE Information Theory Society is the premier professional society dedicated to the advancement of the mathematical underpinnings of information technology for the benefit of...',
+    iconName: 'Cpu'
+  },
+  {
+    name: 'Open-Source Community',
+    description: 'An open-source community club fosters collaboration, innovation, learning, and growth within the student community. Here are some common objectives that the OSC club aims for...',
+    iconName: 'Code'
+  },
+  {
+    name: 'Shristi',
+    description: 'This club is to serve the mankind and cherish the life Highlights Activities: Cleanliness and Plantation drive on Environmental Day: The Department of Information Science...',
+    iconName: 'Flower'
+  },
+  {
+    name: 'Anveshan Club',
+    description: 'Objective To inculcate technical and learning activities which are present trend in the software field Highlights The members of this club will be able to...',
+    iconName: 'Search'
+  },
+  {
+    name: 'Vcode',
+    description: 'This club is initiated to explore the world of programming languages by enjoying creative learning Objectives Outcome Activities Technical talk on "Cyber Security and ethical...',
+    iconName: 'Terminal'
+  },
+  {
+    name: 'Ecliptic Creators Hub',
+    description: 'Ecliptic Creators Hub (Established on 19.01.2024) where the convergence of culture, literature, and art fosters a nurturing environment for creativity to thrive. This student club...',
+    iconName: 'Palette'
+  },
+  {
+    name: 'VVCE IEEE PELS SBC',
+    description: '(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Power Electronics Society Student Branch Chapter) This Professional Chapter was established in the year 2022...',
+    iconName: 'Zap'
+  },
+  {
+    name: 'VVCE IEEE PES SBC',
+    description: '(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Power and Energy Society Student Branch Chapter) This Professional Chapter was established in the year...',
+    iconName: 'Battery'
+  },
+  {
+    name: 'VEEE-SPARC',
+    description: 'Vidyavardhaka Electrical and Electronics Engineering Students\' Project and Research Club (VEEE-SPARC) The purpose of the club is to promote: Activities Conducted during 2023-24...',
+    iconName: 'Compass'
+  },
+  {
+    name: 'Cultural Club of VVCE',
+    description: 'Official Cultural Club of VVCE focusing on promoting arts, music, dance, and extracurricular creative activities across the campus.',
+    iconName: 'Music'
+  },
+  {
+    name: 'Literature Club of VVCE - The Book-Ads',
+    description: 'The Literature Club focuses on reading, debating, and fostering a love for books and literature among the student community.',
+    iconName: 'Book'
+  }
+];

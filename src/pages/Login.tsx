@@ -20,7 +20,7 @@ const Login = () => {
 
     const success = login(idInput);
     if (success) {
-      navigate('/');
+      navigate('/home');
     } else {
       setError('Invalid ID format. Use 4VV... (Student) or FAC... (Faculty) or ADMIN.');
     }
