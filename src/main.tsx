@@ -4,12 +4,15 @@ import './index.css'
 import App from './App.tsx'
 import { AuthProvider } from './context/AuthContext'
 import { LanguageProvider } from './context/LanguageContext'
+import { ClubProvider } from './context/ClubContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
       <LanguageProvider>
-        <App />
+        <ClubProvider>
+          <App />
+        </ClubProvider>
       </LanguageProvider>
     </AuthProvider>
   </StrictMode>,

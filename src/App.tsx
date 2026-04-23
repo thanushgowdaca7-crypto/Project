@@ -11,6 +11,7 @@ import Events from './pages/Events';
 import LostAndFound from './pages/LostAndFound';
 import Login from './pages/Login';
 import Clubs from './pages/Clubs';
+import ClubProfile from './pages/ClubProfile';
 import { useAuth } from './context/AuthContext';
 
 const ProtectedRoutes = () => {
@@ -37,6 +38,7 @@ function App() {
             <Route path="campus-map" element={<CampusMap />} />
             <Route path="events" element={<Events />} />
             <Route path="clubs" element={<Clubs />} />
+            <Route path="clubs/:id" element={<ClubProfile />} />
             <Route path="lost-and-found" element={<LostAndFound />} />
             <Route path="schedules" element={<Schedules />} />
             <Route path="faq" element={<FAQ />} />
