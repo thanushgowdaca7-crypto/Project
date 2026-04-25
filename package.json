@@ -1,0 +1,8 @@
+{
+  "name": "vvce-connect",
+  "version": "1.0.0",
+  "description": "VVCE Connect Vanilla JS SPA",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
