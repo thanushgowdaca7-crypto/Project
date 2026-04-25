@@ -1,14 +1,4 @@
-export interface Faculty {
-  id: string;
-  name: string;
-  department: string;
-  role?: string;
-  cabin: string;
-  status: 'Available' | 'In Class' | 'On Leave' | 'Meeting';
-  email: string;
-}
-
-export const facultyData: Faculty[] = [
+const facultyData = [
   // New ECE Staff from the provided list
   { id: 'ece1', name: 'Dr. Chandrashekar M Patil', department: 'Electronics & Communication Engineering', role: 'Professor & Head', cabin: 'ECE Block, Room Head-1', status: 'Available', email: 'chandrashekar.mp@vvce.ac.in' },
   { id: 'ece2', name: 'Dr. T P Surekha', department: 'Electronics & Communication Engineering', role: 'Professor & Dean(Student Welfare)', cabin: 'ECE Block, Room Dean-1', status: 'Meeting', email: 'surekha.tp@vvce.ac.in' },
@@ -103,7 +93,7 @@ export const facultyData: Faculty[] = [
   { id: 'cs66', name: 'Kotreshi SN', department: 'Computer Science', role: 'Assistant Professor', cabin: 'CSE Block, Room 166', status: 'Available', email: 'kotreshi.sn@vvce.ac.in' }
 ];
 
-export const departmentsData = [
+const departmentsData = [
   'Computer Science',
   'Information Science',
   'Electronics & Communication Engineering',
@@ -112,23 +102,7 @@ export const departmentsData = [
   'Electrical & Elecs'
 ];
 
-export interface Club {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  iconName: string;
-  foundedYear: string;
-  memberCount: number;
-  recruitmentStatus: 'Open' | 'Closed';
-  vision: string[];
-  mission: string[];
-  facultyCoordinators: { name: string; role: string }[];
-  studentCoordinators: { name: string; role: string; semester: string; branch: string }[];
-  socialLinks: { instagram?: string; linkedin?: string; whatsapp?: string };
-}
-
-export const clubsData: Club[] = [
+const clubsData = [
   {
     "name": "The Mind Mesh",
     "description": "Collective Minds. Limitless Intelligence. Vision The vision of THE MIND MESH is to create a dynamic and inclusive ecosystem where students can explore ideas, develop...",
@@ -1549,3 +1523,7 @@ export const clubsData: Club[] = [
     }
   }
 ];
+
+window.facultyData = facultyData;
+window.departmentsData = departmentsData;
+window.clubsData = clubsData;
