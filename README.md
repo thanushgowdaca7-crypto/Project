@@ -56,4 +56,4 @@ graph LR
   B --> C[Home View]
   B --> D[Faculty Directory]
   B --> E[Event Registry]
-  style B fill:#3B82F6,stroke:#fff,stroke-width:2px,color:#fff
+  style B fill:#3B82F6,stroke:#fff,stroke-width:2px,color:#fff'
