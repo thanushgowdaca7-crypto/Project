@@ -69,4 +69,21 @@ graph LR
     },
   },
 ])
-```
+## 🛤️ Architecture Roadmap
+
+```mermaid
+graph TD
+    subgraph "Current State (v1.0)"
+    A[Frontend UI] --> B(js/data.js)
+    B --> C{Simulated CRUD}
+    end
+
+    subgraph "Planned Migration (v2.0)"
+    D[Frontend UI] --> E[Fetch API]
+    E --> F[Express Server]
+    F --> G[(PostgreSQL DB)]
+    end
+
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff
+
