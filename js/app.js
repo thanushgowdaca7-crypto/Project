@@ -844,8 +844,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (window.lucide) window.lucide.createIcons();
               } else {
                  // Setup Realtime Subscription
+                 // Use a unique channel name to prevent "already subscribed" errors on page re-entry
+                 const channelName = 'faculty-location-' + Date.now();
                  const subscription = window.supabaseClient
-                   .channel('faculty-location-updates')
+                   .channel(channelName)
                    .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'faculty', filter: "id=eq.cs1" }, (payload) => {
                      console.log('Realtime location update received:', payload);
                      const newLat = payload.new.latitude;
@@ -865,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                  // Clean up subscription when leaving the page
                  const cleanup = () => {
-                   subscription.unsubscribe();
+                   window.supabaseClient.removeChannel(subscription);
                    window.removeEventListener('hashchange', cleanup);
                  };
                  window.addEventListener('hashchange', cleanup);
