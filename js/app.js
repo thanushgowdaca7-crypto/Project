@@ -746,103 +746,133 @@ document.addEventListener('DOMContentLoaded', () => {
         renderBroadcast();
       }
 
-      if (trackerContainer && window.L) {
+      if (trackerContainer) {
         // Find the map container inside the tracker
         const mapEl = document.getElementById('faculty-live-map');
         
         if (mapEl) {
+          if (!window.L) {
+             mapEl.innerHTML = `<div class="p-4 text-red-500">Error: Leaflet library (window.L) failed to load.</div>`;
+             return;
+          }
+
           // Check if faculty is tracking
           const checkTrackingStatus = async () => {
-            if (!window.supabaseClient) return;
-            
-            // Get current faculty location from DB
-            const { data, error } = await window.supabaseClient
-              .from('faculty')
-              .select('latitude, longitude, is_tracking, last_updated')
-              .eq('id', 'cs1') // The hardcoded ID we use for tracking demo
-              .single();
+            try {
+              if (!window.supabaseClient) {
+                 const reason = window.SUPABASE_INIT_ERROR || "Failed to load library";
+                 mapEl.innerHTML = `<div class="p-4 text-red-500 font-ibm-mono text-sm h-full flex flex-col justify-center">
+                    <h4 class="font-bold mb-2">Connection Error</h4>
+                    <p>Error: ${reason}</p>
+                 </div>`;
+                 return;
+              }
               
-            // Remove loading overlay
-            const overlay = document.getElementById('map-loading-overlay');
-            if (overlay) overlay.style.display = 'none';
+              // Get current faculty location from DB
+              const { data, error } = await window.supabaseClient
+                .from('faculty')
+                .select('latitude, longitude, is_tracking, last_updated')
+                .eq('id', 'cs1') // The hardcoded ID we use for tracking demo
+                .single();
 
-            let lat = 12.3361; // Default VVCE Latitude
-            let lng = 76.6186; // Default VVCE Longitude
-            let isTracking = false;
+              if (error && error.code !== 'PGRST116') {
+                 console.error("Supabase fetch error:", error);
+                 // We won't block the map load if it's just a row not found error (PGRST116)
+                 // But if it's another error, we might want to log it
+              }
+                
+              // Remove loading overlay
+              const overlay = document.getElementById('map-loading-overlay');
+              if (overlay) overlay.style.display = 'none';
 
-            if (data && data.is_tracking && data.latitude && data.longitude) {
-              lat = data.latitude;
-              lng = data.longitude;
-              isTracking = true;
-            }
+              let lat = 12.3361; // Default VVCE Latitude
+              let lng = 76.6186; // Default VVCE Longitude
+              let isTracking = false;
 
-            // Initialize Leaflet Map
-            const map = L.map('faculty-live-map', {
-              zoomControl: false // Minimalist UI
-            }).setView([lat, lng], 17);
+              if (data && data.is_tracking && data.latitude && data.longitude) {
+                lat = data.latitude;
+                lng = data.longitude;
+                isTracking = true;
+              }
 
-            // Add dark mode tile layer for premium aesthetic
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-              subdomains: 'abcd',
-              maxZoom: 20
-            }).addTo(map);
-            
-            // Add custom styled marker
-            const markerHtml = `
-              <div style="width:20px;height:20px;border-radius:50%;background-color:var(--accent);box-shadow:0 0 15px var(--accent-glow);border:2px solid var(--surface-2);position:relative;">
-                ${isTracking ? '<div style="position:absolute;inset:0;border-radius:50%;background-color:var(--accent);animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>' : ''}
-              </div>
-            `;
-            
-            const customIcon = L.divIcon({
-              className: 'custom-leaflet-icon',
-              html: markerHtml,
-              iconSize: [20, 20],
-              iconAnchor: [10, 10]
-            });
+              // Cleanup old map if it exists
+              if (window.__currentLeafletMap) {
+                 window.__currentLeafletMap.remove();
+              }
 
-            const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+              // Initialize Leaflet Map
+              const map = L.map('faculty-live-map', {
+                zoomControl: false // Minimalist UI
+              }).setView([lat, lng], 17);
+              
+              window.__currentLeafletMap = map;
 
-            if (!isTracking) {
-              // Add a dim overlay if not currently broadcasting
-              const stopOverlay = document.createElement('div');
-              stopOverlay.className = 'absolute inset-0 bg-black/60 flex items-center justify-center z-[400] backdrop-blur-[2px]';
-              stopOverlay.innerHTML = `
-                <div class="text-center">
-                  <i data-lucide="map-pin-off" class="h-8 w-8 text-white/30 mx-auto mb-3"></i>
-                  <p class="text-white/70 text-sm font-medium">Tracking Disabled by Faculty.</p>
+              // Add dark mode tile layer for premium aesthetic
+              L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+              }).addTo(map);
+              
+              // Add custom styled marker
+              const markerHtml = `
+                <div style="width:20px;height:20px;border-radius:50%;background-color:var(--accent);box-shadow:0 0 15px var(--accent-glow);border:2px solid var(--surface-2);position:relative;">
+                  ${isTracking ? '<div style="position:absolute;inset:0;border-radius:50%;background-color:var(--accent);animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>' : ''}
                 </div>
               `;
-              mapEl.appendChild(stopOverlay);
-              if (window.lucide) window.lucide.createIcons();
-            } else {
-               // Setup Realtime Subscription
-               const subscription = window.supabaseClient
-                 .channel('faculty-location-updates')
-                 .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'faculty', filter: "id=eq.cs1" }, (payload) => {
-                   console.log('Realtime location update received:', payload);
-                   const newLat = payload.new.latitude;
-                   const newLng = payload.new.longitude;
-                   const newTracking = payload.new.is_tracking;
-                   
-                   if (newTracking && newLat && newLng) {
-                      // Animate marker to new position
-                      marker.setLatLng([newLat, newLng]);
-                      map.setView([newLat, newLng], map.getZoom(), { animate: true, duration: 1 });
-                   } else {
-                     // Faculty stopped tracking, refresh the UI
-                     handleRoute(); 
-                   }
-                 })
-                 .subscribe();
+              
+              const customIcon = L.divIcon({
+                className: 'custom-leaflet-icon',
+                html: markerHtml,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+              });
 
-               // Clean up subscription when leaving the page
-               const cleanup = () => {
-                 subscription.unsubscribe();
-                 window.removeEventListener('hashchange', cleanup);
-               };
-               window.addEventListener('hashchange', cleanup);
+              const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+
+              if (!isTracking) {
+                // Add a dim overlay if not currently broadcasting
+                const stopOverlay = document.createElement('div');
+                stopOverlay.className = 'absolute inset-0 bg-black/60 flex items-center justify-center z-[400] backdrop-blur-[2px]';
+                stopOverlay.innerHTML = `
+                  <div class="text-center">
+                    <i data-lucide="map-pin-off" class="h-8 w-8 text-white/30 mx-auto mb-3"></i>
+                    <p class="text-white/70 text-sm font-medium">Tracking Disabled by Faculty.</p>
+                  </div>
+                `;
+                mapEl.appendChild(stopOverlay);
+                if (window.lucide) window.lucide.createIcons();
+              } else {
+                 // Setup Realtime Subscription
+                 const subscription = window.supabaseClient
+                   .channel('faculty-location-updates')
+                   .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'faculty', filter: "id=eq.cs1" }, (payload) => {
+                     console.log('Realtime location update received:', payload);
+                     const newLat = payload.new.latitude;
+                     const newLng = payload.new.longitude;
+                     const newTracking = payload.new.is_tracking;
+                     
+                     if (newTracking && newLat && newLng) {
+                        // Animate marker to new position
+                        marker.setLatLng([newLat, newLng]);
+                        map.setView([newLat, newLng], map.getZoom(), { animate: true, duration: 1 });
+                     } else {
+                       // Faculty stopped tracking, refresh the UI
+                       handleRoute(); 
+                     }
+                   })
+                   .subscribe();
+
+                 // Clean up subscription when leaving the page
+                 const cleanup = () => {
+                   subscription.unsubscribe();
+                   window.removeEventListener('hashchange', cleanup);
+                 };
+                 window.addEventListener('hashchange', cleanup);
+              }
+            } catch (err) {
+               console.error("Map rendering error:", err);
+               mapEl.innerHTML = `<div class="p-4 text-red-500 font-ibm-mono text-xs overflow-auto h-full w-full">Error: ${err.message}<br/>${err.stack}</div>`;
             }
           };
           
