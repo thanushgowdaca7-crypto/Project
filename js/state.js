@@ -78,14 +78,77 @@ window.State = {
     }
 
     this.user = loggedInUser;
+    
+    // Start tracking if faculty
+    if (loggedInUser && loggedInUser.role === 'FACULTY') {
+      this.startFacultyTracking(loggedInUser.id);
+    }
+
     this.notify();
     return true;
+  },
+
+  startFacultyTracking(facultyId) {
+    if (!navigator.geolocation) {
+      console.warn("Geolocation is not supported by this browser.");
+      return;
+    }
+    
+    console.log("Requesting location permission for faculty tracking...");
+    // This will prompt the user immediately
+    this.facultyWatchId = navigator.geolocation.watchPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log(`Faculty location updated: ${latitude}, ${longitude}`);
+        
+        if (window.supabaseClient) {
+          // Since we are using mock login IDs (FAC123), we'll just update a specific prototype faculty 
+          // or all faculty that match some criteria for demo purposes.
+          // To be safe and visible, let's update a specific one like 'cs1' or based on the ID.
+          // For demo: we'll just update the record where id = 'cs1'
+          const targetFacultyId = 'cs1'; // Hardcoded for demo purposes
+
+          const { error } = await window.supabaseClient
+            .from('faculty')
+            .update({ 
+              latitude: latitude, 
+              longitude: longitude, 
+              last_updated: new Date().toISOString(),
+              is_tracking: true
+            })
+            .eq('id', targetFacultyId);
+            
+          if (error) console.error("Error updating location in Supabase:", error);
+        }
+      },
+      (error) => {
+        console.warn('Faculty location tracking denied or failed:', error);
+      },
+      { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
+    );
   },
 
   logout() {
     this.user = null;
     sessionStorage.removeItem('vvce_auth_student');
     localStorage.removeItem('vvce_auth_user');
+    
+    // Stop tracking if it was running
+    if (this.facultyWatchId !== undefined) {
+      navigator.geolocation.clearWatch(this.facultyWatchId);
+      this.facultyWatchId = undefined;
+      // Ideally, we'd also set is_tracking = false in the database here
+      if (window.supabaseClient) {
+          window.supabaseClient
+            .from('faculty')
+            .update({ is_tracking: false })
+            .eq('id', 'cs1') // Using the hardcoded demo ID
+            .then(({ error }) => {
+                if (error) console.error("Error setting is_tracking false:", error);
+            });
+      }
+    }
+
     this.notify();
   },
 

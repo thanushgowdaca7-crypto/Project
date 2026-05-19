@@ -310,6 +310,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Skip geolocation for admin
           }
 
+          // Temporary bypass: allow Faculty to login from anywhere to test live tracking
+          if (idInput.toUpperCase().startsWith('FAC')) {
+            handleSuccessfulLogin();
+            return;
+          }
+
           submitBtn.innerHTML = `<span>Verifying Location...</span> <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>`;
           if (window.lucide) window.lucide.createIcons();
 
@@ -740,52 +746,108 @@ document.addEventListener('DOMContentLoaded', () => {
         renderBroadcast();
       }
 
-      if (user?.role === 'STUDENT' && trackerContainer) {
-        const renderTracker = () => {
-          const active = localStorage.getItem('broadcast_' + params) === 'true';
-          trackerContainer.innerHTML = `
-            <div class="rounded-3xl border border-white/10 bg-[#121212]/40 backdrop-blur-md p-8 overflow-hidden relative transition-all mt-6">
-              <h2 class="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                <i data-lucide="map-pin" class="h-5 w-5 text-rose-400"></i>
-                Live Uber-Style Tracker
-              </h2>
+      if (trackerContainer && window.L) {
+        // Find the map container inside the tracker
+        const mapEl = document.getElementById('faculty-live-map');
+        
+        if (mapEl) {
+          // Check if faculty is tracking
+          const checkTrackingStatus = async () => {
+            if (!window.supabaseClient) return;
+            
+            // Get current faculty location from DB
+            const { data, error } = await window.supabaseClient
+              .from('faculty')
+              .select('latitude, longitude, is_tracking, last_updated')
+              .eq('id', 'cs1') // The hardcoded ID we use for tracking demo
+              .single();
               
-              ${active ? `
-                <div class="space-y-4">
-                  <div class="bg-[rgba(240,82,82,0.1)] text-[var(--danger)] border border-[rgba(240,82,82,0.3)] rounded-lg p-3 text-xs font-semibold flex items-center gap-2 mb-4">
-                   <span class="w-[8px] h-[8px] rounded-full bg-[var(--danger)] animate-pulse-danger"></span>
-                   GPS SIGNAL FOUND: ESTIMATED 240 METERS AWAY
-                  </div>
-                  <div class="w-full h-80 rounded-2xl border-2 border-white/10 overflow-hidden relative shadow-[0_0_40px_rgba(244,63,94,0.15)] group">
-                    <div class="absolute inset-0 bg-rose-500/10 mix-blend-color pointer-events-none group-hover:opacity-0 transition-opacity z-10"></div>
-                    <iframe
-                      width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-                      src="https://www.google.com/maps/embed/v1/place?key=MOCK_API_KEY&q=Vidyavardhaka+College+of+Engineering,Mysuru"
-                    ></iframe>
-                  </div>
-                </div>
-              ` : `
-                <div class="text-center py-10 border border-dashed border-white/20 rounded-xl bg-white/5 opacity-50 grayscale">
-                  <i data-lucide="map-pin" class="h-8 w-8 text-white/30 mx-auto mb-3"></i>
+            // Remove loading overlay
+            const overlay = document.getElementById('map-loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+
+            let lat = 12.3361; // Default VVCE Latitude
+            let lng = 76.6186; // Default VVCE Longitude
+            let isTracking = false;
+
+            if (data && data.is_tracking && data.latitude && data.longitude) {
+              lat = data.latitude;
+              lng = data.longitude;
+              isTracking = true;
+            }
+
+            // Initialize Leaflet Map
+            const map = L.map('faculty-live-map', {
+              zoomControl: false // Minimalist UI
+            }).setView([lat, lng], 17);
+
+            // Add dark mode tile layer for premium aesthetic
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+              subdomains: 'abcd',
+              maxZoom: 20
+            }).addTo(map);
+            
+            // Add custom styled marker
+            const markerHtml = `
+              <div style="width:20px;height:20px;border-radius:50%;background-color:var(--accent);box-shadow:0 0 15px var(--accent-glow);border:2px solid var(--surface-2);position:relative;">
+                ${isTracking ? '<div style="position:absolute;inset:0;border-radius:50%;background-color:var(--accent);animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>' : ''}
+              </div>
+            `;
+            
+            const customIcon = L.divIcon({
+              className: 'custom-leaflet-icon',
+              html: markerHtml,
+              iconSize: [20, 20],
+              iconAnchor: [10, 10]
+            });
+
+            const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+
+            if (!isTracking) {
+              // Add a dim overlay if not currently broadcasting
+              const stopOverlay = document.createElement('div');
+              stopOverlay.className = 'absolute inset-0 bg-black/60 flex items-center justify-center z-[400] backdrop-blur-[2px]';
+              stopOverlay.innerHTML = `
+                <div class="text-center">
+                  <i data-lucide="map-pin-off" class="h-8 w-8 text-white/30 mx-auto mb-3"></i>
                   <p class="text-white/70 text-sm font-medium">Tracking Disabled by Faculty.</p>
-                  <p class="text-white/40 text-xs mt-1">Live location map is only available during active broadcasts.</p>
                 </div>
-              `}
-            </div>
-          `;
-          if (window.lucide) window.lucide.createIcons();
-        };
-        renderTracker();
-        const interval = setInterval(() => {
-          if (window.location.hash !== '#faculty/' + params) {
-            clearInterval(interval);
-            return;
-          }
-          const active = localStorage.getItem('broadcast_' + params) === 'true';
-          const currentText = trackerContainer.textContent || '';
-          const currentlyActive = currentText.includes('GPS SIGNAL FOUND');
-          if (active !== currentlyActive) renderTracker();
-        }, 2000);
+              `;
+              mapEl.appendChild(stopOverlay);
+              if (window.lucide) window.lucide.createIcons();
+            } else {
+               // Setup Realtime Subscription
+               const subscription = window.supabaseClient
+                 .channel('faculty-location-updates')
+                 .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'faculty', filter: "id=eq.cs1" }, (payload) => {
+                   console.log('Realtime location update received:', payload);
+                   const newLat = payload.new.latitude;
+                   const newLng = payload.new.longitude;
+                   const newTracking = payload.new.is_tracking;
+                   
+                   if (newTracking && newLat && newLng) {
+                      // Animate marker to new position
+                      marker.setLatLng([newLat, newLng]);
+                      map.setView([newLat, newLng], map.getZoom(), { animate: true, duration: 1 });
+                   } else {
+                     // Faculty stopped tracking, refresh the UI
+                     handleRoute(); 
+                   }
+                 })
+                 .subscribe();
+
+               // Clean up subscription when leaving the page
+               const cleanup = () => {
+                 subscription.unsubscribe();
+                 window.removeEventListener('hashchange', cleanup);
+               };
+               window.addEventListener('hashchange', cleanup);
+            }
+          };
+          
+          checkTrackingStatus();
+        }
       }
     }
   }

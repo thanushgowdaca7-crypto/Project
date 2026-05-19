@@ -693,7 +693,19 @@ window.Pages = {
               </div>
             </div>
 
-            <div id="faculty-student-tracker"></div>
+            <div id="faculty-student-tracker" class="card-global p-[32px] overflow-hidden">
+              <h3 class="font-syne font-semibold text-[16px] text-[var(--text-primary)] mb-2 flex items-center gap-2">
+                <i data-lucide="map" class="w-[18px] h-[18px] text-[var(--accent)]"></i>
+                Live Tracking (Prototype)
+              </h3>
+              <p class="font-dm-sans text-[13px] text-[var(--text-secondary)] mb-6">Real-time GPS location powered by Supabase.</p>
+              
+              <div id="faculty-live-map" class="w-full h-[300px] rounded-[12px] bg-[var(--surface-2)] border border-[var(--border)] overflow-hidden relative z-0">
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10" id="map-loading-overlay">
+                  <span class="font-dm-sans text-[13px] text-[var(--text-muted)] animate-pulse">Initializing Realtime Connection...</span>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
