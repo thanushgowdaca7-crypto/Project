@@ -66,10 +66,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ${user ? `
               <div class="flex items-center gap-2">
-                <button class="btn-icon relative">
-                  <i data-lucide="bell" class="w-[18px] h-[18px]"></i>
-                  ${user.role === 'STUDENT' ? '<span class="absolute top-[6px] right-[6px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse border border-[var(--bg)]"></span>' : ''}
-                </button>
+                <div class="relative" id="notification-dropdown-container">
+                  <button id="notifications-btn" class="btn-icon relative" title="Notifications">
+                    <i data-lucide="bell" class="w-[18px] h-[18px]"></i>
+                    ${user.role === 'STUDENT' ? '<span class="absolute top-[6px] right-[6px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse border border-[var(--bg)]"></span>' : ''}
+                  </button>
+                  
+                  <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden z-[100] hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div class="p-4 border-b border-[var(--border)] flex justify-between items-center bg-[var(--surface-2)]">
+                      <h3 class="font-syne font-semibold text-[16px] text-[var(--text-primary)]">Notifications</h3>
+                      <span class="text-[11px] font-ibm-mono text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-1 rounded-md">2 New</span>
+                    </div>
+                    <div class="flex flex-col max-h-[300px] overflow-y-auto">
+                      <a href="#events" class="p-4 border-b border-[var(--border)] hover:bg-[var(--surface-2)] transition-colors flex gap-3 cursor-pointer">
+                        <div class="w-8 h-8 rounded-full bg-[rgba(62,207,142,0.1)] flex items-center justify-center text-[var(--success)] shrink-0">
+                          <i data-lucide="calendar" class="w-4 h-4"></i>
+                        </div>
+                        <div class="flex flex-col">
+                          <p class="font-dm-sans text-[13px] text-[var(--text-primary)] font-medium">FUSION X 1.0 Hackathon</p>
+                          <p class="font-dm-sans text-[12px] text-[var(--text-secondary)] mt-1">Registrations are now open! Join the 24 HRS National-Level Hackathon.</p>
+                          <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] mt-2">Just now</span>
+                        </div>
+                      </a>
+                      <a href="#events" class="p-4 hover:bg-[var(--surface-2)] transition-colors flex gap-3 cursor-pointer">
+                        <div class="w-8 h-8 rounded-full bg-[rgba(240,82,82,0.1)] flex items-center justify-center text-[var(--danger)] shrink-0">
+                          <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                        </div>
+                        <div class="flex flex-col">
+                          <p class="font-dm-sans text-[13px] text-[var(--text-primary)] font-medium">Hackathon Registration</p>
+                          <p class="font-dm-sans text-[12px] text-[var(--text-secondary)] mt-1">Only 2 days left to request attendance authorization for the Global Hackathon.</p>
+                          <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] mt-2">5 hours ago</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
                 
                 <div class="flex items-center gap-2 mx-1">
                   <span class="font-ibm-mono text-[12px] text-[var(--accent)] uppercase px-2 py-1 bg-[var(--accent-dim)] rounded-md border border-[var(--accent-glow)]">
@@ -156,6 +187,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langSelect) langSelect.addEventListener('change', handleLangChange);
     if (mobileLangSelect) mobileLangSelect.addEventListener('change', handleLangChange);
     
+    const notifBtn = document.getElementById('notifications-btn');
+    const notifDropdown = document.getElementById('notifications-dropdown');
+    
+    if (notifBtn && notifDropdown) {
+      notifBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        notifDropdown.classList.toggle('hidden');
+      });
+      // Clicking links inside the dropdown should close it
+      notifDropdown.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          notifDropdown.classList.add('hidden');
+        });
+      });
+    }
+
     const handleLogout = () => {
       window.State.logout();
       window.location.hash = '#login';
@@ -503,88 +550,226 @@ document.addEventListener('DOMContentLoaded', () => {
         titleEl.textContent = window.State.t('nav_events');
       }
 
-      const container = document.getElementById('events-req-btn-container');
-      if (container) {
-        const renderDefaultBtn = () => {
-          container.innerHTML = `
-            <button id="show-req-btn" class="btn-primary !px-8 !py-3">
-              <span>${window.State.user?.role === 'STUDENT' ? 'Request Attendance & Register' : 'Register Now'}</span>
-            </button>
-          `;
-          document.getElementById('show-req-btn').addEventListener('click', renderForm);
-        };
+      const grid = document.getElementById('dynamic-events-grid');
+      const addBtn = document.getElementById('btn-add-event');
+      const addModal = document.getElementById('add-event-modal');
+      const addForm = document.getElementById('add-event-form');
 
-        const renderForm = () => {
-          container.innerHTML = `
-            <div class="mt-8 border-t border-white/10 pt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <i data-lucide="file-check" class="w-5 h-5 text-[#64CEFB]"></i>
-                Attendance Authorization
-              </h4>
-              <div class="space-y-4" id="req-form-content">
-                <p class="text-sm text-white/70">
-                  As a student, you must request permission from your assigned faculty and upload any required pre-hackathon certificates (e.g. valid ID, consent form).
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                  <label class="flex-1 border-2 border-dashed border-[#64CEFB]/30 bg-[#64CEFB]/5 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:border-[#64CEFB]/50 hover:bg-[#64CEFB]/10 transition-colors cursor-pointer relative">
-                    <input type="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" id="cert-upload" />
-                    <i data-lucide="file-check" class="h-6 w-6 text-[#64CEFB]/50 mb-2"></i>
-                    <span class="text-xs font-medium text-[#64CEFB]" id="cert-upload-label">
-                      Click to Upload Certificate
-                    </span>
-                    <span class="text-[10px] text-white/30 mt-1" id="cert-upload-hint">PDF or JPG up to 5MB</span>
-                  </label>
-                  
-                  <select class="flex-1 bg-[#121212] border border-white/10 rounded-xl text-white text-sm px-4 py-3 outline-none focus:border-[#64CEFB]">
-                    <option>Select Faculty to Request...</option>
-                    <option>Dr. Pooja M R (HOD)</option>
-                    <option>Dr. Ravi Kumar (Dean)</option>
-                    <option>Dr. Natesh (Assoc. Prof)</option>
-                  </select>
-                </div>
-
-                <button id="submit-req-btn" class="w-full bg-[#64CEFB] hover:bg-[#64CEFB]/80 text-black font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 mt-4">
-                  <i data-lucide="send" class="w-4 h-4"></i>
-                  Submit Request & Certificate
-                </button>
-                
-                <button id="cancel-req-btn" class="w-full text-white/40 hover:text-white/80 text-xs py-2 transition-colors">
-                  Cancel
-                </button>
-              </div>
-            </div>
-          `;
-          if (window.lucide) window.lucide.createIcons();
-
-          document.getElementById('cert-upload').addEventListener('change', (e) => {
-            if (e.target.files && e.target.files[0]) {
-              document.getElementById('cert-upload-label').textContent = e.target.files[0].name;
-              const hint = document.getElementById('cert-upload-hint');
-              if (hint) hint.remove();
-            }
+      if (addBtn && addModal) {
+        addBtn.addEventListener('click', () => {
+          addModal.classList.remove('hidden');
+          addModal.classList.add('flex');
+        });
+        const closeEls = ['close-add-event-modal-btn', 'close-add-event-modal-bg'];
+        closeEls.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener('click', () => {
+            addModal.classList.add('hidden');
+            addModal.classList.remove('flex');
           });
+        });
+      }
 
-          document.getElementById('cancel-req-btn').addEventListener('click', renderDefaultBtn);
+      window.deleteEvent = async (id) => {
+        if (confirm('Are you sure you want to delete this event? This action cannot be undone.')) {
+          try {
+            const { error } = await window.supabaseClient.from('events').delete().eq('id', id);
+            if (error) throw error;
+            // Refresh events list
+            if (typeof fetchEvents === 'function') fetchEvents();
+          } catch (err) {
+            console.error('Error deleting event:', err);
+            alert('Failed to delete event: ' + err.message);
+          }
+        }
+      };
 
-          document.getElementById('submit-req-btn').addEventListener('click', () => {
-            const reqContent = document.getElementById('req-form-content');
-            reqContent.innerHTML = `
-              <div class="confirm-msg bg-[rgba(62,207,142,0.1)] border border-[rgba(62,207,142,0.3)] text-[var(--success)] p-4 rounded-xl flex items-center justify-center gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-                Request sent to Faculty successfully!
+      const fetchEvents = async () => {
+        if (!grid) return;
+        try {
+          const { data, error } = await window.supabaseClient.from('events').select('*').order('created_at', { ascending: false });
+          if (error) throw error;
+          
+          const featuredContainer = document.getElementById('featured-event-container');
+          
+          if (!data || data.length === 0) {
+            grid.innerHTML = `
+              <div class="col-span-full py-20 flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] rounded-[24px] bg-[var(--surface-2)]/50">
+                <div class="w-16 h-16 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                  <i data-lucide="calendar-x" class="w-8 h-8 text-[var(--accent)]"></i>
+                </div>
+                <h3 class="font-syne font-semibold text-xl text-[var(--text-primary)] mb-2">No Events Yet</h3>
+                <p class="font-dm-sans text-[var(--text-secondary)] text-center max-w-[400px]">There are currently no upcoming events. Check back later or host your own!</p>
               </div>
             `;
+            if (featuredContainer) featuredContainer.innerHTML = '';
             if (window.lucide) window.lucide.createIcons();
-            setTimeout(() => {
-              const msg = reqContent.querySelector('.confirm-msg');
-              if(msg) msg.classList.add('confirm-out');
-            }, 2700);
-            setTimeout(renderDefaultBtn, 3000);
-          });
-        };
+            return;
+          }
 
-        renderDefaultBtn();
+          const featuredEvent = data[0];
+          const otherEvents = data.slice(1);
+
+          if (featuredContainer) {
+            featuredContainer.innerHTML = `
+              <div class="card-global flex flex-col lg:flex-row overflow-hidden border border-[var(--border)] hover:border-[var(--accent)]/50 transition-colors animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <div class="lg:w-[45%] h-[300px] lg:h-auto relative overflow-hidden bg-[var(--surface-2)] group cursor-pointer">
+                  ${featuredEvent.poster_url 
+                    ? `<img src="${featuredEvent.poster_url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />`
+                    : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-12 h-12 mb-4"></i><span>No Poster</span></div>`
+                  }
+                  <div class="absolute top-4 left-4 z-10">
+                    <span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-lg backdrop-blur-md inline-flex items-center gap-1">
+                      <i data-lucide="star" class="w-3 h-3"></i> Featured
+                    </span>
+                  </div>
+                  <div class="absolute top-4 right-4 z-20">
+                    <button onclick="window.deleteEvent('${featuredEvent.id}')" class="bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg hover:scale-110" title="Delete Event">
+                      <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#000]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative">
+                  <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-[var(--purple)]/5 blur-[100px] pointer-events-none rounded-full"></div>
+                  
+                  <h2 class="font-syne font-[800] text-[32px] md:text-[40px] text-[var(--text-primary)] leading-[1.1] mb-4 relative z-10">${featuredEvent.title}</h2>
+                  <p class="font-dm-sans text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-relaxed mb-8 relative z-10">
+                    ${featuredEvent.description || 'No description provided.'}
+                  </p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-10">
+                    ${featuredEvent.date ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)] shadow-sm"><i data-lucide="calendar" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.date}</span></div>` : ''}
+                    ${featuredEvent.time ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)] shadow-sm"><i data-lucide="clock" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.time}</span></div>` : ''}
+                    ${featuredEvent.duration ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[#64CEFB] shadow-sm"><i data-lucide="timer" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.duration}</span></div>` : ''}
+                    ${featuredEvent.venue ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--warning)] shadow-sm"><i data-lucide="map-pin" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.venue}</span></div>` : ''}
+                  </div>
+
+                  <div class="relative z-10 mt-auto pt-4">
+                    ${featuredEvent.registration_link ? `
+                      <a href="${featuredEvent.registration_link}" target="_blank" class="btn-primary py-3 px-8 text-[15px] shadow-[0_4px_14px_0_rgba(62,207,142,0.39)] hover:shadow-[0_6px_20px_rgba(62,207,142,0.23)] hover:-translate-y-1 transition-all inline-flex items-center gap-2">
+                        Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                      </a>
+                    ` : ''}
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+
+          if (otherEvents.length > 0) {
+            grid.innerHTML = otherEvents.map((event, index) => {
+              const delay = index * 100;
+              return `
+                <div class="card-global p-6 flex flex-col h-full border border-[var(--border)] hover:border-[var(--accent)]/50 hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8" style="animation-fill-mode: both; animation-delay: ${delay}ms;">
+                  <div class="relative overflow-hidden rounded-lg mb-6 group/img cursor-pointer">
+                    ${event.poster_url 
+                      ? `<img src="${event.poster_url}" class="w-full h-[200px] object-cover transition-transform duration-500 group-hover/img:scale-110" />` 
+                      : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                       <span class="text-white font-dm-sans font-medium text-sm flex items-center gap-1"><i data-lucide="eye" class="w-4 h-4"></i> View Event</span>
+                    </div>
+                    <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110" title="Delete Event">
+                      <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                  <div class="flex-1 flex flex-col">
+                    <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
+                    <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 line-clamp-3 leading-relaxed flex-1">${event.description || ''}</p>
+                    
+                    <div class="flex flex-col gap-3 mb-6 bg-[var(--surface-2)] p-4 rounded-xl border border-[var(--border)]">
+                      ${event.date ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="calendar" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>${event.date}</div>` : ''}
+                      ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="clock" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>${event.time}</div>` : ''}
+                      ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i><span class="truncate">${event.venue}</span></div>` : ''}
+                    </div>
+                  </div>
+                  ${event.registration_link ? `
+                    <a href="${event.registration_link}" target="_blank" class="w-full text-center text-[14px] py-3 font-semibold text-[var(--accent)] bg-[var(--accent)]/10 hover:bg-[var(--accent)] hover:text-[#000] rounded-[10px] transition-all block border border-[var(--accent)]/20 shadow-sm">
+                      Register
+                    </a>
+                  ` : ''}
+                </div>
+              `;
+            }).join('');
+          } else {
+             grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
+          }
+          if (window.lucide) window.lucide.createIcons();
+        } catch (e) {
+          console.error("Error fetching events:", e);
+          grid.innerHTML = '<div class="col-span-full text-red-400">Failed to load events.</div>';
+        }
+      };
+
+      fetchEvents();
+
+      if (addForm) {
+        const fileInput = document.getElementById('event-poster-file');
+        const imgPreview = document.getElementById('event-poster-preview');
+        
+        if (fileInput && imgPreview) {
+          fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const url = URL.createObjectURL(file);
+              imgPreview.src = url;
+              imgPreview.classList.remove('hidden');
+            } else {
+              imgPreview.classList.add('hidden');
+              imgPreview.src = '';
+            }
+          });
+        }
+
+        addForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const submitBtn = document.getElementById('submit-event-btn');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Adding Event...';
+          submitBtn.disabled = true;
+
+          try {
+            const title = document.getElementById('event-title').value;
+            const desc = document.getElementById('event-desc').value;
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            const duration = document.getElementById('event-duration').value;
+            const venue = document.getElementById('event-venue').value;
+            const link = document.getElementById('event-link').value;
+            
+            let posterUrl = '';
+
+            if (fileInput.files && fileInput.files[0]) {
+              const file = fileInput.files[0];
+              const fileExt = file.name.split('.').pop();
+              const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+              const { data: uploadData, error: uploadError } = await window.supabaseClient.storage.from('event_posters').upload(fileName, file);
+              if (uploadError) throw uploadError;
+              const { data: publicUrlData } = window.supabaseClient.storage.from('event_posters').getPublicUrl(fileName);
+              posterUrl = publicUrlData.publicUrl;
+            }
+
+            const { error: insertError } = await window.supabaseClient.from('events').insert([
+              { title, description: desc, date, time, duration, venue, registration_link: link, poster_url: posterUrl }
+            ]);
+
+            if (insertError) throw insertError;
+
+            addForm.reset();
+            if(imgPreview) imgPreview.classList.add('hidden');
+            addModal.classList.add('hidden');
+            addModal.classList.remove('flex');
+            fetchEvents();
+          } catch (err) {
+            console.error("Error adding event:", err);
+            alert("Failed to add event: " + err.message);
+          } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            if (window.lucide) window.lucide.createIcons();
+          }
+        });
       }
     } else if (page === 'clubs') {
       const searchInput = document.getElementById('clubs-search');
@@ -881,6 +1066,199 @@ document.addEventListener('DOMContentLoaded', () => {
           checkTrackingStatus();
         }
       }
+    } else if (page === 'lost-and-found') {
+      const grid = document.getElementById('lf-grid');
+      const addModal = document.getElementById('add-lf-modal');
+      const viewModal = document.getElementById('view-lf-modal');
+      const searchInput = document.getElementById('lf-search');
+      
+      let allItems = [];
+
+      const renderItems = (query = '') => {
+        if (!grid) return;
+        const filtered = allItems.filter(item => 
+          item.title.toLowerCase().includes(query.toLowerCase()) || 
+          item.location.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No items found.</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map(item => {
+          const typeColor = item.type === 'lost' ? 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]' : 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]';
+          const dateStr = new Date(item.created_at).toLocaleDateString();
+          return `
+            <div class="card-global p-6 flex flex-col cursor-pointer hover:border-[var(--accent)] transition-colors lf-card" data-id="${item.id}">
+              <div class="flex justify-between items-center mb-6">
+                <span class="font-dm-sans text-[12px] px-[10px] py-[4px] rounded-full uppercase tracking-wider font-semibold ${typeColor}">${item.type}</span>
+                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">${dateStr}</span>
+              </div>
+              <h3 class="font-syne font-semibold text-[18px] text-[var(--text-primary)] mb-1">${item.title}</h3>
+              <p class="font-dm-sans text-[13px] text-[var(--accent)] mb-4 flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3"></i> ${item.location}</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed flex-1 mb-8 line-clamp-2">${item.description}</p>
+              
+              <div class="flex justify-between items-center pt-4 border-t border-[var(--border)]">
+                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Status: ${item.status}</span>
+                <span class="font-dm-sans text-[13px] font-medium text-[var(--purple)]">View Details &rarr;</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+        
+        if (window.lucide) window.lucide.createIcons();
+
+        // Add click listeners to cards
+        document.querySelectorAll('.lf-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const id = card.getAttribute('data-id');
+            const item = allItems.find(i => i.id === id);
+            if (item && viewModal) {
+              document.getElementById('view-lf-title').textContent = item.title;
+              document.getElementById('view-lf-desc').textContent = item.description;
+              document.getElementById('view-lf-location').querySelector('span').textContent = item.location;
+              
+              const typeSpan = document.getElementById('view-lf-type');
+              typeSpan.textContent = item.type;
+              typeSpan.className = 'font-dm-sans text-[12px] px-[10px] py-[4px] rounded-full uppercase tracking-wider font-semibold ' + (item.type === 'lost' ? 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]' : 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]');
+              
+              document.getElementById('view-lf-date').textContent = new Date(item.created_at).toLocaleDateString();
+              
+              document.getElementById('view-lf-contact-name').textContent = item.contact_name;
+              const contactNumEl = document.getElementById('view-lf-contact-number');
+              contactNumEl.textContent = item.contact_number;
+              contactNumEl.href = 'tel:' + item.contact_number;
+              
+              const imgContainer = document.getElementById('view-lf-image-container');
+              const imgEl = document.getElementById('view-lf-image');
+              if (item.image_url) {
+                 const { data: pubData } = window.supabaseClient.storage.from('lost_and_found_images').getPublicUrl(item.image_url);
+                 imgEl.src = pubData.publicUrl;
+                 imgContainer.classList.remove('hidden');
+                 document.getElementById('view-lf-close-btn').classList.add('hidden');
+              } else {
+                 imgContainer.classList.add('hidden');
+                 document.getElementById('view-lf-close-btn').classList.remove('hidden');
+              }
+              
+              viewModal.classList.remove('hidden');
+            }
+          });
+        });
+      };
+
+      const fetchItems = async () => {
+        if (!window.supabaseClient) {
+          if (grid) grid.innerHTML = '<div class="col-span-full py-12 text-center text-red-500 font-ibm-mono text-sm">Database connection error.</div>';
+          return;
+        }
+        try {
+          const { data, error } = await window.supabaseClient.from('lost_and_found').select('*').order('created_at', { ascending: false });
+          if (!error && data) {
+            allItems = data;
+            renderItems(searchInput?.value || '');
+          } else if (error) {
+            console.error("Supabase Error:", error);
+          }
+        } catch (err) {
+          console.error("Error fetching lost and found:", err);
+        }
+      };
+
+      fetchItems();
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => renderItems(e.target.value));
+      }
+
+      // Modal Logic
+      const btnReport = document.getElementById('btn-report-lf');
+      const lfForm = document.getElementById('lf-form');
+      const imgInput = document.getElementById('lf-image');
+      const imgPreview = document.getElementById('lf-image-preview');
+      const imgPlaceholder = document.getElementById('lf-image-placeholder');
+
+      if (btnReport) {
+        btnReport.addEventListener('click', () => {
+          if (!window.State.user) {
+             alert('Please login as a Student or Faculty to report an item.');
+             window.location.hash = '#login';
+             return;
+          }
+          addModal.classList.remove('hidden');
+        });
+      }
+
+      if (imgInput) {
+        imgInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+              imgPreview.src = ev.target.result;
+              imgPreview.classList.remove('hidden');
+              imgPlaceholder.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      if (lfForm) {
+        lfForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btnSubmit = document.getElementById('lf-submit-btn');
+          const originalText = btnSubmit.textContent;
+          btnSubmit.textContent = 'Submitting...';
+          btnSubmit.disabled = true;
+
+          try {
+             let imagePath = null;
+             if (imgInput.files && imgInput.files.length > 0) {
+               const file = imgInput.files[0];
+               const fileExt = file.name.split('.').pop();
+               const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '.' + fileExt;
+               
+               const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
+                  .from('lost_and_found_images')
+                  .upload(fileName, file);
+                  
+               if (uploadError) throw uploadError;
+               imagePath = uploadData.path;
+             }
+
+             const type = document.querySelector('input[name="type"]:checked').value;
+             const newItem = {
+               type,
+               title: document.getElementById('lf-title').value,
+               location: document.getElementById('lf-location').value,
+               description: document.getElementById('lf-desc').value,
+               contact_name: document.getElementById('lf-name').value,
+               contact_number: document.getElementById('lf-number').value,
+               image_url: imagePath,
+               status: 'unresolved'
+             };
+
+             const { error } = await window.supabaseClient.from('lost_and_found').insert([newItem]);
+             if (error) throw error;
+
+             addModal.classList.add('hidden');
+             lfForm.reset();
+             imgPreview.classList.add('hidden');
+             imgPreview.src = '';
+             imgPlaceholder.classList.remove('hidden');
+             
+             await fetchItems();
+          } catch (err) {
+             console.error("Error submitting report:", err);
+             alert("Failed to submit report. Please try again.");
+          } finally {
+             btnSubmit.textContent = originalText;
+             btnSubmit.disabled = false;
+          }
+        });
+      }
     }
   }
 
@@ -894,6 +1272,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Listen for hash changes
   window.addEventListener('hashchange', handleRoute);
   
+  // Close notifications if clicked outside
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('notifications-dropdown');
+    const btn = document.getElementById('notifications-btn');
+    if (dropdown && !dropdown.classList.contains('hidden')) {
+      if (!dropdown.contains(e.target) && (!btn || !btn.contains(e.target))) {
+        dropdown.classList.add('hidden');
+      }
+    }
+  });
+
   // Initial load
   handleRoute();
 });
