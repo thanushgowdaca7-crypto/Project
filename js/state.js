@@ -18,7 +18,7 @@ window.State = {
     this.listeners.forEach(callback => callback(this));
   },
 
-  init() {
+  async init() {
     // 1. Init Auth
     const studentSession = sessionStorage.getItem('vvce_auth_student');
     const persistentSession = localStorage.getItem('vvce_auth_user');
@@ -28,16 +28,25 @@ window.State = {
       this.user = JSON.parse(persistentSession);
     }
 
-    // 2. Init Clubs
-    const storedClubs = localStorage.getItem('vvce_clubsData');
-    if (storedClubs) {
-      try {
-        this.clubs = JSON.parse(storedClubs);
-      } catch (e) {
-        this.clubs = window.clubsData;
+    // 2. Fetch Data from Supabase
+    try {
+      if (window.supabaseClient) {
+        const [{ data: fData }, { data: cData }] = await Promise.all([
+          window.supabaseClient.from('faculty').select('*'),
+          window.supabaseClient.from('clubs').select('*')
+        ]);
+        
+        if (fData && fData.length > 0) window.facultyData = fData;
+        if (cData && cData.length > 0) {
+          this.clubs = cData;
+          window.clubsData = cData; // Sync for global use
+        }
+      } else {
+        this.clubs = window.clubsData || [];
       }
-    } else {
-      this.clubs = window.clubsData;
+    } catch (error) {
+      console.error("Error fetching from Supabase:", error);
+      this.clubs = window.clubsData || [];
     }
 
     // 3. Init Language
