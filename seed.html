@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seed Supabase Data</title>
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Your existing data -->
+    <script src="js/data.js"></script>
+    <script>
+        // Initialize directly to avoid loading issues
+        const SUPABASE_URL = 'https://nepznzuyeezoxhqwekfz.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5lcHpuenV5ZWV6b3hocXdla2Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDY2NDQsImV4cCI6MjA5Mjc4MjY0NH0.mTqdn8vdwuC2B2I5F37Pk5JO5EKcngbqU55XD9epp0c';
+        window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    </script>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
+        button { padding: 10px 20px; font-size: 16px; background: #000; color: white; border: none; cursor: pointer; border-radius: 5px; margin-top: 10px; }
+        button:hover { background: #333; }
+        #log { margin-top: 20px; padding: 10px; background: #f4f4f4; border-radius: 5px; height: 300px; overflow-y: auto; white-space: pre-wrap;}
+    </style>
+</head>
+<body>
+    <h1>Database Data Migration</h1>
+    <p>This tool will migrate your hardcoded Faculty and Clubs data into your Supabase database.</p>
+    <button onclick="seedDatabase()">Migrate Data Now</button>
+    
+    <div id="log">Logs will appear here...</div>
+
+    <script>
+        const logEl = document.getElementById('log');
+        function log(msg) {
+            logEl.innerHTML += `\n${msg}`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        async function seedDatabase() {
+            try {
+                log("Starting migration...");
+                
+                // 1. Seed Faculty
+                log(`Migrating ${facultyData.length} faculty members...`);
+                const { data: fData, error: fError } = await window.supabaseClient
+                    .from('faculty')
+                    .upsert(facultyData);
+                
+                if (fError) {
+                    log(`ERROR migrating faculty: ${fError.message}`);
+                } else {
+                    log("✅ Faculty migrated successfully!");
+                }
+
+                // 2. Seed Clubs
+                log(`Migrating ${clubsData.length} clubs...`);
+                // Format clubs data for JSONB columns
+                const formattedClubs = clubsData.map(club => ({
+                    id: club.id,
+                    name: club.name,
+                    description: club.description,
+                    icon_name: club.iconName,
+                    category: club.category,
+                    founded_year: club.foundedYear,
+                    member_count: club.memberCount,
+                    recruitment_status: club.recruitmentStatus,
+                    vision: club.vision,
+                    mission: club.mission,
+                    faculty_coordinators: club.facultyCoordinators,
+                    student_coordinators: club.studentCoordinators,
+                    social_links: club.socialLinks
+                }));
+
+                const { data: cData, error: cError } = await window.supabaseClient
+                    .from('clubs')
+                    .upsert(formattedClubs);
+
+                if (cError) {
+                    log(`ERROR migrating clubs: ${cError.message}`);
+                } else {
+                    log("✅ Clubs migrated successfully!");
+                }
+
+                log("\n🎉 MIGRATION COMPLETE! You can close this page.");
+            } catch (err) {
+                log(`\nCRITICAL ERROR: ${err.message}`);
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>

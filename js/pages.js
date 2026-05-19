@@ -38,6 +38,19 @@ window.Pages = {
               </div>
             </div>
 
+            <div id="passwordWrapper" class="flex flex-col mb-6 hidden">
+              <label for="password-input" class="font-dm-sans text-[12px] uppercase tracking-widest text-[var(--text-muted)] mb-[8px] font-medium">
+                Password
+              </label>
+              <input
+                id="password-input"
+                name="password"
+                type="password"
+                class="input-global"
+                placeholder="Enter password"
+              />
+            </div>
+
             <button type="submit" class="btn-primary w-full justify-between items-center px-6">
               <span>Sign In</span>
               <span>&rarr;</span>

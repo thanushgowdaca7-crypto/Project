@@ -261,16 +261,26 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (page === 'login') {
       const loginForm = document.getElementById('loginForm');
       if (loginForm) {
+        const idInputEl = document.getElementById('id-input');
+        const pwWrapper = document.getElementById('passwordWrapper');
+        
+        idInputEl.addEventListener('input', (e) => {
+          if (e.target.value.trim().toUpperCase() === 'ADMIN') {
+            pwWrapper.classList.remove('hidden');
+          } else {
+            pwWrapper.classList.add('hidden');
+          }
+        });
+
         loginForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          const idInput = document.getElementById('id-input').value.trim();
+          const idInput = idInputEl.value.trim();
+          const pwInput = document.getElementById('password-input')?.value;
           const errorEl = document.getElementById('loginError');
           const submitBtn = loginForm.querySelector('button[type="submit"]');
           
           const originalBtnContent = submitBtn.innerHTML;
           submitBtn.disabled = true;
-          submitBtn.innerHTML = `<span>Verifying Location...</span> <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>`;
-          if (window.lucide) window.lucide.createIcons();
 
           const showError = (msg) => {
             errorEl.querySelector('p').textContent = msg;
@@ -279,6 +289,29 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnContent;
           };
+
+          const handleSuccessfulLogin = () => {
+            const success = window.State.login(idInput);
+            if (success) {
+              errorEl.classList.add('hidden');
+              errorEl.classList.remove('flex');
+              window.location.hash = '#home';
+            } else {
+              showError("Invalid ID format or credentials.");
+            }
+          };
+
+          if (idInput.toUpperCase() === 'ADMIN') {
+            if (pwInput === '1234') {
+              handleSuccessfulLogin();
+            } else {
+              showError("Invalid admin password.");
+            }
+            return; // Skip geolocation for admin
+          }
+
+          submitBtn.innerHTML = `<span>Verifying Location...</span> <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>`;
+          if (window.lucide) window.lucide.createIcons();
 
           if (!navigator.geolocation) {
             return showError("Geolocation is not supported by your browser.");
@@ -294,14 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const distance = window.State.calculateDistance(latitude, longitude, CAMPUS_LAT, CAMPUS_LNG);
               
               if (distance <= MAX_RADIUS_KM) {
-                const success = window.State.login(idInput);
-                if (success) {
-                  errorEl.classList.add('hidden');
-                  errorEl.classList.remove('flex');
-                  window.location.hash = '#home';
-                } else {
-                  showError("Invalid ID format or credentials.");
-                }
+                handleSuccessfulLogin();
               } else {
                 showError("Access Denied: You are not within the 1km campus radius.");
               }
