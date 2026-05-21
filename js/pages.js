@@ -74,83 +74,194 @@ window.Pages = {
   `,
 
   home: () => `
-    <div class="relative z-10 flex flex-col min-h-[calc(100vh-64px)] overflow-hidden">
+    <div class="relative z-10 flex flex-col min-h-[calc(100vh-64px)] overflow-x-hidden">
       
-      <!-- Subtle Grid & Radial Glow -->
+      <!-- Subtle Grid & Radial Glow & Floating Orbs -->
       <div class="absolute inset-0 grid-bg opacity-100 pointer-events-none z-[-2]"></div>
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[100px] pointer-events-none z-[-1]"></div>
+      <div class="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-[#64CEFB] opacity-[0.08] blur-[80px] pointer-events-none z-[-1] animate-float-1"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#8B6CF7] opacity-[0.08] blur-[100px] pointer-events-none z-[-1] animate-float-2"></div>
       
       <!-- Hero Section -->
-      <main class="flex flex-1 flex-col items-center justify-center text-center px-4 w-full h-full min-h-[80vh]">
+      <main class="flex flex-1 flex-col items-center justify-center text-center px-6 w-full h-full min-h-[85vh] relative z-10 pt-10">
         
-        <div class="hero-item inline-block px-[14px] py-[6px] border border-[var(--border)] rounded-[100px] mb-8">
-          <span class="font-dm-sans text-[11px] uppercase tracking-[0.15em] text-[var(--text-muted)] font-medium">VVCE Campus Navigator</span>
+        <div class="hero-item inline-flex items-center gap-2 px-[16px] py-[8px] border border-[var(--border)] bg-[var(--surface)]/50 backdrop-blur-md rounded-full mb-8 shadow-lg">
+          <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent-glow)]"></span>
+          <span class="font-dm-sans text-[11px] md:text-[12px] uppercase tracking-[0.15em] text-[var(--text-secondary)] font-semibold">VVCE Campus Navigator</span>
         </div>
         
-        <h1 class="hero-item block font-syne font-bold text-[52px] lg:text-[88px] leading-[1.1] text-[var(--text-primary)]">
+        <h1 class="hero-item block font-syne font-bold text-[46px] md:text-[64px] lg:text-[88px] leading-[1.05] text-[var(--text-primary)] tracking-tight">
           Locate Your
         </h1>
-        <h1 class="hero-item block font-syne font-bold text-[52px] lg:text-[88px] leading-[1.1] text-[var(--accent)] shiny-text mb-8">
+        <h1 class="hero-item block font-syne font-bold text-[46px] md:text-[64px] lg:text-[88px] leading-[1.05] text-[var(--accent)] shiny-text mb-6 md:mb-8 tracking-tight">
           Professor.
         </h1>
 
-        <p class="hero-item font-dm-sans text-[16px] text-[var(--text-secondary)] max-w-[440px] mx-auto mb-10 leading-relaxed">
-          Instantly find cabin locations, availability, and contact details for all VVCE faculty.
+        <p class="hero-item font-dm-sans text-[15px] md:text-[18px] text-[var(--text-secondary)] max-w-[500px] mx-auto mb-10 md:mb-12 leading-relaxed px-4">
+          Instantly find cabin locations, check availability, and get contact details for all VVCE faculty in one smart portal.
         </p>
 
-        <div class="hero-item flex flex-wrap items-center justify-center gap-3 mb-10">
-          <span class="px-4 py-2 rounded-full border border-[var(--border)] text-[var(--text-muted)] text-[12px] font-dm-sans font-medium">
-            5000+ Students
-          </span>
-          <span class="px-4 py-2 rounded-full border border-[var(--border)] text-[var(--text-muted)] text-[12px] font-dm-sans font-medium">
-            All Departments
-          </span>
-        </div>
-
-        <div class="hero-item">
-          <a href="#directory" class="btn-primary text-[16px]">
-            <span>Search Faculty Directory &rarr;</span>
+        <div class="hero-item flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-12 w-full max-w-[400px] md:max-w-none mx-auto">
+          <a href="#departments" class="w-full md:w-auto btn-primary text-[16px] py-4 px-8 shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)] group">
+            <span class="flex items-center justify-center gap-2">Search Faculty <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></span>
+          </a>
+          <a href="#campus-map" class="w-full md:w-auto btn-outline text-[16px] py-4 px-8 bg-[var(--surface)] hover:bg-[var(--surface-2)]">
+            <span class="flex items-center justify-center gap-2"><i data-lucide="map" class="w-4 h-4"></i> View Map</span>
           </a>
         </div>
       </main>
 
-      <!-- How It Works Section -->
+      <!-- 1. Live Campus Statistics -->
+      <section class="w-full border-t border-[var(--border)] bg-[var(--surface)] relative z-10 py-12">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 divide-x divide-[var(--border)]">
+            <div class="flex flex-col items-center text-center px-4">
+              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">250+</span>
+              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Expert Faculty</span>
+            </div>
+            <div class="flex flex-col items-center text-center px-4">
+              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">7+</span>
+              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Departments</span>
+            </div>
+            <div class="flex flex-col items-center text-center px-4">
+              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">10k+</span>
+              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Study Notes</span>
+            </div>
+            <div class="flex flex-col items-center text-center px-4">
+              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">15+</span>
+              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Student Clubs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Campus Buzz -->
       <section class="w-full border-t border-[var(--border)] bg-[var(--bg)] relative z-10 py-24">
         <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div class="mb-16">
-            <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">How It Works</h2>
-            <p class="font-syne font-semibold text-[40px] text-[var(--text-primary)]">Three steps to find any professor.</p>
+          <div class="mb-12 flex justify-between items-end">
+            <div>
+              <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">Campus Buzz</h2>
+              <p class="font-syne font-semibold text-[32px] md:text-[40px] text-[var(--text-primary)]">Upcoming Events.</p>
+            </div>
+            <a href="#events" class="hidden md:flex items-center gap-2 text-[14px] font-dm-sans text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+              View all events <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
           </div>
           
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card-global p-8 rounded-[24px] relative overflow-hidden group">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)]/10 rounded-full blur-[40px] -mr-10 -mt-10"></div>
+              <div class="flex justify-between items-start mb-6 relative z-10">
+                <span class="px-3 py-1 bg-[rgba(62,207,142,0.1)] text-[var(--success)] text-[11px] uppercase tracking-wider font-ibm-mono rounded-full border border-[rgba(62,207,142,0.2)]">Hackathon</span>
+                <span class="text-[13px] font-dm-sans text-[var(--text-muted)] flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> Next Week</span>
+              </div>
+              <h3 class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-3 relative z-10">FUSION X 1.0</h3>
+              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] mb-8 relative z-10 line-clamp-2">The ultimate 24-hour national level hackathon. Build, innovate, and conquer.</p>
+              <a href="#events" class="inline-flex items-center gap-2 text-[14px] font-dm-sans text-[var(--accent)] font-medium group-hover:underline relative z-10">Register Now &rarr;</a>
+            </div>
+
+            <div class="card-global p-8 rounded-[24px] relative overflow-hidden group">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--purple)]/10 rounded-full blur-[40px] -mr-10 -mt-10"></div>
+              <div class="flex justify-between items-start mb-6 relative z-10">
+                <span class="px-3 py-1 bg-[rgba(139,108,247,0.1)] text-[var(--purple)] text-[11px] uppercase tracking-wider font-ibm-mono rounded-full border border-[rgba(139,108,247,0.2)]">Workshop</span>
+                <span class="text-[13px] font-dm-sans text-[var(--text-muted)] flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> In 2 Days</span>
+              </div>
+              <h3 class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-3 relative z-10">AI & Web3 Seminar</h3>
+              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] mb-8 relative z-10 line-clamp-2">Learn about the future of artificial intelligence and decentralized web technologies.</p>
+              <a href="#events" class="inline-flex items-center gap-2 text-[14px] font-dm-sans text-[var(--accent)] font-medium group-hover:underline relative z-10">Register Now &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Quick Access Portals -->
+      <section class="w-full border-t border-[var(--border)] bg-[var(--surface)] relative z-10 py-24">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div class="mb-12">
+            <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">Quick Links</h2>
+            <p class="font-syne font-semibold text-[32px] md:text-[40px] text-[var(--text-primary)]">Explore the Campus.</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="#notes" class="card-global p-8 flex flex-col group hover:border-[var(--accent)] transition-all hover:-translate-y-1">
+              <div class="w-12 h-12 rounded-xl bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Study Hub</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Access thousands of PDF notes shared by top students.</p>
+              <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium">Browse Notes &rarr;</span>
+            </a>
             
-            <div class="reveal-card card-global p-8 flex flex-col items-start text-left" style="animation-delay: 0ms;">
-              <i data-lucide="search" class="w-[36px] h-[36px] text-[var(--accent)] mb-8"></i>
-              <div class="font-ibm-mono text-[11px] text-[var(--text-muted)] mb-4">01 &mdash;</div>
-              <h3 class="font-syne font-semibold text-[20px] text-[var(--text-primary)] mb-3">Search Directory</h3>
-              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                Quickly look up any faculty member by name, department, or cabin number using our real-time smart directory.
-              </p>
-            </div>
+            <a href="#lost-and-found" class="card-global p-8 flex flex-col group hover:border-[var(--accent)] transition-all hover:-translate-y-1">
+              <div class="w-12 h-12 rounded-xl bg-[rgba(240,82,82,0.1)] text-[var(--danger)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="search" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Lost & Found</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Report or claim lost items across the college campus instantly.</p>
+              <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium">Check Items &rarr;</span>
+            </a>
+            
+            <a href="#campus-map" class="card-global p-8 flex flex-col group hover:border-[var(--accent)] transition-all hover:-translate-y-1">
+              <div class="w-12 h-12 rounded-xl bg-[rgba(139,108,247,0.1)] text-[var(--purple)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="map" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Campus Map</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Find any block, lab, or faculty cabin effortlessly.</p>
+              <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium">View Map &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
-            <div class="reveal-card card-global p-8 flex flex-col items-start text-left" style="animation-delay: 120ms;">
-              <i data-lucide="map-pin" class="w-[36px] h-[36px] text-[var(--accent)] mb-8"></i>
-              <div class="font-ibm-mono text-[11px] text-[var(--text-muted)] mb-4">02 &mdash;</div>
-              <h3 class="font-syne font-semibold text-[20px] text-[var(--text-primary)] mb-3">Locate Cabin</h3>
-              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                View the exact floor plan and room number on the interactive campus map to easily navigate to their office.
-              </p>
+      <!-- 3. Featured Clubs -->
+      <section class="w-full border-t border-[var(--border)] bg-[var(--bg)] relative z-10 py-24">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div class="mb-12 flex justify-between items-end">
+            <div>
+              <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">Student Life</h2>
+              <p class="font-syne font-semibold text-[32px] md:text-[40px] text-[var(--text-primary)]">Featured Clubs.</p>
             </div>
-
-            <div class="reveal-card card-global p-8 flex flex-col items-start text-left" style="animation-delay: 240ms;">
-              <i data-lucide="calendar-check" class="w-[36px] h-[36px] text-[var(--accent)] mb-8"></i>
-              <div class="font-ibm-mono text-[11px] text-[var(--text-muted)] mb-4">03 &mdash;</div>
-              <h3 class="font-syne font-semibold text-[20px] text-[var(--text-primary)] mb-3">Check Availability</h3>
-              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                See their current schedule, active classes, and free slots instantly to know exactly when to meet them.
-              </p>
-            </div>
-
+            <a href="#departments" class="hidden md:flex items-center gap-2 text-[14px] font-dm-sans text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+              Explore all clubs <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="#clubs/shiksha" class="card-global flex flex-col p-6 cursor-pointer group">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[rgba(62,207,142,0.1)] text-[var(--success)] group-hover:scale-110 transition-transform">
+                <i data-lucide="heart" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Shiksha</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-6 flex-1">A venture of VVCE to spread social awareness to young budding minds through inspiring hearts.</p>
+              <div class="flex items-center justify-between mt-auto pt-4 border-t border-[var(--border)]">
+                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Social Service</span>
+                <span class="text-[13px] text-[var(--accent)] font-medium font-dm-sans">View &rarr;</span>
+              </div>
+            </a>
+            
+            <a href="#clubs/ieee" class="card-global flex flex-col p-6 cursor-pointer group">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[rgba(66,133,244,0.1)] text-[#4285F4] group-hover:scale-110 transition-transform">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">IEEE VVCE</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-6 flex-1">Technical activities devoted to the application of electronics and electrical sciences.</p>
+              <div class="flex items-center justify-between mt-auto pt-4 border-t border-[var(--border)]">
+                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Technical</span>
+                <span class="text-[13px] text-[var(--accent)] font-medium font-dm-sans">View &rarr;</span>
+              </div>
+            </a>
+            
+            <a href="#clubs/mindmesh" class="card-global flex flex-col p-6 cursor-pointer group">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[rgba(240,162,42,0.1)] text-[var(--warning)] group-hover:scale-110 transition-transform">
+                <i data-lucide="cpu" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">The Mind Mesh</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-6 flex-1">A dynamic ecosystem where students explore ideas and develop technical expertise.</p>
+              <div class="flex items-center justify-between mt-auto pt-4 border-t border-[var(--border)]">
+                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Innovation</span>
+                <span class="text-[13px] text-[var(--accent)] font-medium font-dm-sans">View &rarr;</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -188,9 +299,27 @@ window.Pages = {
 
   departments: () => `
     <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-12 flex-1 flex flex-col mt-4">
-      <div class="mb-10 fade-up" style="animation-delay: 0ms;">
-        <h1 class="font-syne font-bold text-[32px] text-[var(--text-primary)] mb-2">Departments & Branches</h1>
-        <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Browse faculty by their specific engineering departments.</p>
+      <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 fade-up" style="animation-delay: 0ms;">
+        <div>
+          <h1 class="font-syne font-bold text-[32px] text-[var(--text-primary)] mb-2">Departments & Branches</h1>
+          <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Browse faculty by their specific engineering departments.</p>
+        </div>
+        
+        <div class="relative w-full md:max-w-[360px]">
+          <div class="absolute inset-y-0 left-0 pl-[16px] flex items-center pointer-events-none">
+            <i data-lucide="search" class="h-[18px] w-[18px] text-[var(--text-muted)]"></i>
+          </div>
+          <input
+            id="global-faculty-search"
+            type="text"
+            class="input-global !pl-[42px]"
+            placeholder="Search all faculty by name..."
+          />
+        </div>
+      </div>
+      
+      <!-- Global Search Results Container (Hidden by default) -->
+      <div id="faculty-search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up hidden mb-10" style="animation-delay: 50ms;">
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up" style="animation-delay: 100ms;" id="departments-grid">
@@ -934,6 +1063,124 @@ window.Pages = {
       <div class="card-global p-12 text-center flex flex-col items-center">
          <i data-lucide="calendar" class="w-[48px] h-[48px] text-[var(--text-muted)] mb-6"></i>
          <p class="font-dm-sans text-[15px] text-[var(--text-secondary)]">Scheduling synchronization in progress.</p>
+      </div>
+    </div>
+  `,
+
+  notes: () => `
+    <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-12 flex-1 flex flex-col mt-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 fade-up" style="animation-delay: 0ms;">
+        <div>
+          <h1 class="font-syne font-bold text-[32px] text-[var(--text-primary)] mb-2">Study Hub</h1>
+          <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Access, download, and share PDF notes for all your subjects.</p>
+        </div>
+        <button id="btn-upload-notes" class="btn-primary shrink-0 flex items-center gap-2">
+          <i data-lucide="upload" class="w-4 h-4"></i>
+          <span>Upload Notes</span>
+        </button>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-4 mb-8 fade-up" style="animation-delay: 100ms;">
+        <div class="relative flex-1">
+          <div class="absolute inset-y-0 left-0 pl-[16px] flex items-center pointer-events-none">
+            <i data-lucide="search" class="h-[18px] w-[18px] text-[var(--text-muted)]"></i>
+          </div>
+          <input
+            id="notes-search"
+            type="text"
+            class="input-global !pl-[42px]"
+            placeholder="Search for subject, title, or department..."
+          />
+        </div>
+        <select id="notes-semester" class="input-global md:w-48 appearance-none bg-[var(--surface-2)] cursor-pointer">
+          <option value="">All Semesters</option>
+          <option value="1">1st Semester</option>
+          <option value="2">2nd Semester</option>
+          <option value="3">3rd Semester</option>
+          <option value="4">4th Semester</option>
+          <option value="5">5th Semester</option>
+          <option value="6">6th Semester</option>
+          <option value="7">7th Semester</option>
+          <option value="8">8th Semester</option>
+        </select>
+      </div>
+
+      <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up" style="animation-delay: 200ms;">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+    </div>
+
+    <!-- Upload Notes Modal -->
+    <div id="modal-upload-notes" class="fixed inset-0 z-[100] hidden items-center justify-center">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm modal-backdrop" id="modal-upload-notes-backdrop"></div>
+      <div class="relative bg-[var(--surface)] border border-[var(--border)] rounded-[24px] p-8 w-full max-w-lg shadow-2xl mx-4 modal-content">
+        <button id="modal-upload-notes-close" class="absolute top-6 right-6 btn-icon">
+          <i data-lucide="x" class="w-5 h-5 text-[var(--text-muted)] hover:text-[var(--text-primary)]"></i>
+        </button>
+        
+        <h3 class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-2">Upload Notes</h3>
+        <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-8">Share resources with the community.</p>
+
+        <form id="notes-upload-form" class="space-y-5">
+          <div class="space-y-2">
+            <label class="font-dm-sans text-[12px] uppercase tracking-widest text-[var(--text-muted)] font-medium">Title</label>
+            <input id="note-title" type="text" class="input-global" required placeholder="e.g. Module 1 - Array Basics" />
+          </div>
+          
+          <div class="space-y-2">
+            <label class="font-dm-sans text-[12px] uppercase tracking-widest text-[var(--text-muted)] font-medium">Subject Name</label>
+            <input id="note-subject" type="text" class="input-global" required placeholder="e.g. Data Structures" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="font-dm-sans text-[12px] uppercase tracking-widest text-[var(--text-muted)] font-medium">Department</label>
+              <select id="note-department" class="input-global appearance-none bg-[var(--surface-2)]" required>
+                <option value="">Select Dept</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Science">Information Science</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Civil">Civil</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Basic Science">Basic Science</option>
+              </select>
+            </div>
+            
+            <div class="space-y-2">
+              <label class="font-dm-sans text-[12px] uppercase tracking-widest text-[var(--text-muted)] font-medium">Semester</label>
+              <select id="note-semester" class="input-global appearance-none bg-[var(--surface-2)]" required>
+                <option value="">Select Sem</option>
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+                <option value="3">3rd Semester</option>
+                <option value="4">4th Semester</option>
+                <option value="5">5th Semester</option>
+                <option value="6">6th Semester</option>
+                <option value="7">7th Semester</option>
+                <option value="8">8th Semester</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="font-dm-sans text-[12px] uppercase tracking-widest text-[var(--text-muted)] font-medium">PDF File</label>
+            <label for="note-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[var(--border)] rounded-xl cursor-pointer hover:bg-[var(--surface-2)] transition-colors">
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i data-lucide="file-text" class="w-8 h-8 mb-3 text-[var(--text-muted)]"></i>
+                <p class="font-dm-sans text-[13px] text-[var(--text-secondary)] mb-1" id="file-name-display"><span class="font-medium text-[var(--accent)]">Click to upload</span> or drag and drop</p>
+                <p class="font-ibm-mono text-[11px] text-[var(--text-muted)]">PDF files only (Max 20MB)</p>
+              </div>
+              <input id="note-file" type="file" class="hidden" accept=".pdf" required />
+            </label>
+          </div>
+
+          <button type="submit" id="btn-submit-note" class="btn-primary w-full justify-center">
+            Upload Note
+          </button>
+        </form>
       </div>
     </div>
   `
