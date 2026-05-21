@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = [
       { id: 'home', label: t('nav_home') },
-      { id: 'directory', label: t('nav_directory') },
       { id: 'departments', label: t('nav_departments') },
       { id: 'campus-map', label: t('nav_campus_map') },
       { id: 'events', label: t('nav_events') },
-      { id: 'lost-and-found', label: t('nav_lost_found') }
+      { id: 'lost-and-found', label: t('nav_lost_found') },
+      { id: 'notes', label: 'Study Hub' }
     ];
 
     const desktopNavLinks = navLinks.map(link => `
@@ -477,11 +477,98 @@ document.addEventListener('DOMContentLoaded', () => {
       if (searchInput) {
         searchInput.addEventListener('input', (e) => renderFaculty(e.target.value));
       }
-    } else if (page === 'departments') {
-      const grid = document.getElementById('departments-grid');
-      const banner = document.getElementById('departments-clubs-banner');
-      
-      const deptAbbr = {
+      } else if (page === 'departments') {
+        const grid = document.getElementById('departments-grid');
+        const searchResultsGrid = document.getElementById('faculty-search-results');
+        const searchInput = document.getElementById('global-faculty-search');
+        const banner = document.getElementById('departments-clubs-banner');
+        
+        const getStatusBadge = (status) => {
+          let colorClass = '';
+          let dotClass = '';
+          switch(status) {
+            case 'Available': 
+              colorClass = 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]';
+              dotClass = 'bg-[var(--success)] animate-pulse-success';
+              break;
+            case 'In Class': 
+              colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--accent)]';
+              dotClass = 'bg-[var(--accent)]';
+              break;
+            case 'On Leave': 
+              colorClass = 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]';
+              dotClass = 'bg-[var(--danger)]';
+              break;
+            case 'Meeting': 
+              colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--warning)]';
+              dotClass = 'bg-[var(--warning)]';
+              break;
+            default: 
+              colorClass = 'bg-[rgba(136,136,136,0.1)] text-[var(--text-secondary)]';
+              dotClass = 'bg-[var(--text-secondary)]';
+          }
+          return `<span class="inline-flex items-center gap-[6px] rounded-full px-[10px] py-[4px] text-[12px] font-dm-sans ${colorClass}"><span class="w-[6px] h-[6px] rounded-full ${dotClass}"></span><span class="font-ibm-mono">${status}</span></span>`;
+        };
+        
+        const renderGlobalFaculty = (query) => {
+          if (!query || query.trim() === '') {
+            grid.classList.remove('hidden');
+            searchResultsGrid.classList.add('hidden');
+            return;
+          }
+          
+          grid.classList.add('hidden');
+          searchResultsGrid.classList.remove('hidden');
+          
+          const lowerQ = query.toLowerCase();
+          const filtered = (window.facultyData || []).filter(f => 
+            f.name.toLowerCase().includes(lowerQ) || 
+            f.department.toLowerCase().includes(lowerQ) ||
+            f.cabin.toLowerCase().includes(lowerQ)
+          );
+          
+          if (filtered.length === 0) {
+            searchResultsGrid.innerHTML = '<div class="col-span-full text-center py-12 text-[var(--text-muted)]">No faculty members found matching your search.</div>';
+          } else {
+            searchResultsGrid.innerHTML = filtered.map(f => `
+              <a href="#faculty/${f.id}" class="card-global block relative group p-6 cursor-pointer">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-syne font-semibold text-[18px] text-[var(--text-primary)]">${f.name}</h3>
+                  ${getStatusBadge(f.status)}
+                </div>
+                
+                ${f.role ? `<p class="font-dm-sans text-[13px] text-[var(--accent)] mb-1">${f.role}</p>` : ''}
+                <p class="font-dm-sans text-[12px] text-[var(--text-muted)]">${f.department}</p>
+                
+                <div class="h-[1px] w-full bg-[var(--border)] my-[14px]"></div>
+                
+                <div class="space-y-2">
+                  <div class="flex items-center text-[13px] text-[var(--text-secondary)] font-dm-sans">
+                    <i data-lucide="map-pin" class="h-[14px] w-[14px] mr-2 text-[var(--text-muted)]"></i>
+                    ${f.cabin}
+                  </div>
+                  <div class="flex items-center text-[13px] text-[var(--text-secondary)] font-dm-sans">
+                    <i data-lucide="mail" class="h-[14px] w-[14px] mr-2 text-[var(--text-muted)]"></i>
+                    ${f.email}
+                  </div>
+                </div>
+  
+                <div class="mt-4">
+                  <span class="card-link block text-[13px] text-[var(--accent)] font-medium font-dm-sans">
+                    View profile &rarr;
+                  </span>
+                </div>
+              </a>
+            `).join('');
+            if (window.lucide) window.lucide.createIcons();
+          }
+        };
+
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => renderGlobalFaculty(e.target.value));
+        }
+        
+        const deptAbbr = {
         'Computer Science': 'CSE',
         'Information Science': 'ISE',
         'Electronics & Communication Engineering': 'ECE',
@@ -824,7 +911,7 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
         } else {
           grid.innerHTML = filtered.map(c => `
-            <div class="card-global flex flex-col p-6 rounded-[20px] cursor-pointer">
+            <a href="#clubs/${c.id}" class="card-global flex flex-col p-6 rounded-[20px] cursor-pointer block">
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center justify-center h-[48px] w-[48px] rounded-[12px] bg-[var(--surface-2)] border border-[var(--border)]">
                   <i data-lucide="${c.iconName || 'book-open'}" class="h-[22px] w-[22px] ${categoryColors[c.category] || 'text-[var(--accent)]'}"></i>
@@ -848,7 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   View Profile &rarr;
                 </span>
               </div>
-            </div>
+            </a>
           `).join('');
         }
         if (window.lucide) window.lucide.createIcons();
@@ -1253,6 +1340,167 @@ document.addEventListener('DOMContentLoaded', () => {
           } catch (err) {
              console.error("Error submitting report:", err);
              alert("Failed to submit report. Please try again.");
+          } finally {
+             btnSubmit.textContent = originalText;
+             btnSubmit.disabled = false;
+          }
+        });
+      }
+    } else if (page === 'notes') {
+      const grid = document.getElementById('notes-grid');
+      const searchInput = document.getElementById('notes-search');
+      const semesterSelect = document.getElementById('notes-semester');
+      const btnUpload = document.getElementById('btn-upload-notes');
+      const modalUpload = document.getElementById('modal-upload-notes');
+      const modalClose = document.getElementById('modal-upload-notes-close');
+      const formUpload = document.getElementById('notes-upload-form');
+      const fileInput = document.getElementById('note-file');
+      const fileDisplay = document.getElementById('file-name-display');
+      
+      let allNotes = [];
+
+      const renderNotes = () => {
+        if (!grid) return;
+        const query = (searchInput?.value || '').toLowerCase();
+        const sem = semesterSelect?.value || '';
+
+        const filtered = allNotes.filter(n => {
+          const matchQuery = n.title.toLowerCase().includes(query) || 
+                             n.subject.toLowerCase().includes(query) || 
+                             n.department.toLowerCase().includes(query);
+          const matchSem = sem ? n.semester.toString() === sem : true;
+          return matchQuery && matchSem;
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No notes found.</div>';
+          return;
+        }
+
+        grid.innerHTML = filtered.map(n => {
+          const dateStr = new Date(n.created_at).toLocaleDateString();
+          return `
+            <div class="card-global p-6 flex flex-col hover:border-[var(--accent)] transition-colors">
+              <div class="flex justify-between items-start mb-4">
+                <span class="font-dm-sans text-[11px] px-[8px] py-[2px] rounded-full bg-[var(--accent-dim)] text-[var(--accent)] uppercase tracking-wider font-semibold border border-[var(--accent-glow)]">Sem ${n.semester}</span>
+                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">${dateStr}</span>
+              </div>
+              <h3 class="font-syne font-semibold text-[18px] text-[var(--text-primary)] mb-1">${n.title}</h3>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-4">${n.subject}</p>
+              
+              <div class="mt-auto pt-4 border-t border-[var(--border)] flex justify-between items-center">
+                <div class="flex flex-col">
+                  <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase">Dept: ${n.department}</span>
+                  ${n.uploader_name ? `<span class="font-ibm-mono text-[10px] text-[var(--text-muted)]">By: ${n.uploader_name}</span>` : ''}
+                </div>
+                <a href="${n.file_url}" target="_blank" class="btn-icon bg-[rgba(62,207,142,0.1)] text-[var(--success)] hover:bg-[rgba(62,207,142,0.2)] w-8 h-8 rounded-full flex items-center justify-center transition-colors">
+                  <i data-lucide="download" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          `;
+        }).join('');
+        
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      const fetchNotes = async () => {
+        if (!window.supabaseClient) return;
+        try {
+          const { data, error } = await window.supabaseClient.from('notes').select('*').order('created_at', { ascending: false });
+          if (!error && data) {
+            allNotes = data;
+            renderNotes();
+          }
+        } catch (err) {
+          console.error("Error fetching notes:", err);
+        }
+      };
+
+      fetchNotes();
+
+      if (searchInput) searchInput.addEventListener('input', renderNotes);
+      if (semesterSelect) semesterSelect.addEventListener('change', renderNotes);
+
+      // Modal Logic
+      if (btnUpload) {
+        btnUpload.addEventListener('click', () => {
+          if (!window.State.user) {
+             alert('Please login as a Student or Faculty to upload notes.');
+             window.location.hash = '#login';
+             return;
+          }
+          modalUpload.classList.remove('hidden');
+        });
+      }
+
+      if (modalClose) {
+        modalClose.addEventListener('click', () => {
+          modalUpload.classList.add('hidden');
+        });
+      }
+
+      if (fileInput) {
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            fileDisplay.innerHTML = `<span class="font-medium text-[var(--text-primary)]">${file.name}</span>`;
+          } else {
+            fileDisplay.innerHTML = '<span class="font-medium text-[var(--accent)]">Click to upload</span> or drag and drop';
+          }
+        });
+      }
+
+      if (formUpload) {
+        formUpload.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btnSubmit = document.getElementById('btn-submit-note');
+          const originalText = btnSubmit.textContent;
+          btnSubmit.textContent = 'Uploading...';
+          btnSubmit.disabled = true;
+
+          try {
+             let fileUrl = null;
+             if (fileInput.files && fileInput.files.length > 0) {
+               const file = fileInput.files[0];
+               const fileExt = file.name.split('.').pop();
+               const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '.' + fileExt;
+               
+               const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
+                  .from('study_notes')
+                  .upload(fileName, file);
+                  
+               if (uploadError) throw uploadError;
+               
+               const { data: publicUrlData } = window.supabaseClient.storage
+                  .from('study_notes')
+                  .getPublicUrl(fileName);
+                  
+               fileUrl = publicUrlData.publicUrl;
+             } else {
+               throw new Error("File is required");
+             }
+
+             const newNote = {
+               title: document.getElementById('note-title').value,
+               subject: document.getElementById('note-subject').value,
+               department: document.getElementById('note-department').value,
+               semester: parseInt(document.getElementById('note-semester').value, 10),
+               uploader_name: window.State.user?.id || 'Anonymous',
+               file_url: fileUrl
+             };
+
+             const { error } = await window.supabaseClient.from('notes').insert([newNote]);
+             if (error) throw error;
+
+             modalUpload.classList.add('hidden');
+             formUpload.reset();
+             fileDisplay.innerHTML = '<span class="font-medium text-[var(--accent)]">Click to upload</span> or drag and drop';
+             
+             await fetchNotes();
+          } catch (err) {
+             console.error("Error submitting note:", err);
+             alert("Failed to upload note. Please try again.");
           } finally {
              btnSubmit.textContent = originalText;
              btnSubmit.disabled = false;
