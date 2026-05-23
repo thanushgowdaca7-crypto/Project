@@ -75,196 +75,266 @@ window.Pages = {
 
   home: () => `
     <div class="relative z-10 flex flex-col min-h-[calc(100vh-64px)] overflow-x-hidden">
-      
-      <!-- Subtle Grid & Radial Glow & Floating Orbs -->
-      <div class="absolute inset-0 grid-bg opacity-100 pointer-events-none z-[-2]"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--accent)] opacity-[0.05] blur-[100px] pointer-events-none z-[-1]"></div>
-      <div class="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-[#64CEFB] opacity-[0.08] blur-[80px] pointer-events-none z-[-1] animate-float-1"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#8B6CF7] opacity-[0.08] blur-[100px] pointer-events-none z-[-1] animate-float-2"></div>
+      <!-- Fixed Viewport Background Container -->
+      <div class="fixed inset-0 w-full h-[100vh] z-[-5] pointer-events-none overflow-hidden">
+        <!-- Bright Elegant Antigravity Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0b132b] via-[#1c2541] to-[#0b132b]"></div>
+        <div class="absolute inset-0 grid-bg opacity-[0.25]"></div>
+        
+        <!-- Vivid yet Soft Glowing Orbs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[55%] h-[55%] rounded-full bg-[#00f2fe] filter blur-[140px] opacity-[0.35] animate-float-1"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[65%] h-[65%] rounded-full bg-[#a855f7] filter blur-[150px] opacity-[0.35] animate-float-2"></div>
+        <div class="absolute top-[20%] left-[30%] w-[45%] h-[45%] rounded-full bg-[#3ecf8e] filter blur-[160px] opacity-[0.25] animate-float-y-slow"></div>
+
+        <!-- Floating Geometric Elements -->
+        <div class="absolute top-[20%] right-[15%] w-32 h-32 border-[4px] border-[#00f2fe]/60 rounded-full opacity-60 animate-float-3d shadow-[0_0_25px_rgba(0,242,254,0.3)] backdrop-blur-sm"></div>
+        <div class="absolute bottom-[25%] left-[10%] w-24 h-24 border-[4px] border-[#a855f7]/60 transform rotate-45 opacity-60 animate-float-y shadow-[0_0_25px_rgba(168,85,247,0.3)] backdrop-blur-sm"></div>
+        
+        <!-- Elegant Cross Element -->
+        <div class="absolute top-[60%] left-[30%] flex items-center justify-center opacity-60 animate-float-2 transform rotate-[15deg]">
+          <div class="w-[2px] h-16 bg-gradient-to-b from-transparent via-[#3ecf8e] to-transparent"></div>
+          <div class="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#3ecf8e] to-transparent absolute"></div>
+        </div>
+      </div>
       
       <!-- Hero Section -->
-      <main class="flex flex-1 flex-col items-center justify-center text-center px-6 w-full h-full min-h-[85vh] relative z-10 pt-10">
+      <main class="flex flex-1 flex-col items-center justify-center text-center px-6 w-full h-full min-h-[70vh] relative z-10 pt-16">
         
-        <div class="hero-item inline-flex items-center gap-2 px-[16px] py-[8px] border border-[var(--border)] bg-[var(--surface)]/50 backdrop-blur-md rounded-full mb-8 shadow-lg">
-          <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent-glow)]"></span>
-          <span class="font-dm-sans text-[11px] md:text-[12px] uppercase tracking-[0.15em] text-[var(--text-secondary)] font-semibold">VVCE Campus Navigator</span>
+        <div class="relative w-[180px] h-[180px] md:w-[240px] md:h-[240px] mb-12 hero-item animate-float-3d">
+          <!-- Abstract 3D Campus Graphic -->
+          <div class="absolute inset-0 border border-[var(--accent)]/30 rounded-3xl transform rotate-12 bg-gradient-to-tr from-[var(--accent-glow)] to-transparent backdrop-blur-sm shadow-[0_0_40px_var(--accent-glow)]"></div>
+          <div class="absolute inset-4 border border-[var(--purple)]/30 rounded-3xl transform -rotate-6 bg-[rgba(139,108,247,0.1)] backdrop-blur-md"></div>
+          <div class="absolute inset-8 border border-[var(--success)]/20 rounded-2xl transform rotate-3 bg-[rgba(62,207,142,0.05)] flex items-center justify-center overflow-hidden">
+             <i data-lucide="zap" class="w-16 h-16 text-[var(--accent)] drop-shadow-[0_0_15px_var(--accent)] animate-pulse"></i>
+          </div>
         </div>
         
-        <h1 class="hero-item block font-syne font-bold text-[46px] md:text-[64px] lg:text-[88px] leading-[1.05] text-[var(--text-primary)] tracking-tight">
-          Locate Your
+        <h1 class="hero-item block font-syne font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[1] text-[var(--text-primary)] tracking-tight">
+          Welcome to
         </h1>
-        <h1 class="hero-item block font-syne font-bold text-[46px] md:text-[64px] lg:text-[88px] leading-[1.05] text-[var(--accent)] shiny-text mb-6 md:mb-8 tracking-tight">
-          Professor.
+        <h1 class="hero-item block font-syne font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[1] text-[var(--accent)] shiny-text mb-6 tracking-tight">
+          VVCE Connect.
         </h1>
 
-        <p class="hero-item font-dm-sans text-[15px] md:text-[18px] text-[var(--text-secondary)] max-w-[500px] mx-auto mb-10 md:mb-12 leading-relaxed px-4">
-          Instantly find cabin locations, check availability, and get contact details for all VVCE faculty in one smart portal.
+        <p class="hero-item font-dm-sans text-[16px] md:text-[20px] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium max-w-[600px] mx-auto mb-16 leading-relaxed px-4">
+          The ultimate digital hub for engineering students. Experience a weightless, frictionless, and connected campus life.
         </p>
-
-        <div class="hero-item flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-12 w-full max-w-[400px] md:max-w-none mx-auto">
-          <a href="#departments" class="w-full md:w-auto btn-primary text-[16px] py-4 px-8 shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)] group">
-            <span class="flex items-center justify-center gap-2">Search Faculty <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></span>
-          </a>
-          <a href="#campus-map" class="w-full md:w-auto btn-outline text-[16px] py-4 px-8 bg-[var(--surface)] hover:bg-[var(--surface-2)]">
-            <span class="flex items-center justify-center gap-2"><i data-lucide="map" class="w-4 h-4"></i> View Map</span>
-          </a>
-        </div>
       </main>
 
-      <!-- 1. Live Campus Statistics -->
-      <section class="w-full border-t border-[var(--border)] bg-[var(--surface)] relative z-10 py-12">
-        <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 divide-x divide-[var(--border)]">
-            <div class="flex flex-col items-center text-center px-4">
-              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">250+</span>
-              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Expert Faculty</span>
+      <!-- Quick Access Tiles Grid -->
+      <section class="w-full relative z-10 py-16 px-6 lg:px-8 max-w-[1280px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <a href="#notes" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-accent cursor-pointer">
+            <div class="w-14 h-14 rounded-2xl bg-[rgba(91,187,245,0.1)] text-[var(--accent)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+              <i data-lucide="layout-dashboard" class="w-7 h-7"></i>
             </div>
-            <div class="flex flex-col items-center text-center px-4">
-              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">7+</span>
-              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Departments</span>
+            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Student Dashboard</h3>
+            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Access your personalized notes, attendance, and academic tracking.</p>
+            <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Enter Portal <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          </a>
+          
+          <a href="#departments" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-success cursor-pointer" style="animation-delay: 100ms;">
+            <div class="w-14 h-14 rounded-2xl bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+              <i data-lucide="briefcase" class="w-7 h-7"></i>
             </div>
-            <div class="flex flex-col items-center text-center px-4">
-              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">10k+</span>
-              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Study Notes</span>
+            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Placements Hub</h3>
+            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Prepare for interviews, find resources, and track hiring drives.</p>
+            <span class="text-[13px] font-dm-sans text-[var(--success)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          </a>
+          
+          <a href="#events" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-purple cursor-pointer" style="animation-delay: 200ms;">
+            <div class="w-14 h-14 rounded-2xl bg-[rgba(139,108,247,0.1)] text-[var(--purple)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+              <i data-lucide="calendar-days" class="w-7 h-7"></i>
             </div>
-            <div class="flex flex-col items-center text-center px-4">
-              <span class="font-syne font-bold text-[36px] text-[var(--accent)] mb-1">15+</span>
-              <span class="font-dm-sans text-[13px] text-[var(--text-secondary)] uppercase tracking-wider font-medium">Student Clubs</span>
+            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Event Calendar</h3>
+            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Never miss a hackathon, fest, or technical workshop again.</p>
+            <span class="text-[13px] font-dm-sans text-[var(--purple)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">View Schedule <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          </a>
+          
+          <a href="#clubs" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-danger cursor-pointer" style="animation-delay: 300ms;">
+            <div class="w-14 h-14 rounded-2xl bg-[rgba(240,82,82,0.1)] text-[var(--danger)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+              <i data-lucide="cpu" class="w-7 h-7"></i>
             </div>
-          </div>
+            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Tech Clubs</h3>
+            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Join the buzz. Collaborate, innovate, and build with peers.</p>
+            <span class="text-[13px] font-dm-sans text-[var(--danger)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Discover <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          </a>
+          
         </div>
       </section>
 
-      <!-- 2. Campus Buzz -->
-      <section class="w-full border-t border-[var(--border)] bg-[var(--bg)] relative z-10 py-24">
+      <!-- Happening Now Feed -->
+      <section class="w-full relative z-10 py-24 bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.6)]">
         <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+          
           <div class="mb-12 flex justify-between items-end">
             <div>
-              <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">Campus Buzz</h2>
-              <p class="font-syne font-semibold text-[32px] md:text-[40px] text-[var(--text-primary)]">Upcoming Events.</p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(62,207,142,0.1)] border border-[rgba(62,207,142,0.2)] text-[var(--success)] text-xs font-ibm-mono mb-4 uppercase tracking-widest backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse shadow-[0_0_8px_var(--success)]"></span>
+                Live Updates
+              </div>
+              <p class="font-syne font-bold text-[36px] md:text-[48px] text-[var(--text-primary)]">Happening Now.</p>
             </div>
-            <a href="#events" class="hidden md:flex items-center gap-2 text-[14px] font-dm-sans text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
-              View all events <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="card-global p-8 rounded-[24px] relative overflow-hidden group">
-              <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)]/10 rounded-full blur-[40px] -mr-10 -mt-10"></div>
-              <div class="flex justify-between items-start mb-6 relative z-10">
-                <span class="px-3 py-1 bg-[rgba(62,207,142,0.1)] text-[var(--success)] text-[11px] uppercase tracking-wider font-ibm-mono rounded-full border border-[rgba(62,207,142,0.2)]">Hackathon</span>
-                <span class="text-[13px] font-dm-sans text-[var(--text-muted)] flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> Next Week</span>
+          <!-- Feed Container with custom scrollbar -->
+          <div class="feed-container flex flex-col gap-6 max-h-[600px] overflow-y-auto pr-4 pb-12">
+            
+            <div class="glass-panel p-6 flex items-start gap-5 hover-float cursor-default">
+              <div class="w-12 h-12 rounded-full bg-[rgba(240,162,42,0.1)] text-[var(--warning)] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(240,162,42,0.15)]">
+                <i data-lucide="bell-ring" class="w-5 h-5"></i>
               </div>
-              <h3 class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-3 relative z-10">FUSION X 1.0</h3>
-              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] mb-8 relative z-10 line-clamp-2">The ultimate 24-hour national level hackathon. Build, innovate, and conquer.</p>
-              <a href="#events" class="inline-flex items-center gap-2 text-[14px] font-dm-sans text-[var(--accent)] font-medium group-hover:underline relative z-10">Register Now &rarr;</a>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-syne font-bold text-[18px] text-[var(--text-primary)]">Last day for Hackathon Registration</h4>
+                  <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">10 mins ago</span>
+                </div>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed">The registrations for FUSION X 1.0 close tonight at 11:59 PM. Make sure your team is fully registered.</p>
+              </div>
             </div>
 
-            <div class="card-global p-8 rounded-[24px] relative overflow-hidden group">
-              <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--purple)]/10 rounded-full blur-[40px] -mr-10 -mt-10"></div>
-              <div class="flex justify-between items-start mb-6 relative z-10">
-                <span class="px-3 py-1 bg-[rgba(139,108,247,0.1)] text-[var(--purple)] text-[11px] uppercase tracking-wider font-ibm-mono rounded-full border border-[rgba(139,108,247,0.2)]">Workshop</span>
-                <span class="text-[13px] font-dm-sans text-[var(--text-muted)] flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> In 2 Days</span>
+            <div class="glass-panel p-6 flex items-start gap-5 hover-float cursor-default">
+              <div class="w-12 h-12 rounded-full bg-[rgba(139,108,247,0.1)] text-[var(--purple)] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(139,108,247,0.15)]">
+                <i data-lucide="mic" class="w-5 h-5"></i>
               </div>
-              <h3 class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-3 relative z-10">AI & Web3 Seminar</h3>
-              <p class="font-dm-sans text-[15px] text-[var(--text-secondary)] mb-8 relative z-10 line-clamp-2">Learn about the future of artificial intelligence and decentralized web technologies.</p>
-              <a href="#events" class="inline-flex items-center gap-2 text-[14px] font-dm-sans text-[var(--accent)] font-medium group-hover:underline relative z-10">Register Now &rarr;</a>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-syne font-bold text-[18px] text-[var(--text-primary)]">Guest Lecture: AI & Web3</h4>
+                  <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">1 hour ago</span>
+                </div>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed">Join us in the Main Auditorium at 2:00 PM today. Industry experts will dive into the future of decentralized computing.</p>
+              </div>
             </div>
+            
+            <div class="glass-panel p-6 flex items-start gap-5 hover-float cursor-default">
+              <div class="w-12 h-12 rounded-full bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(62,207,142,0.15)]">
+                <i data-lucide="trophy" class="w-5 h-5"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-syne font-bold text-[18px] text-[var(--text-primary)]">Sports: VVCE wins Inter-College Basketball</h4>
+                  <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">3 hours ago</span>
+                </div>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed">Congratulations to the college team for securing the championship trophy in an intense final match!</p>
+              </div>
+            </div>
+
+            <div class="glass-panel p-6 flex items-start gap-5 hover-float cursor-default">
+              <div class="w-12 h-12 rounded-full bg-[rgba(91,187,245,0.1)] text-[var(--accent)] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(91,187,245,0.15)]">
+                <i data-lucide="code" class="w-5 h-5"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-syne font-bold text-[18px] text-[var(--text-primary)]">Mind Mesh: Open Source Session</h4>
+                  <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">5 hours ago</span>
+                </div>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed">Learn how to make your first open-source contribution today at 4:30 PM in CS Lab 3.</p>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </section>
 
-      <!-- 4. Quick Access Portals -->
-      <section class="w-full border-t border-[var(--border)] bg-[var(--surface)] relative z-10 py-24">
+      <!-- NEW SECTION: Leadership (Principal & HODs) -->
+      <section class="w-full relative z-10 py-24 bg-gradient-to-t from-[rgba(0,0,0,0.4)] to-transparent">
         <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div class="mb-12">
-            <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">Quick Links</h2>
-            <p class="font-syne font-semibold text-[32px] md:text-[40px] text-[var(--text-primary)]">Explore the Campus.</p>
+          
+          <div class="mb-12 text-center reveal-card">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(91,187,245,0.1)] border border-[rgba(91,187,245,0.2)] text-[var(--accent)] text-xs font-ibm-mono mb-4 uppercase tracking-widest backdrop-blur-md">
+              <i data-lucide="award" class="w-3 h-3"></i> Leadership
+            </div>
+            <h2 class="font-syne font-bold text-[36px] md:text-[48px] text-[var(--text-primary)]">Principal & HODs.</h2>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="#notes" class="card-global p-8 flex flex-col group hover:border-[var(--accent)] transition-all hover:-translate-y-1">
-              <div class="w-12 h-12 rounded-xl bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i data-lucide="book-open" class="w-6 h-6"></i>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 0ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
               </div>
-              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Study Hub</h3>
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Access thousands of PDF notes shared by top students.</p>
-              <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium">Browse Notes &rarr;</span>
-            </a>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. B. Sadashive Gowda</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Principal, VVCE</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Leading the institution towards excellence in engineering education and innovation.</p>
+            </div>
             
-            <a href="#lost-and-found" class="card-global p-8 flex flex-col group hover:border-[var(--accent)] transition-all hover:-translate-y-1">
-              <div class="w-12 h-12 rounded-xl bg-[rgba(240,82,82,0.1)] text-[var(--danger)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i data-lucide="search" class="w-6 h-6"></i>
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-purple" style="animation-delay: 150ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--purple)] p-1 mb-6 shadow-[0_0_20px_rgba(139,108,247,0.3)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--purple)]"></i>
+                </div>
               </div>
-              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Lost & Found</h3>
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Report or claim lost items across the college campus instantly.</p>
-              <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium">Check Items &rarr;</span>
-            </a>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Pooja M R</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--purple)] mb-4">HOD, CSE</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Driving research and development in Computer Science and Engineering.</p>
+            </div>
             
-            <a href="#campus-map" class="card-global p-8 flex flex-col group hover:border-[var(--accent)] transition-all hover:-translate-y-1">
-              <div class="w-12 h-12 rounded-xl bg-[rgba(139,108,247,0.1)] text-[var(--purple)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <i data-lucide="map" class="w-6 h-6"></i>
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-success" style="animation-delay: 300ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--success)] p-1 mb-6 shadow-[0_0_20px_rgba(62,207,142,0.3)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--success)]"></i>
+                </div>
               </div>
-              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Campus Map</h3>
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Find any block, lab, or faculty cabin effortlessly.</p>
-              <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium">View Map &rarr;</span>
-            </a>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Gururaj H L</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--success)] mb-4">HOD, ISE</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Fostering innovation and emerging technologies in Information Science.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 3. Featured Clubs -->
-      <section class="w-full border-t border-[var(--border)] bg-[var(--bg)] relative z-10 py-24">
-        <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div class="mb-12 flex justify-between items-end">
-            <div>
-              <h2 class="font-syne font-semibold text-[13px] uppercase tracking-[0.12em] text-[var(--accent)] mb-4">Student Life</h2>
-              <p class="font-syne font-semibold text-[32px] md:text-[40px] text-[var(--text-primary)]">Featured Clubs.</p>
-            </div>
-            <a href="#departments" class="hidden md:flex items-center gap-2 text-[14px] font-dm-sans text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
-              Explore all clubs <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-          </div>
+      <!-- NEW SECTION: Campus Gallery (Marquee) -->
+      <section class="w-full relative z-10 py-12 overflow-hidden mb-12">
+        <div class="mb-12 text-center reveal-card">
+          <h2 class="font-syne font-bold text-[28px] text-[var(--text-primary)] tracking-tight">Life at VVCE</h2>
+        </div>
+        
+        <div class="w-full overflow-hidden relative">
+          <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#02000d] to-transparent z-10 pointer-events-none"></div>
+          <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#02000d] to-transparent z-10 pointer-events-none"></div>
           
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="#clubs/shiksha" class="card-global flex flex-col p-6 cursor-pointer group">
-              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[rgba(62,207,142,0.1)] text-[var(--success)] group-hover:scale-110 transition-transform">
-                <i data-lucide="heart" class="w-6 h-6"></i>
-              </div>
-              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">Shiksha</h3>
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-6 flex-1">A venture of VVCE to spread social awareness to young budding minds through inspiring hearts.</p>
-              <div class="flex items-center justify-between mt-auto pt-4 border-t border-[var(--border)]">
-                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Social Service</span>
-                <span class="text-[13px] text-[var(--accent)] font-medium font-dm-sans">View &rarr;</span>
-              </div>
-            </a>
+          <div class="animate-marquee gap-6 items-center py-4">
+            <!-- Items duplicated for seamless scrolling -->
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-accent hover-float shrink-0 text-white shadow-[0_0_20px_var(--accent-glow)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--accent)]"></i> <span class="ml-2 font-syne font-bold">Hackathon 2026</span>
+            </div>
+            <div class="w-[400px] h-[250px] glass-panel rounded-2xl flex items-center justify-center glow-purple hover-float shrink-0 text-white shadow-[0_0_20px_rgba(139,108,247,0.2)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--purple)]"></i> <span class="ml-2 font-syne font-bold">Tech Symposium</span>
+            </div>
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-danger hover-float shrink-0 text-white shadow-[0_0_20px_rgba(240,82,82,0.2)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--danger)]"></i> <span class="ml-2 font-syne font-bold">Cultural Fest</span>
+            </div>
+            <div class="w-[350px] h-[220px] glass-panel rounded-2xl flex items-center justify-center glow-success hover-float shrink-0 text-white shadow-[0_0_20px_rgba(62,207,142,0.2)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--success)]"></i> <span class="ml-2 font-syne font-bold">Robotics Lab</span>
+            </div>
             
-            <a href="#clubs/ieee" class="card-global flex flex-col p-6 cursor-pointer group">
-              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[rgba(66,133,244,0.1)] text-[#4285F4] group-hover:scale-110 transition-transform">
-                <i data-lucide="zap" class="w-6 h-6"></i>
-              </div>
-              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">IEEE VVCE</h3>
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-6 flex-1">Technical activities devoted to the application of electronics and electrical sciences.</p>
-              <div class="flex items-center justify-between mt-auto pt-4 border-t border-[var(--border)]">
-                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Technical</span>
-                <span class="text-[13px] text-[var(--accent)] font-medium font-dm-sans">View &rarr;</span>
-              </div>
-            </a>
-            
-            <a href="#clubs/mindmesh" class="card-global flex flex-col p-6 cursor-pointer group">
-              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-[rgba(240,162,42,0.1)] text-[var(--warning)] group-hover:scale-110 transition-transform">
-                <i data-lucide="cpu" class="w-6 h-6"></i>
-              </div>
-              <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">The Mind Mesh</h3>
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-6 flex-1">A dynamic ecosystem where students explore ideas and develop technical expertise.</p>
-              <div class="flex items-center justify-between mt-auto pt-4 border-t border-[var(--border)]">
-                <span class="font-ibm-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider">Innovation</span>
-                <span class="text-[13px] text-[var(--accent)] font-medium font-dm-sans">View &rarr;</span>
-              </div>
-            </a>
+            <!-- Duplicates -->
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-accent hover-float shrink-0 text-white shadow-[0_0_20px_var(--accent-glow)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--accent)]"></i> <span class="ml-2 font-syne font-bold">Hackathon 2026</span>
+            </div>
+            <div class="w-[400px] h-[250px] glass-panel rounded-2xl flex items-center justify-center glow-purple hover-float shrink-0 text-white shadow-[0_0_20px_rgba(139,108,247,0.2)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--purple)]"></i> <span class="ml-2 font-syne font-bold">Tech Symposium</span>
+            </div>
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-danger hover-float shrink-0 text-white shadow-[0_0_20px_rgba(240,82,82,0.2)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--danger)]"></i> <span class="ml-2 font-syne font-bold">Cultural Fest</span>
+            </div>
+            <div class="w-[350px] h-[220px] glass-panel rounded-2xl flex items-center justify-center glow-success hover-float shrink-0 text-white shadow-[0_0_20px_rgba(62,207,142,0.2)]">
+              <i data-lucide="image" class="w-12 h-12 text-[var(--success)]"></i> <span class="ml-2 font-syne font-bold">Robotics Lab</span>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Footer -->
+      <footer class="w-full border-t border-white/10 bg-black/50 backdrop-blur-xl relative z-10 py-12 text-center mt-auto reveal-card">
+        <p class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-2 tracking-tight">VVCE Connect</p>
+        <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6">Designed with an Antigravity aesthetic for engineering students.</p>
+        <p class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest">&copy; 2026 Vidyavardhaka College of Engineering</p>
+      </footer>
+
     </div>
   `,
 
