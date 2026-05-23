@@ -333,3 +333,110 @@ body {
   background: rgba(255,255,255,0.06);
   border-radius: 8px;
 }
+
+/* Antigravity Theme Additions */
+
+/* Glassmorphism Panels */
+.glass-panel {
+  background: rgba(26, 26, 26, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 24px;
+}
+
+/* Glowing Shadows */
+.glow-accent {
+  box-shadow: 0 0 30px rgba(91, 187, 245, 0.2);
+}
+.glow-accent:hover {
+  box-shadow: 0 0 50px rgba(91, 187, 245, 0.4);
+}
+.glow-purple {
+  box-shadow: 0 0 30px rgba(139, 108, 247, 0.2);
+}
+.glow-purple:hover {
+  box-shadow: 0 0 50px rgba(139, 108, 247, 0.4);
+}
+.glow-success {
+  box-shadow: 0 0 30px rgba(62, 207, 142, 0.2);
+}
+.glow-success:hover {
+  box-shadow: 0 0 50px rgba(62, 207, 142, 0.4);
+}
+.glow-danger {
+  box-shadow: 0 0 30px rgba(240, 82, 82, 0.2);
+}
+.glow-danger:hover {
+  box-shadow: 0 0 50px rgba(240, 82, 82, 0.4);
+}
+
+/* Floating Animations */
+@keyframes float-y {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float-y-slow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float-3d {
+  0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+  33% { transform: translateY(-15px) rotateX(5deg) rotateY(5deg); }
+  66% { transform: translateY(5px) rotateX(-5deg) rotateY(-5deg); }
+  100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hover-float {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+.hover-float:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.animate-float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+.animate-float-y-slow {
+  animation: float-y-slow 10s ease-in-out infinite;
+}
+
+.animate-float-3d {
+  animation: float-3d 12s ease-in-out infinite;
+}
+
+@keyframes marquee-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 25s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Scroll Hide for Feed */
+.feed-container::-webkit-scrollbar {
+  width: 6px;
+}
+.feed-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.feed-container::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: 10px;
+}
