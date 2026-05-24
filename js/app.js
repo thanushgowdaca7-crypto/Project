@@ -86,7 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const markNotificationsAsRead = () => {
     const notifs = getNotifications();
     localStorage.setItem('vvce_notifications_read_count', notifs.count.toString());
-    renderHeader(); // Re-render to hide the dot
+    
+    // Remove the red dots directly from the DOM without re-rendering the header
+    const deskDot = document.querySelector('#notifications-btn span.bg-\\[var\\(--danger\\)\\]');
+    if (deskDot) deskDot.remove();
+    const mobDot = document.querySelector('#mobile-notifications-btn span.bg-\\[var\\(--danger\\)\\]');
+    if (mobDot) mobDot.remove();
   };
 
   function renderHeader() {
