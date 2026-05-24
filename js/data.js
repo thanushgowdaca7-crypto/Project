@@ -2813,49 +2813,6 @@ const clubsData = [
     }
   },
   {
-    "name": "Shiksha Club",
-    "description": "Shiksha is a venture of VVCE, to spread social awareness to young budding minds through Inspiring hearts. It is the ability to take the perspective...",
-    "iconName": "BookOpen",
-    "id": "shiksha-club",
-    "category": "Sports",
-    "foundedYear": "2017",
-    "memberCount": 74,
-    "recruitmentStatus": "Open",
-    "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
-    ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
-    ],
-    "facultyCoordinators": [
-      {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
-      }
-    ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
-      },
-      {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
-      }
-    ],
-    "socialLinks": {
-      "instagram": "https://instagram.com/vvce_shiksha-club",
-      "linkedin": "https://linkedin.com/company/shiksha-club",
-      "whatsapp": "https://chat.whatsapp.com/example"
-    }
-  },
-  {
     "name": "VVCE IEEE IES SBC",
     "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Industrial Electronics Society Student Branch Chapter) The effective date of this Student Branch Chapter formation...",
     "iconName": "Cpu",
@@ -4145,46 +4102,7 @@ const clubsData = [
       "whatsapp": "https://chat.whatsapp.com/example"
     }
   },
-  {
-    "name": "Shiksha",
-    "description": "Shiksha is a venture of VVCE, to spread social awareness to young budding minds through inspiring hearts. It is the ability to take the perspective of societal issues and empathize with others from diverse backgrounds...",
-    "iconName": "Heart",
-    "id": "shiksha-club",
-    "category": "Social",
-    "foundedYear": "2023",
-    "memberCount": 50,
-    "recruitmentStatus": "Open",
-    "vision": [
-      "Our vision is to ignite passion in young minds that inspires and empowers a desire for positive change in society for better living and continuous learning, discovering new possibilities, and engaging in their communities."
-    ],
-    "mission": [
-      "Shiksha’s mission is to foster a healthy, healing society through students to unite people of different cultures with a common interest, demonstrating strong social awareness to benefit the young community."
-    ],
-    "objectives": [
-      "To take the perspective of societal issues and empathize with others from diverse backgrounds and cultures.",
-      "To understand social and ethical norms for behaviour.",
-      "To recognize family, school, and community resources and supports."
-    ],
-    "facultyCoordinators": [
-      { "name": "Prof. Ichha J", "role": "Faculty Coordinator" },
-      { "name": "Prof. Niranjan S Sarja", "role": "Faculty Coordinator" },
-      { "name": "Prof. Nanditha Muddappa", "role": "Faculty Coordinator" },
-      { "name": "Prof. Caveramma S S", "role": "Faculty Coordinator" },
-      { "name": "Prof. Kirti Gupta", "role": "Faculty Coordinator" },
-      { "name": "Prof. Ashwini H B", "role": "Faculty Coordinator" }
-    ],
-    "studentCoordinators": [
-      { "name": "Deeksha K", "role": "President" },
-      { "name": "Kiran Kumar P", "role": "Vice President" },
-      { "name": "Chiranthan M S", "role": "Secretary" },
-      { "name": "Eshwar M", "role": "Joint Secretary" },
-      { "name": "Priyadarshani Sarja", "role": "Treasurer" },
-      { "name": "Misba Saleha", "role": "PR Head" }
-    ],
-    "socialLinks": {
-      "instagram": "https://instagram.com/vvce_shiksha"
-    }
-  },
+
   {
     "name": "VVCE IEEE IES SBC",
     "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Industrial Electronics Society Student Branch Chapter) The effective date of this Student Branch Chapter formation is 11 May 2025.",
