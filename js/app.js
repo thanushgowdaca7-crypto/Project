@@ -76,6 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
     return { html: notifHTML, count: announcementNotifs.length + mockNotifs.length };
   };
 
+  const hasUnreadNotifications = () => {
+    const notifs = getNotifications();
+    if (notifs.count === 0) return false;
+    const lastRead = parseInt(localStorage.getItem('vvce_notifications_read_count') || '0', 10);
+    return notifs.count > lastRead;
+  };
+
+  const markNotificationsAsRead = () => {
+    const notifs = getNotifications();
+    localStorage.setItem('vvce_notifications_read_count', notifs.count.toString());
+    renderHeader(); // Re-render to hide the dot
+  };
+
   function renderHeader() {
     const user = window.State.user;
     const t = (key) => window.State.t(key);
@@ -139,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="relative" id="notification-dropdown-container">
                   <button id="notifications-btn" class="btn-icon relative" title="Notifications">
                     <i data-lucide="bell" class="w-[18px] h-[18px]"></i>
-                    ${user.role === 'STUDENT' ? '<span class="absolute top-[6px] right-[6px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse border border-[var(--bg)]"></span>' : ''}
+                    ${hasUnreadNotifications() ? '<span class="absolute top-[6px] right-[6px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse border border-[var(--bg)]"></span>' : ''}
                   </button>
                   
                   <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden z-[100] hidden animate-in fade-in slide-in-from-top-2 duration-200">
@@ -208,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="relative">
                       <button id="mobile-notifications-btn" class="flex items-center justify-center p-3 rounded-xl border border-[var(--border)] text-[var(--text-primary)] hover:bg-[var(--surface)] transition-colors relative">
                         <i data-lucide="bell" class="w-5 h-5"></i>
-                        ${user.role === 'STUDENT' ? '<span class="absolute top-[8px] right-[8px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse"></span>' : ''}
+                        ${hasUnreadNotifications() ? '<span class="absolute top-[8px] right-[8px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse"></span>' : ''}
                       </button>
                       <div id="mobile-notifications-dropdown" class="absolute right-0 bottom-[120%] w-[85vw] max-w-[320px] bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden z-[100] hidden animate-in fade-in slide-in-from-bottom-2 duration-200 origin-bottom-right">
                         <div class="p-4 border-b border-[var(--border)] flex justify-between items-center bg-[var(--surface-2)]">
@@ -262,6 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
       notifBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         notifDropdown.classList.toggle('hidden');
+        if (!notifDropdown.classList.contains('hidden')) {
+          markNotificationsAsRead();
+        }
       });
       // Clicking links inside the dropdown should close it
       notifDropdown.querySelectorAll('a').forEach(link => {
@@ -278,6 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileNotifBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         mobileNotifDropdown.classList.toggle('hidden');
+        if (!mobileNotifDropdown.classList.contains('hidden')) {
+          markNotificationsAsRead();
+        }
       });
       mobileNotifDropdown.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
