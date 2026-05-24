@@ -2967,41 +2967,36 @@ const clubsData = [
   },
   {
     "name": "ESPIN",
-    "description": "ESPIN - Electrical Students Project Inventory Network Objectives of ESPIN - Electrical Students Project Innovative Network Activities Conducted during 2023-24 2. Organized Barcamp on \"Innovative...",
+    "description": "ESPIN – Electrical Students Project Inventory Network",
     "iconName": "Zap",
     "id": "espin",
     "category": "R&D",
     "foundedYear": "2016",
     "memberCount": 158,
     "recruitmentStatus": "Closed",
-    "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
-    ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
+    "vision": [],
+    "mission": [],
+    "objectives": [
+      "To enable students to gain more practical knowledge by developing prototypes or software models.",
+      "To correlate theoretical concepts that is studied in the classroom with project models for varied applications.",
+      "To identify societal requirements, plan, and implement and social enterprise projects.",
+      "To enhance Technical knowledge, critical thinking, skills, leadership, demonstration skill and productive use of resource and time."
     ],
     "facultyCoordinators": [
       {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
-      }
-    ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
+        "name": "Dr. D Babu Rajendra Prasad",
+        "role": "Faculty Coordinator",
+        "email": "prasad.mindmaster@vvce.ac.in",
+        "phone": "+91 9901791057"
       },
       {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
+        "name": "Prof. Goutham B",
+        "role": "Faculty Coordinator",
+        "email": "goutham.b@vvce.ac.in",
+        "phone": "+91 8105698591"
       }
     ],
+    "studentCoordinators": [],
     "socialLinks": {
       "instagram": "https://instagram.com/vvce_espin",
       "linkedin": "https://linkedin.com/company/espin",
