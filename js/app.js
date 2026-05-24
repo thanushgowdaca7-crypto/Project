@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
               errorEl.classList.remove('flex');
               window.location.hash = '#home';
             } else {
-              showError("Invalid ID format or credentials.");
+              showError("Invalid Credentials. For students, use IDs starting with 4VV. For faculty, use their short ID (e.g., ece1, cs1, me1).");
             }
           };
 
@@ -1344,7 +1344,16 @@ document.addEventListener('DOMContentLoaded', () => {
         formAnnouncement.addEventListener('submit', (e) => {
           e.preventDefault();
           const text = document.getElementById('announcement-text').value;
-          const audience = document.getElementById('announcement-audience').value;
+          const sem = document.getElementById('announcement-sem').value;
+          const branch = document.getElementById('announcement-branch').value;
+          const section = document.getElementById('announcement-section').value;
+          
+          let audienceParts = [];
+          if (sem !== 'All') audienceParts.push(sem);
+          if (branch !== 'All') audienceParts.push(branch);
+          if (section !== 'All') audienceParts.push('Sec ' + section);
+          
+          const audience = audienceParts.length > 0 ? audienceParts.join(' ') : 'All Students';
           
           if (!allAnnouncements[params]) allAnnouncements[params] = [];
           allAnnouncements[params].push({

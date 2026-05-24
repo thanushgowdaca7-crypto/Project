@@ -1233,9 +1233,44 @@ window.Pages = {
                 <textarea id="announcement-text" required rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all resize-none" placeholder="Enter your announcement..."></textarea>
               </div>
 
-              <div>
-                <label class="block text-sm font-dm-sans text-gray-300 mb-2">Target Audience (Optional)</label>
-                <input type="text" id="announcement-audience" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g., 2nd Sem ECE, All Students, etc.">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Semester</label>
+                  <select id="announcement-sem" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all">
+                    <option value="All">All Sems</option>
+                    <option value="1st Sem">1st Sem</option>
+                    <option value="2nd Sem">2nd Sem</option>
+                    <option value="3rd Sem">3rd Sem</option>
+                    <option value="4th Sem">4th Sem</option>
+                    <option value="5th Sem">5th Sem</option>
+                    <option value="6th Sem">6th Sem</option>
+                    <option value="7th Sem">7th Sem</option>
+                    <option value="8th Sem">8th Sem</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Branch</label>
+                  <select id="announcement-branch" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all">
+                    <option value="All">All Branches</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="ME">ME</option>
+                    <option value="CE">CE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="AI&ML">AI&ML</option>
+                    <option value="ISE">ISE</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Section</label>
+                  <select id="announcement-section" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all">
+                    <option value="All">All Sections</option>
+                    <option value="A">Section A</option>
+                    <option value="B">Section B</option>
+                    <option value="C">Section C</option>
+                    <option value="D">Section D</option>
+                  </select>
+                </div>
               </div>
 
               <div class="pt-4 border-t border-white/10 flex justify-end gap-4">
