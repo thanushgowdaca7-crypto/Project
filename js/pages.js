@@ -1172,7 +1172,7 @@ window.Pages = {
                   <i data-lucide="bell" class="w-[18px] h-[18px] text-[var(--accent)]"></i>
                   Announcements & Notices
                 </h3>
-                ${window.State.user?.id === faculty.id ? `
+                ${(window.State.user?.id === faculty.id || window.State.user?.role === 'FACULTY' || window.State.user?.role === 'ADMIN') ? `
                   <button id="btn-add-announcement" class="btn-outline text-[12px] py-1 px-3 border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
                     <i data-lucide="plus" class="w-3 h-3 mr-1 inline"></i> Post
                   </button>
