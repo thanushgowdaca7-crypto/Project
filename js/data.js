@@ -2591,6 +2591,59 @@ const departmentsData = [
 
 const clubsData = [
   {
+    "name": "Innovators & Visionaries Club (IVC)",
+    "description": "The Innovators & Visionaries Club is a community dedicated to fostering innovation, creativity, and technical excellence among students. We bridge the gap between academic theory and real-world impact through hands-on projects.",
+    "iconName": "Lightbulb",
+    "id": "ivc-club",
+    "category": "Technical",
+    "foundedYear": "2024",
+    "memberCount": 85,
+    "recruitmentStatus": "Open",
+    "vision": [
+      "To nurture a generation of creators who apply science, technology, and design thinking to build solutions that positively impact people, planet, and prosperity."
+    ],
+    "mission": [
+      "To promote hands-on innovation, multidisciplinary collaboration, industry connection, and community-driven impact while building future-ready leaders."
+    ],
+    "objectives": [
+      "IDEATE: Capturing the wildest ideas and refining them into feasible solutions for technical and social challenges.",
+      "VISUALIZE: Prototyping and designing user experiences that bring concepts to life through digital and physical mediums.",
+      "CREATE: Shipping real products, hosting events, and executing projects that leave a lasting impact."
+    ],
+    "facultyCoordinators": [
+      {
+        "name": "DR HAMSAVENI M",
+        "role": "Mentor"
+      },
+      {
+        "name": "PROF PRAVEEN YADAV T R",
+        "role": "Mentor"
+      }
+    ],
+    "studentCoordinators": [
+      {
+        "name": "JAY AMEYA",
+        "role": "President"
+      },
+      {
+        "name": "RIDDHI SINGH",
+        "role": "Vice President"
+      },
+      {
+        "name": "PARINITHA K",
+        "role": "Secretary"
+      },
+      {
+        "name": "MONISH N KUMAR",
+        "role": "Treasurer"
+      }
+    ],
+    "socialLinks": {
+      "instagram": "https://instagram.com/vvce_ivc",
+      "linkedin": "https://linkedin.com/company/ivc-vvce"
+    }
+  },
+  {
     "name": "The Mind Mesh",
     "description": "Collective Minds. Limitless Intelligence.",
     "iconName": "Brain",
@@ -2636,7 +2689,7 @@ const clubsData = [
   },
   {
     "name": "FORGE NEXUS",
-    "description": "INTRODUCTION OF THE CLUB Forge Nexus is a Student R&D Club that provides a multidisciplinary platform to empower students and faculty to collaborate across all...",
+    "description": "Forge Nexus is a Student R&D Club that provides a multidisciplinary platform to empower students and faculty to collaborate across all engineering domains, transforming ideas into research papers, patents, prototypes, and startup ventures. The club fosters cross-branch innovation through structured activities such as project pitches, research bootcamps, patent support, hackathons, and workshops, ensuring every member contributes to impactful, real-world solutions. By integrating diverse fields like AI, IoT, Green Tech, Healthcare, Cybersecurity, Mechanical, Software, and Electronics, the club creates a unified ecosystem where academic curiosity evolves into tangible outcomes, positioning itself as a movement of interdisciplinary excellence and innovation.",
     "iconName": "Hammer",
     "id": "forge-nexus",
     "category": "Cultural",
@@ -2653,22 +2706,34 @@ const clubsData = [
     ],
     "facultyCoordinators": [
       {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
+        "name": "Prof. HARSHITH C",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. HARSHITH V",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. VIGNESH T V",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. REVATHY B D",
+        "role": "Faculty Coordinator"
       }
     ],
     "studentCoordinators": [
       {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
+        "name": "Aashish A Shirahatti",
+        "role": "Student Coordinator"
       },
       {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
+        "name": "Uthkarsh Gowda V",
+        "role": "Student Coordinator"
+      },
+      {
+        "name": "Chandan Gowda H N",
+        "role": "Student Coordinator"
       }
     ],
     "socialLinks": {

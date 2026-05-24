@@ -187,10 +187,10 @@ window.Pages = {
               </div>
               <div class="flex-1">
                 <div class="flex items-center justify-between mb-1">
-                  <h4 class="font-syne font-bold text-[18px] text-[var(--text-primary)]">Last day for Hackathon Registration</h4>
+                  <h4 class="font-syne font-bold text-[18px] text-[var(--text-primary)]">FUSIONX 1.0 Hackathon</h4>
                   <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">10 mins ago</span>
                 </div>
-                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed">The registrations for FUSION X 1.0 close tonight at 11:59 PM. Make sure your team is fully registered.</p>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] leading-relaxed">The registrations for FUSIONX 1.0 are filling up fast! Make sure your team is fully registered.</p>
               </div>
             </div>
 
@@ -589,6 +589,92 @@ window.Pages = {
               <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
                 <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
                 <span class="font-dm-sans font-medium">Seminar Hall</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[var(--warning)]/40 hover:shadow-[0_8px_30px_rgba(240,162,42,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--warning)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--warning)]/20 transition-colors"></div>
+            
+            <div class="flex flex-col mb-5 relative z-10">
+              <div class="w-12 h-12 rounded-[12px] bg-[var(--warning)]/10 text-[var(--warning)] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
+                <i data-lucide="camera" class="w-6 h-6"></i>
+              </div>
+              <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[var(--warning)] mb-2 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--warning)]"></span> Photography
+              </span>
+              <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[var(--warning)] transition-colors">SteelWool Photography</h3>
+              <p class="font-dm-sans text-[13px] text-[var(--text-secondary)] mt-2">Ignite your creativity! Capture stunning long-exposure shots and experience the magic of painting with light.</p>
+              
+              <div class="mt-4 flex gap-2">
+                 <a href="https://forms.gle/p86xdWU9DHSd1NXE8" target="_blank" class="btn-primary text-[12px] py-1.5 px-4 h-auto inline-flex items-center gap-2">
+                   Register <i data-lucide="external-link" class="w-3 h-3"></i>
+                 </a>
+              </div>
+            </div>
+            
+            <div class="flex flex-col gap-2 mt-auto pt-6 border-t border-[var(--border)] relative z-10">
+              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
+                <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
+                <span class="font-dm-sans font-medium">May 25th 2026, 5:30 PM Onwards</span>
+              </div>
+              <div class="flex items-center justify-between gap-3 text-[14px] text-[var(--text-secondary)]">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
+                  <span class="font-dm-sans font-medium">Basketball Court</span>
+                </div>
+                <div class="text-[10px] bg-[var(--surface)] px-2 py-1 rounded border border-[var(--border)] text-center">
+                  Contact: Sahaj & Gagan
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 (FUSIONX) -->
+          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[#64CEFB]/40 hover:shadow-[0_8px_30px_rgba(100,206,251,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent lg:col-span-2">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-[#64CEFB]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[#64CEFB]/20 transition-colors"></div>
+            
+            <div class="flex flex-col md:flex-row gap-6 relative z-10 h-full">
+              <!-- Content -->
+              <div class="flex-1 flex flex-col">
+                <div class="w-12 h-12 rounded-[12px] bg-[#64CEFB]/10 text-[#64CEFB] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
+                  <i data-lucide="code" class="w-6 h-6"></i>
+                </div>
+                <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[#64CEFB] mb-2 flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#64CEFB]"></span> Hackathon
+                </span>
+                <h3 class="font-syne font-bold text-[26px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[#64CEFB] transition-colors">FUSIONX 1.0</h3>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mt-2 flex-1">A 24-hour National Level Hackathon. Build, innovate, and compete across 5 domains. Prize Pool: ₹85,000+!</p>
+                
+                <div class="mt-6 flex flex-wrap gap-2">
+                  <a href="https://fusionx-hackathon.vercel.app" target="_blank" class="btn-primary text-[12px] py-2 px-5 h-auto inline-flex items-center gap-2">
+                    Register Now <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </a>
+                  <div class="text-[11px] bg-[var(--surface)] px-3 py-2 rounded border border-[var(--border)] inline-flex items-center gap-2">
+                     <i data-lucide="info" class="w-3 h-3 text-[var(--text-muted)]"></i>
+                     Fee: ₹699/team
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Meta Data / Details -->
+              <div class="md:w-64 flex flex-col justify-end gap-3 mt-4 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-[var(--border)] md:pl-6">
+                 <img src="fusion.jpg" class="w-full h-32 object-cover rounded-xl border border-[var(--border)] mb-4 shadow-md hidden md:block" />
+                 
+                <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]">
+                  <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
+                  <span class="font-dm-sans">29th & 30th May</span>
+                </div>
+                <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
+                  <span class="font-dm-sans">Kempegowda Sports Complex</span>
+                </div>
+                <div class="flex flex-col gap-1 mt-2 p-2 bg-[var(--surface)] border border-[var(--border)] rounded text-[11px] text-[var(--text-secondary)]">
+                   <div class="font-bold text-[var(--text-primary)]">Contact:</div>
+                   <div>Anna Swamy: +91 9481219405</div>
+                   <div>Misba Saleha: +91 7019828677</div>
+                </div>
               </div>
             </div>
           </div>
@@ -1079,7 +1165,26 @@ window.Pages = {
               </div>
             </div>
 
-            <div class="card-global p-[32px]">
+            <!-- Announcements Section -->
+            <div class="card-global p-[32px] mt-6 flex flex-col">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="font-syne font-semibold text-[16px] text-[var(--text-primary)] flex items-center gap-2">
+                  <i data-lucide="bell" class="w-[18px] h-[18px] text-[var(--accent)]"></i>
+                  Announcements & Notices
+                </h3>
+                ${window.State.user?.id === faculty.id ? `
+                  <button id="btn-add-announcement" class="btn-outline text-[12px] py-1 px-3 border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+                    <i data-lucide="plus" class="w-3 h-3 mr-1 inline"></i> Post
+                  </button>
+                ` : ''}
+              </div>
+              
+              <div id="faculty-announcements-list" class="flex flex-col gap-4">
+                <!-- Injected by app.js -->
+              </div>
+            </div>
+
+            <div class="card-global p-[32px] mt-6">
               <h3 class="font-syne font-semibold text-[16px] text-[var(--text-primary)] mb-6 flex items-center gap-2">
                 <i data-lucide="file-check" class="w-[18px] h-[18px] text-[var(--accent)]"></i>
                 Hackathon Authorization Request
@@ -1106,10 +1211,44 @@ window.Pages = {
               </div>
             </div>
 
+      ${window.State.user?.id === faculty.id ? `
+      <!-- Post Announcement Modal -->
+      <div id="modal-post-announcement" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
+        <div id="close-announcement-modal-bg" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
+        <div class="w-full flex min-h-full items-center justify-center p-4 sm:p-6 relative z-10 pointer-events-none">
+          <div class="relative w-full max-w-lg mx-auto bg-[#0d121f] border border-white/10 rounded-[24px] p-8 shadow-[0_0_50px_rgba(0,0,0,0.6)] pointer-events-auto my-8">
+            <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+              <h2 class="font-syne font-bold text-[22px] text-white flex items-center gap-3">
+                <i data-lucide="bell-plus" class="w-5 h-5 text-[var(--accent)]"></i>
+                Post Announcement
+              </h2>
+              <button id="close-announcement-modal-btn" class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-2 transition-all">
+                <i data-lucide="x" class="w-5 h-5"></i>
+              </button>
+            </div>
+            
+            <form id="announcement-form" class="space-y-6">
+              <div>
+                <label class="block text-sm font-dm-sans text-gray-300 mb-2">Message *</label>
+                <textarea id="announcement-text" required rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all resize-none" placeholder="Enter your announcement..."></textarea>
+              </div>
+
+              <div>
+                <label class="block text-sm font-dm-sans text-gray-300 mb-2">Target Audience (Optional)</label>
+                <input type="text" id="announcement-audience" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g., 2nd Sem ECE, All Students, etc.">
+              </div>
+
+              <div class="pt-4 border-t border-white/10 flex justify-end gap-4">
+                <button type="button" class="px-6 py-3 rounded-xl font-dm-sans font-medium text-white bg-white/5 hover:bg-white/10 transition-colors" id="btn-cancel-announcement">Cancel</button>
+                <button type="submit" class="btn-primary py-3 px-8 text-[15px] shadow-[0_0_20px_var(--accent-glow)] flex items-center gap-2">
+                  <span>Post</span> <i data-lucide="send" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-
       </div>
+      ` : ''}
     `;
   },
 
@@ -1252,6 +1391,96 @@ window.Pages = {
           </button>
         </form>
       </div>
+    </div>
+  `,
+
+  'teaching-journal': () => `
+    <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-12 flex-1 flex flex-col mt-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 fade-up" style="animation-delay: 0ms;">
+        <div>
+          <h1 class="font-syne font-bold text-[32px] text-[var(--text-primary)] mb-2">Teaching Journal</h1>
+          <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Daily academic diary with CO/PO mapping for audit tracking.</p>
+        </div>
+        ${window.State.user?.role === 'FACULTY' ? `
+          <button id="btn-add-journal" class="btn-primary shrink-0 flex items-center gap-2">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Add Entry</span>
+          </button>
+        ` : ''}
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 fade-up" style="animation-delay: 100ms;" id="journal-list">
+        <!-- Injected by app.js -->
+      </div>
+      
+      <!-- Add Entry Modal (Faculty Only) -->
+      ${window.State.user?.role === 'FACULTY' ? `
+      <div id="add-journal-modal" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
+        <div id="close-journal-modal-bg" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
+        <div class="w-full flex min-h-full items-center justify-center p-4 sm:p-6 relative z-10 pointer-events-none">
+          <div class="relative w-full max-w-2xl mx-auto bg-[#0d121f] border border-white/10 rounded-[24px] p-8 shadow-[0_0_50px_rgba(0,0,0,0.6)] pointer-events-auto my-8">
+            <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+              <h2 class="font-syne font-bold text-[26px] text-white flex items-center gap-3">
+                <i data-lucide="book-open" class="w-6 h-6 text-[var(--accent)]"></i>
+                New Journal Entry
+              </h2>
+              <button id="close-journal-modal-btn" class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-2 transition-all">
+                <i data-lucide="x" class="w-5 h-5"></i>
+              </button>
+            </div>
+            
+            <form id="journal-form" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Date *</label>
+                  <input type="date" id="journal-date" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all text-sm [color-scheme:dark]">
+                </div>
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Course / Subject *</label>
+                  <input type="text" id="journal-course" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g. Computer Networks">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-dm-sans text-gray-300 mb-2">What was Taught (Concepts) *</label>
+                <textarea id="journal-concepts" required rows="3" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all resize-none" placeholder="Brief description of topics covered..."></textarea>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Course Outcome (CO) Addressed *</label>
+                  <select id="journal-co" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all appearance-none">
+                    <option value="" disabled selected>Select CO</option>
+                    <option value="CO1">CO1</option>
+                    <option value="CO2">CO2</option>
+                    <option value="CO3">CO3</option>
+                    <option value="CO4">CO4</option>
+                    <option value="CO5">CO5</option>
+                    <option value="CO6">CO6</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Program Outcome (PO) Addressed</label>
+                  <input type="text" id="journal-po" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g. PO1, PO2, PSO1">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-dm-sans text-gray-300 mb-2">Reference Used</label>
+                <input type="text" id="journal-reference" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="Textbook Name, Page No, or Link">
+              </div>
+
+              <div class="pt-4 border-t border-white/10 flex justify-end gap-4">
+                <button type="button" class="px-6 py-3 rounded-xl font-dm-sans font-medium text-white bg-white/5 hover:bg-white/10 transition-colors" id="btn-cancel-journal">Cancel</button>
+                <button type="submit" class="btn-primary py-3 px-8 text-[15px] shadow-[0_0_20px_var(--accent-glow)] flex items-center gap-2" id="btn-submit-journal">
+                  <span>Save Entry</span> <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      ` : ''}
     </div>
   `
 };

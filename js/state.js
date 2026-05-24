@@ -40,16 +40,23 @@ window.State = {
         if (cData && cData.length > 0) {
           let mergedClubs = cData;
           if (window.clubsData && window.clubsData.length > 0) {
-            const localMap = {};
-            window.clubsData.forEach(c => localMap[c.id] = c);
-            mergedClubs = cData.map(c => localMap[c.id] ? { ...c, ...localMap[c.id] } : c);
-            
-            // Also append any clubs that exist in local code but not in DB
-            window.clubsData.forEach(c => {
-              if (!mergedClubs.find(mc => mc.id === c.id)) {
-                mergedClubs.push(c);
+            const newMergedClubs = [];
+            // First, add all clubs from local data in their local order, merging with DB if they exist
+            window.clubsData.forEach(localClub => {
+              const dbClub = cData.find(mc => mc.id === localClub.id);
+              if (dbClub) {
+                newMergedClubs.push({ ...dbClub, ...localClub });
+              } else {
+                newMergedClubs.push(localClub);
               }
             });
+            // Then, append any clubs from DB that aren't in local code
+            cData.forEach(dbClub => {
+              if (!newMergedClubs.find(mc => mc.id === dbClub.id)) {
+                newMergedClubs.push(dbClub);
+              }
+            });
+            mergedClubs = newMergedClubs;
           }
           this.clubs = mergedClubs;
           window.clubsData = mergedClubs; // Sync for global use
