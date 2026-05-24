@@ -84,9 +84,14 @@ window.State = {
     const upperId = id.toUpperCase();
     let loggedInUser = null;
     
+    const matchedFaculty = window.facultyData?.find(f => f.id.toUpperCase() === upperId);
+
     if (upperId.startsWith('4VV')) {
       loggedInUser = { id: upperId, role: 'STUDENT', name: 'Student Prototype' };
       sessionStorage.setItem('vvce_auth_student', JSON.stringify(loggedInUser));
+    } else if (matchedFaculty) {
+      loggedInUser = { id: matchedFaculty.id, role: 'FACULTY', name: matchedFaculty.name };
+      localStorage.setItem('vvce_auth_user', JSON.stringify(loggedInUser));
     } else if (upperId.startsWith('FAC')) {
       loggedInUser = { id: upperId, role: 'FACULTY', name: 'Faculty Prototype' };
       localStorage.setItem('vvce_auth_user', JSON.stringify(loggedInUser));
