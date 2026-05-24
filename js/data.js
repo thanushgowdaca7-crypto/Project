@@ -2814,7 +2814,7 @@ const clubsData = [
   },
   {
     "name": "Entrepreneurship Cell-ASPERA",
-    "description": "About Entrepreneurship Cell - ASPERA The Entrepreneurship Cell - E Cell ASPERA of Vidyavardhaka College of Engineering, Mysuru is set up to encourage entrepreneurship among...",
+    "description": "About Entrepreneurship Cell – ASPERA\n\nThe Entrepreneurship Cell – E Cell ASPERA of Vidyavardhaka College of Engineering, Mysuru is set up to encourage entrepreneurship among students. It is a student-driven community backed by the Institution. ASPERA conducts workshops, activities and drives to help and mould the ideas of Entrepreneurship, Innovation and Start-up among the future leaders.",
     "iconName": "Lightbulb",
     "id": "entrepreneurship-cell-aspera",
     "category": "R&D",
@@ -2822,31 +2822,61 @@ const clubsData = [
     "memberCount": 98,
     "recruitmentStatus": "Open",
     "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
+      "To foster entrepreneurship, innovation, startup culture in students and staff"
     ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
+    "mission": [],
+    "objectives": [
+      "Help students to experience the world of Entrepreneurship through the activities.",
+      "Provide a platform for students to learn Entrepreneurship, Innovation and Start-up skills.",
+      "Empower students with necessary tools and guidance to develop entrepreneurial mindset.",
+      "Membership benefits: We enable to develop and refine leadership skills.",
+      "We make entrepreneurship enjoyable.",
+      "We impart organization building skills."
     ],
     "facultyCoordinators": [
       {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
+        "name": "Dr. Lokesh C",
+        "role": "Faculty Coordinator",
+        "email": "lokesh.c@vvce.ac.in",
+        "phone": "+91 8147247208"
       }
     ],
     "studentCoordinators": [
       {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
+        "name": "Aapti Poonacha",
+        "role": "E lead",
+        "email": "aaptipoonacha2004@gmail.com",
+        "phone": "9986988250"
       },
       {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
+        "name": "Lakshmi Sangameshwara M S",
+        "role": "Finance Lead",
+        "email": "lakshmisangameshwarams@gmail.com",
+        "phone": "9591710264"
+      },
+      {
+        "name": "Arjun D",
+        "role": "Marketing Lead",
+        "email": "arjund2004@gmail.com",
+        "phone": "8088568588"
+      },
+      {
+        "name": "Varshini Kulkarni",
+        "role": "Documentation Lead",
+        "email": "varshinikulkarni22@gmail.com",
+        "phone": "9483700975"
+      },
+      {
+        "name": "Yashwanth GR",
+        "role": "Social Media Lead",
+        "email": "yashwanthgr030@gmail.com",
+        "phone": "9632931349"
+      },
+      {
+        "name": "Samay M J",
+        "role": "Event Management Lead",
+        "email": "samay2219mj@gmail.com",
+        "phone": "6360366918"
       }
     ],
     "socialLinks": {
