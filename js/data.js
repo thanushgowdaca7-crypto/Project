@@ -3059,41 +3059,28 @@ const clubsData = [
   },
   {
     "name": "Vector flow",
-    "description": "Aim: Aim of Vector flow club is to promote self learning and skill development through live project implementations, codeathons or learnathons. Club also aims in...",
+    "description": "Aim of Vector flow club is to promote self learning and skill development through live project implementations, codeathons or learnathons. Club also aims in bringing together AI & ML enthusiastic students and create a better platform to learn.",
     "iconName": "Activity",
     "id": "vector-flow",
-    "category": "Cultural",
+    "category": "Technical",
     "foundedYear": "2018",
     "memberCount": 182,
     "recruitmentStatus": "Open",
-    "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
-    ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
+    "vision": [],
+    "mission": [],
+    "objectives": [
+      "To promote self learning and skill development through live project implementations, codeathons or learnathons.",
+      "To bring together AI & ML enthusiastic students and create a better platform to learn."
     ],
     "facultyCoordinators": [
       {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
+        "name": "Dr. Varshitha D N",
+        "role": "Faculty Coordinator",
+        "email": "varshithadn@vvce.ac.in",
+        "phone": "+91 8904091731"
       }
     ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
-      },
-      {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
-      }
-    ],
+    "studentCoordinators": [],
     "socialLinks": {
       "instagram": "https://instagram.com/vvce_vector-flow",
       "linkedin": "https://linkedin.com/company/vector-flow",
