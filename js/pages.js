@@ -660,7 +660,7 @@ window.Pages = {
               
               <!-- Meta Data / Details -->
               <div class="md:w-64 flex flex-col justify-end gap-3 mt-4 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-[var(--border)] md:pl-6">
-                 <img src="fusion.jpg" class="w-full h-32 object-cover rounded-xl border border-[var(--border)] mb-4 shadow-md hidden md:block" />
+                 <img src="fusion.jpg" class="w-full h-32 md:h-48 object-cover rounded-xl border border-[var(--border)] mb-4 shadow-md" />
                  
                 <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]">
                   <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
