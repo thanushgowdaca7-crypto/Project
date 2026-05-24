@@ -3844,49 +3844,7 @@ const clubsData = [
       "whatsapp": "https://chat.whatsapp.com/example"
     }
   },
-  {
-    "name": "VVCE IEEE PELS SBC",
-    "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Power Electronics Society Student Branch Chapter) This Professional Chapter was established in the year 2022...",
-    "iconName": "Zap",
-    "id": "vvce-ieee-pels-sbc",
-    "category": "Social",
-    "foundedYear": "2019",
-    "memberCount": 86,
-    "recruitmentStatus": "Open",
-    "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
-    ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
-    ],
-    "facultyCoordinators": [
-      {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
-      }
-    ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
-      },
-      {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
-      }
-    ],
-    "socialLinks": {
-      "instagram": "https://instagram.com/vvce_vvce-ieee-pels-sbc",
-      "linkedin": "https://linkedin.com/company/vvce-ieee-pels-sbc",
-      "whatsapp": "https://chat.whatsapp.com/example"
-    }
-  },
+
   {
     "name": "VVCE IEEE PES SBC",
     "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Power and Energy Society Student Branch Chapter) This Professional Chapter was established in the year...",
