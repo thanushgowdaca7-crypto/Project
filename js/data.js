@@ -2591,6 +2591,76 @@ const departmentsData = [
 
 const clubsData = [
   {
+    "name": "Shiksha Club",
+    "description": "Shiksha is a venture of VVCE, to spread social awareness to young budding minds through inspiring hearts. It is the ability to take the perspective of societal issues and empathize with others from diverse backgrounds and cultures; to understand social and ethical norms for behaviour; and to recognize family, school, and community resources and supports.",
+    "iconName": "HeartHandshake",
+    "id": "shiksha-club",
+    "category": "Social",
+    "foundedYear": "",
+    "memberCount": 50,
+    "recruitmentStatus": "Open",
+    "vision": [
+      "Our vision is to ignite passion in young minds that inspires and empowers a desire for positive change in society for better living and continuous learning. discovering new possibilities, and engaging in their communities."
+    ],
+    "mission": [
+      "Shiksha’s mission is to foster a healthy, healing society through students to unite people of different cultures with a common interest, demonstrating strong social awareness to benefit the young community."
+    ],
+    "objectives": [],
+    "facultyCoordinators": [
+      {
+        "name": "Prof. Ichha J",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. Niranjan S Sarja",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. Nanditha Muddappa",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. Caveramma S S",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. Kirti Gupta",
+        "role": "Faculty Coordinator"
+      },
+      {
+        "name": "Prof. Ashwini H B",
+        "role": "Faculty Coordinator"
+      }
+    ],
+    "studentCoordinators": [
+      {
+        "name": "Deeksha K",
+        "role": "President"
+      },
+      {
+        "name": "Kiran Kumar P",
+        "role": "Vice President"
+      },
+      {
+        "name": "Chiranthan M S",
+        "role": "Secretary"
+      },
+      {
+        "name": "Eshwar M",
+        "role": "Joint Secretary"
+      },
+      {
+        "name": "Priyadarshani Sarja",
+        "role": "Treasurer"
+      },
+      {
+        "name": "Misba Saleha",
+        "role": "PR Head"
+      }
+    ],
+    "socialLinks": {}
+  },
+  {
     "name": "Innovators & Visionaries Club (IVC)",
     "description": "The Innovators & Visionaries Club is a community dedicated to fostering innovation, creativity, and technical excellence among students. We bridge the gap between academic theory and real-world impact through hands-on projects.",
     "iconName": "Lightbulb",
