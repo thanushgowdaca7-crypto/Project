@@ -3005,7 +3005,7 @@ const clubsData = [
   },
   {
     "name": "Yuvaa Club",
-    "description": "Mission: To empower students by providing a supportive environment where they can explore, develop and showcase their talents, fostering personal growth and enhancing essential life...",
+    "description": "To empower students by providing a supportive environment where they can explore, develop and showcase their talents, fostering personal growth and enhancing essential life skills.",
     "iconName": "Users",
     "id": "yuvaa-club",
     "category": "Technical",
@@ -3013,31 +3013,42 @@ const clubsData = [
     "memberCount": 170,
     "recruitmentStatus": "Open",
     "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
+      "To cultivate a vibrant community of confident and skilled individuals who embrace their unique abilities, communicate effectively and contribute positively to society."
     ],
     "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
+      "To empower students by providing a supportive environment where they can explore, develop and showcase their talents, fostering personal growth and enhancing essential life skills."
+    ],
+    "objectives": [
+      "Skill Development",
+      "Confidence Building",
+      "Communication enhancement",
+      "Holistic education",
+      "Community Engagement"
     ],
     "facultyCoordinators": [
       {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
+        "name": "Prof. Harshith C",
+        "role": "Faculty Coordinator",
+        "email": "harshithc@vvce.ac.in",
+        "phone": "+91 9591522396"
       }
     ],
     "studentCoordinators": [
       {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
+        "name": "Chiranjeevi A",
+        "role": "Student Coordinator"
       },
       {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
+        "name": "Aryan Aiyappa M C",
+        "role": "Student Coordinator"
+      },
+      {
+        "name": "B J Thanush",
+        "role": "Student Coordinator"
+      },
+      {
+        "name": "Anirudh H R",
+        "role": "Student Coordinator"
       }
     ],
     "socialLinks": {
