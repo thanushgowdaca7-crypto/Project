@@ -204,9 +204,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="font-dm-sans text-[16px] text-[var(--text-primary)]">${user.id}</span>
                     <span class="font-ibm-mono text-[12px] text-[var(--accent)] mt-1">${user.role}</span>
                   </div>
-                  <button id="mobile-logout-btn" class="flex items-center justify-center p-3 rounded-xl border border-[var(--danger)] text-[var(--danger)] hover:bg-[rgba(240,82,82,0.1)] transition-colors">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
-                  </button>
+                  <div class="flex items-center gap-3">
+                    <div class="relative">
+                      <button id="mobile-notifications-btn" class="flex items-center justify-center p-3 rounded-xl border border-[var(--border)] text-[var(--text-primary)] hover:bg-[var(--surface)] transition-colors relative">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        ${user.role === 'STUDENT' ? '<span class="absolute top-[8px] right-[8px] w-2 h-2 bg-[var(--danger)] rounded-full animate-pulse"></span>' : ''}
+                      </button>
+                      <div id="mobile-notifications-dropdown" class="absolute right-0 bottom-[120%] w-[85vw] max-w-[320px] bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden z-[100] hidden animate-in fade-in slide-in-from-bottom-2 duration-200 origin-bottom-right">
+                        <div class="p-4 border-b border-[var(--border)] flex justify-between items-center bg-[var(--surface-2)]">
+                          <h3 class="font-syne font-semibold text-[16px] text-[var(--text-primary)]">Notifications</h3>
+                          <span class="text-[11px] font-ibm-mono text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-1 rounded-md">${getNotifications().count} New</span>
+                        </div>
+                        <div class="flex flex-col max-h-[300px] overflow-y-auto">
+                          ${getNotifications().html}
+                        </div>
+                      </div>
+                    </div>
+                    <button id="mobile-logout-btn" class="flex items-center justify-center p-3 rounded-xl border border-[var(--danger)] text-[var(--danger)] hover:bg-[rgba(240,82,82,0.1)] transition-colors">
+                      <i data-lucide="log-out" class="w-5 h-5"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             ` : `
@@ -250,6 +267,23 @@ document.addEventListener('DOMContentLoaded', () => {
       notifDropdown.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           notifDropdown.classList.add('hidden');
+        });
+      });
+    }
+
+    const mobileNotifBtn = document.getElementById('mobile-notifications-btn');
+    const mobileNotifDropdown = document.getElementById('mobile-notifications-dropdown');
+    
+    if (mobileNotifBtn && mobileNotifDropdown) {
+      mobileNotifBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileNotifDropdown.classList.toggle('hidden');
+      });
+      mobileNotifDropdown.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNotifDropdown.classList.add('hidden');
+          isMobileMenuOpen = false;
+          renderHeader();
         });
       });
     }
