@@ -2887,7 +2887,7 @@ const clubsData = [
   },
   {
     "name": "Nirvaaha - The VVCE Management Excellence Club",
-    "description": "Nirvaaha is the official Management Excellence Club of Vidyavardhaka College of Engineering (VVCE), launched with a mission to nurture leadership, innovation, and professional excellence among...",
+    "description": "Nirvaaha is the official Management Excellence Club of Vidyavardhaka College of Engineering (VVCE), launched with a mission to nurture leadership, innovation, and professional excellence among students of the Department of Business Administration. Inaugurated under the theme “Students Shaping Success,” the club embodies a vision where education goes beyond classrooms—fostering future leaders who are not only academically sound but also equipped with real-world managerial skills. Derived from Sanskrit, ‘Nirvaaha’ means effective execution or management, reflecting the club’s commitment to excellence in thought and action. It also signifies the collective journey of students managing ideas, resources, and aspirations to achieve purposeful success. Driven by the belief that students are not just learners but leaders in the making, the club embodies the vision of shaping future-ready professionals who create value wherever they go.",
     "iconName": "TrendingUp",
     "id": "nirvaaha-the-vvce-management-excellence-club",
     "category": "Technical",
@@ -2895,33 +2895,26 @@ const clubsData = [
     "memberCount": 110,
     "recruitmentStatus": "Open",
     "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
+      "To ignite the spark of leadership, innovation, and management excellence in students, empowering them to transform ideas into impactful actions and shape the future of business with bold vision and purpose."
     ],
     "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
+      "To provide students with hands-on learning experiences that build core management skills and leadership abilities.",
+      "To foster innovation and entrepreneurial thinking through real-world challenges and case studies.",
+      "To facilitate meaningful interactions with industry leaders, alumni, and professionals through guest lectures, workshops, and networking events.",
+      "To encourage collaboration and teamwork through business simulations, competitions, and interdisciplinary projects.",
+      "To promote a culture of social responsibility by engaging students in community service and sustainability initiatives.",
+      "To support the development of well-rounded professionals who are prepared to excel in a dynamic global business environment.",
+      "To inspire and nurture entrepreneurial ventures by offering platforms for showcasing and developing student-led startup ideas."
     ],
     "facultyCoordinators": [
       {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
+        "name": "Prof. Jai Ganesh M N",
+        "role": "Faculty Coordinator",
+        "email": "jaiganesh@vvce.ac.in",
+        "phone": "+91 9663690184"
       }
     ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
-      },
-      {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
-      }
-    ],
+    "studentCoordinators": [],
     "socialLinks": {
       "instagram": "https://instagram.com/vvce_nirvaaha-the-vvce-management-excellence-club",
       "linkedin": "https://linkedin.com/company/nirvaaha-the-vvce-management-excellence-club",
