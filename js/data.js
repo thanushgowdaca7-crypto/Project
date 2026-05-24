@@ -2813,49 +2813,6 @@ const clubsData = [
     }
   },
   {
-    "name": "VVCE IEEE IES SBC",
-    "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Industrial Electronics Society Student Branch Chapter) The effective date of this Student Branch Chapter formation...",
-    "iconName": "Cpu",
-    "id": "vvce-ieee-ies-sbc",
-    "category": "Social",
-    "foundedYear": "2018",
-    "memberCount": 86,
-    "recruitmentStatus": "Closed",
-    "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
-    ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
-    ],
-    "facultyCoordinators": [
-      {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
-      }
-    ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
-      },
-      {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
-      }
-    ],
-    "socialLinks": {
-      "instagram": "https://instagram.com/vvce_vvce-ieee-ies-sbc",
-      "linkedin": "https://linkedin.com/company/vvce-ieee-ies-sbc",
-      "whatsapp": "https://chat.whatsapp.com/example"
-    }
-  },
-  {
     "name": "Entrepreneurship Cell-ASPERA",
     "description": "About Entrepreneurship Cell - ASPERA The Entrepreneurship Cell - E Cell ASPERA of Vidyavardhaka College of Engineering, Mysuru is set up to encourage entrepreneurship among...",
     "iconName": "Lightbulb",
@@ -4105,7 +4062,7 @@ const clubsData = [
 
   {
     "name": "VVCE IEEE IES SBC",
-    "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Industrial Electronics Society Student Branch Chapter) The effective date of this Student Branch Chapter formation is 11 May 2025.",
+    "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Industrial Electronics Society Student Branch Chapter) The effective date of this Student Branch Chapter formation is 11 May 2025. An IEEE Student Branch Chapter is a technical sub-unit of a Student Branch. Student Chapters provide unique opportunities for networking, mentoring, and bonding over common interests. They provide support both within the student community and to local communities outside the institution.",
     "iconName": "Cpu",
     "id": "vvce-ieee-ies-sbc",
     "category": "Technical",
@@ -4113,20 +4070,20 @@ const clubsData = [
     "memberCount": 0,
     "recruitmentStatus": "Open",
     "vision": [
-      "The vision of the IES is to advance global prosperity by fostering technological innovation, enabling members' careers and promoting community worldwide. The IES promotes the engineering process of creating, developing, integrating, sharing, and applying knowledge about electro- and information technologies and sciences for the benefit of humanity and the profession."
+      "The vision of the IES is to advance global prosperity by fostering technological innovation, enabling members’ careers and promoting community worldwide. The IES promotes the engineering process of creating, developing, integrating, sharing, and applying knowledge about electro- and information technologies and sciences for the benefit of humanity and the profession."
     ],
     "mission": [
-      "An IEEE Student Branch Chapter is a technical sub-unit of a Student Branch. Student Chapters provide unique opportunities for networking, mentoring, and bonding over common interests. They provide support both within the student community and to local communities outside the institution."
+      "About IES: The Industrial Electronics Society through its members encompasses a diverse range of technical activities devoted to the application of electronics and electrical sciences for the enhancement of industrial and manufacturing processes. These technical activities address the latest developments in intelligent and computer control systems, robotics, factory communications and automation, flexible manufacturing, data acquisition and signal processing, vision systems, and power electronics. The Society continually updates its program of technical activities to meet the needs of modern industry."
     ],
     "objectives": [
-      "About IES: The Industrial Electronics Society through its members encompasses a diverse range of technical activities devoted to the application of electronics and electrical sciences for the enhancement of industrial and manufacturing processes. These technical activities address the latest developments in intelligent and computer control systems, robotics, factory communications and automation, flexible manufacturing, data acquisition and signal processing, vision systems, and power electronics. The Society continually updates its program of technical activities to meet the needs of modern industry.",
       "Field of Interest: The Field of Interest of the IES shall be confined to the theory and applications of electronics, controls, communications, instrumentation, and computational intelligence to industrial and manufacturing systems and processes."
     ],
     "facultyCoordinators": [
       { 
         "name": "Prof. Savyasachi G K", 
-        "role": "Faculty Coordinator", 
-        "email": "savyasachi@vvce.ac.in, savyasachigk@ieee.org" 
+        "role": "IEEE Senior Member (Member number: 92649382) Assistant Professor, EEE, VVCE", 
+        "email": "savyasachi@vvce.ac.in, savyasachigk@ieee.org",
+        "phone": "+91 95385 77197"
       }
     ],
     "studentCoordinators": [],
