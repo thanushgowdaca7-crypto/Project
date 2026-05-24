@@ -3844,50 +3844,6 @@ const clubsData = [
       "whatsapp": "https://chat.whatsapp.com/example"
     }
   },
-
-  {
-    "name": "VVCE IEEE PES SBC",
-    "description": "(Vidyavardhaka College of Engineering Institute of Electrical and Electronics Engineers Power and Energy Society Student Branch Chapter) This Professional Chapter was established in the year...",
-    "iconName": "Battery",
-    "id": "vvce-ieee-pes-sbc",
-    "category": "R&D",
-    "foundedYear": "2020",
-    "memberCount": 98,
-    "recruitmentStatus": "Open",
-    "vision": [
-      "To foster innovation and excellence among students.",
-      "To build a strong community of like-minded individuals."
-    ],
-    "mission": [
-      "Organize workshops, hackathons, and seminars.",
-      "Provide hands-on experience and industry exposure."
-    ],
-    "facultyCoordinators": [
-      {
-        "name": "Dr. Jane Doe",
-        "role": "Chief Coordinator"
-      }
-    ],
-    "studentCoordinators": [
-      {
-        "name": "John Smith",
-        "role": "President",
-        "semester": "6th Sem",
-        "branch": "CSE"
-      },
-      {
-        "name": "Alice Johnson",
-        "role": "Vice President",
-        "semester": "6th Sem",
-        "branch": "ISE"
-      }
-    ],
-    "socialLinks": {
-      "instagram": "https://instagram.com/vvce_vvce-ieee-pes-sbc",
-      "linkedin": "https://linkedin.com/company/vvce-ieee-pes-sbc",
-      "whatsapp": "https://chat.whatsapp.com/example"
-    }
-  },
   {
     "name": "VEEE-SPARC",
     "description": "Vidyavardhaka Electrical and Electronics Engineering Students' Project and Research Club (VEEE-SPARC) The purpose of the club is to promote: Activities Conducted during 2023-24...",
