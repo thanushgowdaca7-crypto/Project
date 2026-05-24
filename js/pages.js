@@ -138,8 +138,8 @@ window.Pages = {
             <div class="w-14 h-14 rounded-2xl bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
               <i data-lucide="briefcase" class="w-7 h-7"></i>
             </div>
-            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Placements Hub</h3>
-            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Prepare for interviews, find resources, and track hiring drives.</p>
+            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Departments</h3>
+            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Explore various engineering departments and branches.</p>
             <span class="text-[13px] font-dm-sans text-[var(--success)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
           </a>
           
