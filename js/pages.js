@@ -1211,7 +1211,7 @@ window.Pages = {
               </div>
             </div>
 
-      ${window.State.user?.id === faculty.id ? `
+      ${(window.State.user?.id === faculty.id || window.State.user?.role === 'FACULTY' || window.State.user?.role === 'ADMIN') ? `
       <!-- Post Announcement Modal -->
       <div id="modal-post-announcement" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
         <div id="close-announcement-modal-bg" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
