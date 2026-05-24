@@ -42,4 +42,14 @@ if (fs.existsSync(path.join(__dirname, 'vercel.json'))) {
   fs.copyFileSync(path.join(__dirname, 'vercel.json'), path.join(distDir, 'vercel.json'));
 }
 
+// Copy root images to dist
+fs.readdirSync(__dirname).forEach(file => {
+  if (file.endsWith('.jpg') || file.endsWith('.png') || file.endsWith('.svg') || file.endsWith('.jpeg') || file.endsWith('.webp') || file.endsWith('.gif')) {
+    const srcPath = path.join(__dirname, file);
+    if (fs.statSync(srcPath).isFile()) {
+      fs.copyFileSync(srcPath, path.join(distDir, file));
+    }
+  }
+});
+
 console.log('Build completed: Copied files to dist directory.');
