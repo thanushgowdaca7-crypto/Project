@@ -7,6 +7,75 @@ document.addEventListener('DOMContentLoaded', () => {
   const contentEl = document.getElementById('content');
   let isMobileMenuOpen = false;
 
+  const getNotifications = () => {
+    const allAnnouncements = JSON.parse(localStorage.getItem('vvce_announcements') || '{}');
+    let announcementNotifs = [];
+    Object.keys(allAnnouncements).forEach(facultyId => {
+      const faculty = window.facultyData?.find(f => f.id === facultyId) || { name: facultyId };
+      allAnnouncements[facultyId].forEach(a => {
+        announcementNotifs.push({
+          type: 'announcement',
+          facultyId: facultyId,
+          facultyName: faculty.name,
+          ...a
+        });
+      });
+    });
+    // Sort by date descending
+    announcementNotifs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Existing mock notifications
+    const mockNotifs = [
+      {
+        title: 'FUSIONX 1.0 Hackathon',
+        text: 'Registrations are now open! Join the 24 HRS National-Level Hackathon. Prize Pool: ₹85,000+',
+        time: 'Just now',
+        icon: 'calendar',
+        bgClass: 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]',
+        link: '#events'
+      },
+      {
+        title: 'Hackathon Registration',
+        text: 'Only 2 days left to request attendance authorization for the Global Hackathon.',
+        time: '5 hours ago',
+        icon: 'alert-circle',
+        bgClass: 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]',
+        link: '#events'
+      }
+    ];
+
+    let notifHTML = announcementNotifs.map(n => `
+      <a href="#faculty/${n.facultyId}" class="p-4 border-b border-[var(--border)] hover:bg-[var(--surface-2)] transition-colors flex gap-3 cursor-pointer">
+        <div class="w-8 h-8 rounded-full bg-[#64CEFB]/10 flex items-center justify-center text-[#64CEFB] shrink-0">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+        </div>
+        <div class="flex flex-col">
+          <p class="font-dm-sans text-[13px] text-[var(--text-primary)] font-medium">Announcement from ${n.facultyName}</p>
+          <p class="font-dm-sans text-[12px] text-[var(--text-secondary)] mt-1 line-clamp-2">${n.text}</p>
+          <div class="flex justify-between items-center mt-2">
+            <span class="font-ibm-mono text-[10px] text-[var(--text-muted)]">${new Date(n.date).toLocaleDateString()}</span>
+            ${n.audience ? `<span class="font-ibm-mono text-[9px] text-[var(--accent)] border border-[var(--accent)]/30 px-1 rounded">${n.audience}</span>` : ''}
+          </div>
+        </div>
+      </a>
+    `).join('');
+
+    notifHTML += mockNotifs.map(n => `
+      <a href="${n.link}" class="p-4 border-b border-[var(--border)] hover:bg-[var(--surface-2)] transition-colors flex gap-3 cursor-pointer">
+        <div class="w-8 h-8 rounded-full ${n.bgClass} flex items-center justify-center shrink-0">
+          <i data-lucide="${n.icon}" class="w-4 h-4"></i>
+        </div>
+        <div class="flex flex-col">
+          <p class="font-dm-sans text-[13px] text-[var(--text-primary)] font-medium">${n.title}</p>
+          <p class="font-dm-sans text-[12px] text-[var(--text-secondary)] mt-1">${n.text}</p>
+          <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] mt-2">${n.time}</span>
+        </div>
+      </a>
+    `).join('');
+
+    return { html: notifHTML, count: announcementNotifs.length + mockNotifs.length };
+  };
+
   function renderHeader() {
     const user = window.State.user;
     const t = (key) => window.State.t(key);
@@ -19,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'campus-map', label: t('nav_campus_map') },
       { id: 'events', label: t('nav_events') },
       { id: 'lost-and-found', label: t('nav_lost_found') },
-      { id: 'notes', label: 'Study Hub' }
+      { id: 'notes', label: 'Study Hub' },
+      { id: 'teaching-journal', label: 'Teaching Journal' }
     ];
 
     const desktopNavLinks = navLinks.map(link => `
@@ -75,29 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden z-[100] hidden animate-in fade-in slide-in-from-top-2 duration-200">
                     <div class="p-4 border-b border-[var(--border)] flex justify-between items-center bg-[var(--surface-2)]">
                       <h3 class="font-syne font-semibold text-[16px] text-[var(--text-primary)]">Notifications</h3>
-                      <span class="text-[11px] font-ibm-mono text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-1 rounded-md">2 New</span>
+                      <span class="text-[11px] font-ibm-mono text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-1 rounded-md">${getNotifications().count} New</span>
                     </div>
                     <div class="flex flex-col max-h-[300px] overflow-y-auto">
-                      <a href="#events" class="p-4 border-b border-[var(--border)] hover:bg-[var(--surface-2)] transition-colors flex gap-3 cursor-pointer">
-                        <div class="w-8 h-8 rounded-full bg-[rgba(62,207,142,0.1)] flex items-center justify-center text-[var(--success)] shrink-0">
-                          <i data-lucide="calendar" class="w-4 h-4"></i>
-                        </div>
-                        <div class="flex flex-col">
-                          <p class="font-dm-sans text-[13px] text-[var(--text-primary)] font-medium">FUSION X 1.0 Hackathon</p>
-                          <p class="font-dm-sans text-[12px] text-[var(--text-secondary)] mt-1">Registrations are now open! Join the 24 HRS National-Level Hackathon.</p>
-                          <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] mt-2">Just now</span>
-                        </div>
-                      </a>
-                      <a href="#events" class="p-4 hover:bg-[var(--surface-2)] transition-colors flex gap-3 cursor-pointer">
-                        <div class="w-8 h-8 rounded-full bg-[rgba(240,82,82,0.1)] flex items-center justify-center text-[var(--danger)] shrink-0">
-                          <i data-lucide="alert-circle" class="w-4 h-4"></i>
-                        </div>
-                        <div class="flex flex-col">
-                          <p class="font-dm-sans text-[13px] text-[var(--text-primary)] font-medium">Hackathon Registration</p>
-                          <p class="font-dm-sans text-[12px] text-[var(--text-secondary)] mt-1">Only 2 days left to request attendance authorization for the Global Hackathon.</p>
-                          <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] mt-2">5 hours ago</span>
-                        </div>
-                      </a>
+                      ${getNotifications().html}
                     </div>
                   </div>
                 </div>
@@ -424,9 +475,11 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const renderFaculty = (query) => {
+        const normalize = (s) => s.toLowerCase().replace(/^(prof\.?|dr\.?|mr\.?|ms\.?)\s+/i, '').replace(/[^a-z0-9]/g, '');
+        const normalizedQ = normalize(query);
         const lowerQ = query.toLowerCase();
         const filtered = window.facultyData.filter(f => 
-          f.name.toLowerCase().includes(lowerQ) || 
+          normalize(f.name).includes(normalizedQ) || 
           f.department.toLowerCase().includes(lowerQ)
         );
         
@@ -694,8 +747,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
           }
 
-          const featuredEvent = data[0];
-          const otherEvents = data.slice(1);
+          const mockFeatured = {
+            id: 'featured-steelwool',
+            title: 'SteelWool Photography',
+            description: 'Ignite your creativity! Step into a night filled with sparks, motion, and breathtaking visuals. Capture stunning long-exposure shots and experience the magic of painting with light.',
+            date: 'May 25th 2026',
+            time: '5:30 PM Onwards',
+            venue: 'Basketball Court',
+            duration: '',
+            poster_url: 'steelwool.jpg',
+            registration_link: 'https://forms.gle/p86xdWU9DHSd1NXE8'
+          };
+          
+          const featuredEvent = mockFeatured;
+          const otherEvents = data;
 
           if (featuredContainer) {
             featuredContainer.innerHTML = `
@@ -747,12 +812,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (otherEvents.length > 0) {
             grid.innerHTML = otherEvents.map((event, index) => {
+              // Inject local poster for FUSION X if missing from database
+              let pUrl = event.poster_url;
+              if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
+                pUrl = 'fusion.jpg';
+              }
+              
               const delay = index * 100;
               return `
                 <div class="card-global p-6 flex flex-col h-full border border-[var(--border)] hover:border-[var(--accent)]/50 hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8" style="animation-fill-mode: both; animation-delay: ${delay}ms;">
                   <div class="relative overflow-hidden rounded-lg mb-6 group/img cursor-pointer">
-                    ${event.poster_url 
-                      ? `<img src="${event.poster_url}" class="w-full h-[200px] object-cover transition-transform duration-500 group-hover/img:scale-110" />` 
+                    ${pUrl 
+                      ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-500 group-hover/img:scale-110" />` 
                       : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-4">
                        <span class="text-white font-dm-sans font-medium text-sm flex items-center gap-1"><i data-lucide="eye" class="w-4 h-4"></i> View Event</span>
@@ -1153,6 +1224,86 @@ document.addEventListener('DOMContentLoaded', () => {
           checkTrackingStatus();
         }
       }
+
+      // Announcements Logic
+      const btnAddAnnouncement = document.getElementById('btn-add-announcement');
+      const modalAnnouncement = document.getElementById('modal-post-announcement');
+      const formAnnouncement = document.getElementById('announcement-form');
+      const listAnnouncement = document.getElementById('faculty-announcements-list');
+
+      let allAnnouncements = JSON.parse(localStorage.getItem('vvce_announcements') || '{}');
+      
+      // Seed a demo announcement if empty
+      if (!allAnnouncements[params]) {
+        allAnnouncements[params] = [
+          {
+            id: 'demo-ann-1',
+            date: new Date().toISOString(),
+            text: "Reminder: Tomorrow's class will be held in the main auditorium for a guest lecture on IoT. Attendance is mandatory.",
+            audience: '4th Sem ECE'
+          }
+        ];
+        localStorage.setItem('vvce_announcements', JSON.stringify(allAnnouncements));
+      }
+
+      const renderAnnouncements = () => {
+        if (!listAnnouncement) return;
+        const facultyAnnouncements = allAnnouncements[params] || [];
+        if (facultyAnnouncements.length === 0) {
+          listAnnouncement.innerHTML = '<p class="font-dm-sans text-[13px] text-[var(--text-muted)] italic">No announcements posted yet.</p>';
+          return;
+        }
+
+        listAnnouncement.innerHTML = facultyAnnouncements.map(a => `
+          <div class="bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 flex flex-col gap-2 relative group hover:border-[var(--accent)] transition-colors">
+            <div class="flex justify-between items-center">
+              ${a.audience ? `<span class="font-ibm-mono text-[10px] uppercase tracking-wider text-[var(--accent)] bg-[var(--accent-dim)] px-2 py-1 rounded-full border border-[var(--accent-glow)]">${a.audience}</span>` : '<div></div>'}
+              <span class="font-ibm-mono text-[10px] text-[var(--text-muted)]">${new Date(a.date).toLocaleDateString()}</span>
+            </div>
+            <p class="font-dm-sans text-[14px] text-[var(--text-primary)] mt-1 whitespace-pre-wrap">${a.text}</p>
+          </div>
+        `).reverse().join('');
+      };
+
+      renderAnnouncements();
+
+      if (btnAddAnnouncement) {
+        btnAddAnnouncement.addEventListener('click', () => {
+          modalAnnouncement.classList.remove('hidden');
+          modalAnnouncement.classList.add('flex');
+        });
+      }
+
+      ['close-announcement-modal-btn', 'close-announcement-modal-bg', 'btn-cancel-announcement'].forEach(btnId => {
+        const el = document.getElementById(btnId);
+        if (el) el.addEventListener('click', () => {
+          modalAnnouncement.classList.add('hidden');
+          modalAnnouncement.classList.remove('flex');
+        });
+      });
+
+      if (formAnnouncement) {
+        formAnnouncement.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const text = document.getElementById('announcement-text').value;
+          const audience = document.getElementById('announcement-audience').value;
+          
+          if (!allAnnouncements[params]) allAnnouncements[params] = [];
+          allAnnouncements[params].push({
+            id: Date.now().toString(),
+            date: new Date().toISOString(),
+            text,
+            audience
+          });
+          
+          localStorage.setItem('vvce_announcements', JSON.stringify(allAnnouncements));
+          
+          formAnnouncement.reset();
+          modalAnnouncement.classList.add('hidden');
+          modalAnnouncement.classList.remove('flex');
+          renderAnnouncements();
+        });
+      }
     } else if (page === 'lost-and-found') {
       const grid = document.getElementById('lf-grid');
       const addModal = document.getElementById('add-lf-modal');
@@ -1505,6 +1656,152 @@ document.addEventListener('DOMContentLoaded', () => {
              btnSubmit.textContent = originalText;
              btnSubmit.disabled = false;
           }
+        });
+      }
+    } else if (page === 'teaching-journal') {
+      const grid = document.getElementById('journal-list');
+      const btnAdd = document.getElementById('btn-add-journal');
+      const modalAdd = document.getElementById('add-journal-modal');
+      const formJournal = document.getElementById('journal-form');
+      
+      let journals = JSON.parse(localStorage.getItem('vvce_journals') || '[]');
+      
+      // Inject demo entries for 2nd Sem ECE if not present
+      if (!journals.some(j => j.id === 'demo1')) {
+        journals.unshift(
+          {
+            id: 'demo1',
+            date: '2026-05-23',
+            course: 'Basic Electronics (ECE - 2nd Sem)',
+            concepts: 'Introduction to PN Junction Diodes. Forward and reverse bias characteristics, Zener diode operation and applications as a voltage regulator.',
+            co: 'CO1',
+            po: 'PO1, PO2',
+            reference: 'Electronic Devices and Circuit Theory - Boylestad, Chapter 2',
+            facultyId: 'Dr. Chandrashekar M Patil'
+          },
+          {
+            id: 'demo2',
+            date: '2026-05-22',
+            course: 'Digital System Design (ECE - 2nd Sem)',
+            concepts: "Boolean Algebra theorems. De Morgan's laws, Simplification of logical expressions using Karnaugh Maps (K-Map) up to 4 variables.",
+            co: 'CO2',
+            po: 'PO1, PO3',
+            reference: 'Digital Design - Morris Mano, Chapter 3',
+            facultyId: 'Dr. T P Surekha'
+          },
+          {
+            id: 'demo3',
+            date: '2026-05-21',
+            course: 'Engineering Mathematics - II (2nd Sem)',
+            concepts: 'Ordinary Differential Equations of higher order. Linear differential equations with constant coefficients, finding complimentary function and particular integral.',
+            co: 'CO3',
+            po: 'PO1, PO2',
+            reference: 'Higher Engineering Mathematics - B.S. Grewal, Chapter 13',
+            facultyId: 'Dr. Suchitra M'
+          },
+          {
+            id: 'demo4',
+            date: '2026-05-20',
+            course: 'Basic Electronics (ECE - 2nd Sem)',
+            concepts: 'Bipolar Junction Transistors (BJT). NPN and PNP configurations, CB, CE, and CC configurations, and input/output characteristics of CE configuration.',
+            co: 'CO2',
+            po: 'PO1, PO2, PSO1',
+            reference: 'Electronic Devices and Circuit Theory - Boylestad, Chapter 4',
+            facultyId: 'Dr. Chandrashekar M Patil'
+          }
+        );
+        localStorage.setItem('vvce_journals', JSON.stringify(journals));
+      }
+
+      const renderJournals = () => {
+        if (!grid) return;
+        if (journals.length === 0) {
+          grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No journal entries found.</div>';
+          return;
+        }
+
+        // Sort descending by date
+        const sorted = [...journals].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        grid.innerHTML = sorted.map(j => `
+          <div class="card-global p-6 flex flex-col hover:border-[var(--accent)] transition-colors relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--accent)]/5 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--accent)]/10 transition-colors"></div>
+            
+            <div class="flex justify-between items-start mb-4 relative z-10">
+              <span class="font-dm-sans text-[11px] px-[8px] py-[2px] rounded-full bg-[var(--purple)]/10 text-[var(--purple)] uppercase tracking-wider font-semibold border border-[var(--purple)]/20">${j.date}</span>
+              <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">By: ${j.facultyId}</span>
+            </div>
+            
+            <h3 class="font-syne font-semibold text-[20px] text-[var(--text-primary)] mb-1 relative z-10">${j.course}</h3>
+            
+            <div class="mt-4 mb-4 relative z-10">
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] bg-[var(--surface-2)] p-4 rounded-xl border border-[var(--border)]">${j.concepts}</p>
+            </div>
+            
+            <div class="mt-auto pt-4 border-t border-[var(--border)] flex flex-wrap gap-4 items-center relative z-10">
+              <div class="flex items-center gap-2">
+                <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase">CO Addressed:</span>
+                <span class="font-dm-sans font-bold text-[12px] text-[#64CEFB]">${j.co}</span>
+              </div>
+              ${j.po ? `
+              <div class="flex items-center gap-2">
+                <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase">PO/PSO:</span>
+                <span class="font-dm-sans font-bold text-[12px] text-[#3ECF8E]">${j.po}</span>
+              </div>
+              ` : ''}
+              ${j.reference ? `
+              <div class="flex items-center gap-2 w-full mt-2">
+                <i data-lucide="book" class="w-3 h-3 text-[var(--text-muted)]"></i>
+                <span class="font-dm-sans text-[12px] text-[var(--text-secondary)] italic">${j.reference}</span>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+        
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      renderJournals();
+
+      if (btnAdd) {
+        btnAdd.addEventListener('click', () => {
+          modalAdd.classList.remove('hidden');
+          modalAdd.classList.add('flex');
+        });
+      }
+
+      const closeEls = ['close-journal-modal-btn', 'close-journal-modal-bg', 'btn-cancel-journal'];
+      closeEls.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', () => {
+          modalAdd.classList.add('hidden');
+          modalAdd.classList.remove('flex');
+        });
+      });
+
+      if (formJournal) {
+        formJournal.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          const newEntry = {
+            id: Date.now().toString(),
+            date: document.getElementById('journal-date').value,
+            course: document.getElementById('journal-course').value,
+            concepts: document.getElementById('journal-concepts').value,
+            co: document.getElementById('journal-co').value,
+            po: document.getElementById('journal-po').value,
+            reference: document.getElementById('journal-reference').value,
+            facultyId: window.State.user?.id || 'Unknown Faculty'
+          };
+
+          journals.push(newEntry);
+          localStorage.setItem('vvce_journals', JSON.stringify(journals));
+          
+          modalAdd.classList.add('hidden');
+          modalAdd.classList.remove('flex');
+          formJournal.reset();
+          renderJournals();
         });
       }
     }
