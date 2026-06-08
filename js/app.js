@@ -3,6 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize State
   window.State.init();
 
+  // Scroll Listener for Navbar visual styling
+  window.addEventListener('scroll', () => {
+    const navEl = document.querySelector('header nav');
+    if (navEl) {
+      if (window.scrollY > 60) {
+        navEl.classList.add('nav-scrolled');
+      } else {
+        navEl.classList.remove('nav-scrolled');
+      }
+    }
+  });
+
   const headerEl = document.getElementById('header');
   const contentEl = document.getElementById('content');
   let isMobileMenuOpen = false;
@@ -86,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const markNotificationsAsRead = () => {
     const notifs = getNotifications();
     localStorage.setItem('vvce_notifications_read_count', notifs.count.toString());
-    
+
     // Remove the red dots directly from the DOM without re-rendering the header
     const deskDot = document.querySelector('#notifications-btn span.bg-\\[var\\(--danger\\)\\]');
     if (deskDot) deskDot.remove();
@@ -99,12 +111,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const t = (key) => window.State.t(key);
     const hash = window.location.hash || '#login';
     const isAuth = !!user;
+    
+    const [pathString] = hash.substring(1).split('?');
+    const footerEl = document.querySelector('footer');
+    if (pathString === 'login') {
+      headerEl.style.display = 'none';
+      if (footerEl) footerEl.style.display = 'none';
+      return;
+    } else {
+      headerEl.style.display = 'block';
+      if (footerEl) footerEl.style.display = 'block';
+    }
 
     const navLinks = [
       { id: 'home', label: t('nav_home') },
       { id: 'departments', label: t('nav_departments') },
       { id: 'campus-map', label: t('nav_campus_map') },
       { id: 'events', label: t('nav_events') },
+      { id: 'community', label: t('nav_community') },
       { id: 'lost-and-found', label: t('nav_lost_found') },
       { id: 'notes', label: 'Study Hub' },
       { id: 'teaching-journal', label: 'Teaching Journal' }
@@ -123,15 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
 
     headerEl.innerHTML = `
-      <nav class="fixed top-0 left-0 w-full h-[64px] bg-[rgba(8,8,8,0.85)] backdrop-blur-[16px] border-b border-[var(--border)] z-50 transition-all duration-300">
+      <nav class="fixed top-0 left-0 w-full h-[64px] border-b border-[var(--border)] z-50 transition-all duration-300 backdrop-blur-md" style="background-color: rgba(0, 0, 0, 0.5) !important;">
         <div class="mx-auto w-full max-w-[1280px] h-full px-6 lg:px-8 flex items-center justify-between">
           
           <!-- Logo -->
-          <a href="#home" class="flex items-center gap-3">
-            <div class="flex h-[28px] w-[28px] items-center justify-center rounded-full border-[1.5px] border-[var(--accent)]">
-              <div class="h-[6px] w-[6px] rounded-full bg-[var(--accent)]"></div>
-            </div>
-            <span class="font-syne font-semibold text-[16px] text-[var(--text-primary)]">VVCE Connect</span>
+          <a href="#home" class="flex items-center gap-2">
+            <span class="w-[4px] h-[4px] rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981] shrink-0"></span>
+            <span class="font-syne font-extrabold text-[16px] text-gradient-emerald">VVCE Connect</span>
           </a>
 
           <!-- Desktop Navigation -->
@@ -182,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
               </div>
             ` : `
-              <a href="#login" class="font-dm-sans text-[14px] text-[var(--text-primary)] font-medium hover:text-[var(--accent)] transition-colors">
+              <a href="#login" class="nav-cta-btn">
                 Login
               </a>
             `}
@@ -265,17 +287,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');
     const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    
+
     const handleLangChange = (e) => {
       window.State.setLanguage(e.target.value);
     };
 
     if (langSelect) langSelect.addEventListener('change', handleLangChange);
     if (mobileLangSelect) mobileLangSelect.addEventListener('change', handleLangChange);
-    
+
     const notifBtn = document.getElementById('notifications-btn');
     const notifDropdown = document.getElementById('notifications-dropdown');
-    
+
     if (notifBtn && notifDropdown) {
       notifBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -294,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mobileNotifBtn = document.getElementById('mobile-notifications-btn');
     const mobileNotifDropdown = document.getElementById('mobile-notifications-dropdown');
-    
+
     if (mobileNotifBtn && mobileNotifDropdown) {
       mobileNotifBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -340,13 +362,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleRoute() {
     let fullHash = window.location.hash.substring(1) || 'login';
     let [pathString, queryString] = fullHash.split('?');
-    
+
     // Redirect unauthenticated users
     if (!window.State.user && pathString !== 'login') {
       window.location.hash = '#login';
       return;
     }
-    
+
     // Redirect authenticated users away from login
     if (window.State.user && pathString === 'login') {
       window.location.hash = '#home';
@@ -382,14 +404,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
       }
-  
+
       contentEl.style.opacity = '';
-      
+
       // Add page transition class
       contentEl.classList.remove('page-enter');
       void contentEl.offsetWidth; // Trigger reflow
       contentEl.classList.add('page-enter');
-  
+
       if (window.lucide) window.lucide.createIcons();
       attachPageEvents(page, params, queryString);
     };
@@ -414,12 +436,110 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }, { threshold: 0.15 });
       document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
+
+      // 3D Card Tilt Effect for Features Section
+      const featureCards = document.querySelectorAll('.feature-card-3d');
+      featureCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((y - centerY) / centerY) * -10; // Max tilt: 10deg
+          const rotateY = ((x - centerX) / centerX) * 10;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+        });
+      });
+    } else if (page === 'schedules') {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
+    } else if (page === 'events') {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
+
+      // 3D Card Tilt Effect for Event Cards
+      // wait a bit for dynamic events to load before attaching listeners
+      setTimeout(() => {
+        const eventCards = document.querySelectorAll('.event-card-3d');
+        eventCards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -6; // Max tilt: 6deg
+            const rotateY = ((x - centerX) / centerX) * 6;
+
+            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+          });
+        });
+      }, 1000);
+    } else if (page === 'community') {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
+
+      const communityCards = document.querySelectorAll('.community-card-3d');
+      communityCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((y - centerY) / centerY) * -5; // Max tilt: 5deg
+          const rotateY = ((x - centerX) / centerX) * 5;
+
+          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+        });
+      });
     } else if (page === 'login') {
       const loginForm = document.getElementById('loginForm');
       if (loginForm) {
         const idInputEl = document.getElementById('id-input');
         const pwWrapper = document.getElementById('passwordWrapper');
-        
+
         idInputEl.addEventListener('input', (e) => {
           if (e.target.value.trim().toUpperCase() === 'ADMIN') {
             pwWrapper.classList.remove('hidden');
@@ -434,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const pwInput = document.getElementById('password-input')?.value;
           const errorEl = document.getElementById('loginError');
           const submitBtn = loginForm.querySelector('button[type="submit"]');
-          
+
           const originalBtnContent = submitBtn.innerHTML;
           submitBtn.disabled = true;
 
@@ -487,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const MAX_RADIUS_KM = 1.0;
 
               const distance = window.State.calculateDistance(latitude, longitude, CAMPUS_LAT, CAMPUS_LNG);
-              
+
               if (distance <= MAX_RADIUS_KM) {
                 handleSuccessfulLogin();
               } else {
@@ -504,28 +624,28 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (page === 'directory') {
       const searchInput = document.getElementById('faculty-search');
       const grid = document.getElementById('faculty-grid');
-      
+
       const getStatusBadge = (status) => {
         let colorClass = '';
         let dotClass = '';
-        switch(status) {
-          case 'Available': 
+        switch (status) {
+          case 'Available':
             colorClass = 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]';
             dotClass = 'bg-[var(--success)] animate-pulse-success';
             break;
-          case 'In Class': 
+          case 'In Class':
             colorClass = 'bg-[var(--accent-dim)] text-[var(--accent)]';
             dotClass = 'bg-[var(--accent)]';
             break;
-          case 'On Leave': 
+          case 'On Leave':
             colorClass = 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]';
             dotClass = 'bg-[var(--danger)]';
             break;
-          case 'Meeting': 
+          case 'Meeting':
             colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--warning)]';
             dotClass = 'bg-[var(--warning)]';
             break;
-          default: 
+          default:
             colorClass = 'bg-[rgba(136,136,136,0.1)] text-[var(--text-secondary)]';
             dotClass = 'bg-[var(--text-secondary)]';
         }
@@ -536,11 +656,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const normalize = (s) => s.toLowerCase().replace(/^(prof\.?|dr\.?|mr\.?|ms\.?)\s+/i, '').replace(/[^a-z0-9]/g, '');
         const normalizedQ = normalize(query);
         const lowerQ = query.toLowerCase();
-        const filtered = window.facultyData.filter(f => 
-          normalize(f.name).includes(normalizedQ) || 
+        const filtered = window.facultyData.filter(f =>
+          normalize(f.name).includes(normalizedQ) ||
           f.department.toLowerCase().includes(lowerQ)
         );
-        
+
         if (filtered.length === 0) {
           grid.innerHTML = '<div class="col-span-full text-center py-20 text-white/50">No faculty members found matching your search.</div>';
         } else {
@@ -577,71 +697,71 @@ document.addEventListener('DOMContentLoaded', () => {
           if (window.lucide) window.lucide.createIcons();
         }
       };
-      
+
       let initialQuery = '';
       if (queryString) {
-         const urlParams = new URLSearchParams('?' + queryString);
-         initialQuery = urlParams.get('q') || '';
-         if (searchInput) searchInput.value = initialQuery;
+        const urlParams = new URLSearchParams('?' + queryString);
+        initialQuery = urlParams.get('q') || '';
+        if (searchInput) searchInput.value = initialQuery;
       }
       renderFaculty(initialQuery);
       if (searchInput) {
         searchInput.addEventListener('input', (e) => renderFaculty(e.target.value));
       }
-      } else if (page === 'departments') {
-        const grid = document.getElementById('departments-grid');
-        const searchResultsGrid = document.getElementById('faculty-search-results');
-        const searchInput = document.getElementById('global-faculty-search');
-        const banner = document.getElementById('departments-clubs-banner');
-        
-        const getStatusBadge = (status) => {
-          let colorClass = '';
-          let dotClass = '';
-          switch(status) {
-            case 'Available': 
-              colorClass = 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]';
-              dotClass = 'bg-[var(--success)] animate-pulse-success';
-              break;
-            case 'In Class': 
-              colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--accent)]';
-              dotClass = 'bg-[var(--accent)]';
-              break;
-            case 'On Leave': 
-              colorClass = 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]';
-              dotClass = 'bg-[var(--danger)]';
-              break;
-            case 'Meeting': 
-              colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--warning)]';
-              dotClass = 'bg-[var(--warning)]';
-              break;
-            default: 
-              colorClass = 'bg-[rgba(136,136,136,0.1)] text-[var(--text-secondary)]';
-              dotClass = 'bg-[var(--text-secondary)]';
-          }
-          return `<span class="inline-flex items-center gap-[6px] rounded-full px-[10px] py-[4px] text-[12px] font-dm-sans ${colorClass}"><span class="w-[6px] h-[6px] rounded-full ${dotClass}"></span><span class="font-ibm-mono">${status}</span></span>`;
-        };
-        
-        const renderGlobalFaculty = (query) => {
-          if (!query || query.trim() === '') {
-            grid.classList.remove('hidden');
-            searchResultsGrid.classList.add('hidden');
-            return;
-          }
-          
-          grid.classList.add('hidden');
-          searchResultsGrid.classList.remove('hidden');
-          
-          const lowerQ = query.toLowerCase();
-          const filtered = (window.facultyData || []).filter(f => 
-            f.name.toLowerCase().includes(lowerQ) || 
-            f.department.toLowerCase().includes(lowerQ) ||
-            f.cabin.toLowerCase().includes(lowerQ)
-          );
-          
-          if (filtered.length === 0) {
-            searchResultsGrid.innerHTML = '<div class="col-span-full text-center py-12 text-[var(--text-muted)]">No faculty members found matching your search.</div>';
-          } else {
-            searchResultsGrid.innerHTML = filtered.map(f => `
+    } else if (page === 'departments') {
+      const grid = document.getElementById('departments-grid');
+      const searchResultsGrid = document.getElementById('faculty-search-results');
+      const searchInput = document.getElementById('global-faculty-search');
+      const banner = document.getElementById('departments-clubs-banner');
+
+      const getStatusBadge = (status) => {
+        let colorClass = '';
+        let dotClass = '';
+        switch (status) {
+          case 'Available':
+            colorClass = 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]';
+            dotClass = 'bg-[var(--success)] animate-pulse-success';
+            break;
+          case 'In Class':
+            colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--accent)]';
+            dotClass = 'bg-[var(--accent)]';
+            break;
+          case 'On Leave':
+            colorClass = 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]';
+            dotClass = 'bg-[var(--danger)]';
+            break;
+          case 'Meeting':
+            colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--warning)]';
+            dotClass = 'bg-[var(--warning)]';
+            break;
+          default:
+            colorClass = 'bg-[rgba(136,136,136,0.1)] text-[var(--text-secondary)]';
+            dotClass = 'bg-[var(--text-secondary)]';
+        }
+        return `<span class="inline-flex items-center gap-[6px] rounded-full px-[10px] py-[4px] text-[12px] font-dm-sans ${colorClass}"><span class="w-[6px] h-[6px] rounded-full ${dotClass}"></span><span class="font-ibm-mono">${status}</span></span>`;
+      };
+
+      const renderGlobalFaculty = (query) => {
+        if (!query || query.trim() === '') {
+          grid.classList.remove('hidden');
+          searchResultsGrid.classList.add('hidden');
+          return;
+        }
+
+        grid.classList.add('hidden');
+        searchResultsGrid.classList.remove('hidden');
+
+        const lowerQ = query.toLowerCase();
+        const filtered = (window.facultyData || []).filter(f =>
+          f.name.toLowerCase().includes(lowerQ) ||
+          f.department.toLowerCase().includes(lowerQ) ||
+          f.cabin.toLowerCase().includes(lowerQ)
+        );
+
+        if (filtered.length === 0) {
+          searchResultsGrid.innerHTML = '<div class="col-span-full text-center py-12 text-[var(--text-muted)]">No faculty members found matching your search.</div>';
+        } else {
+          searchResultsGrid.innerHTML = filtered.map(f => `
               <a href="#faculty/${f.id}" class="card-global block relative group p-6 cursor-pointer">
                 <div class="flex justify-between items-start mb-2">
                   <h3 class="font-syne font-semibold text-[18px] text-[var(--text-primary)]">${f.name}</h3>
@@ -671,15 +791,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </a>
             `).join('');
-            if (window.lucide) window.lucide.createIcons();
-          }
-        };
-
-        if (searchInput) {
-          searchInput.addEventListener('input', (e) => renderGlobalFaculty(e.target.value));
+          if (window.lucide) window.lucide.createIcons();
         }
-        
-        const deptAbbr = {
+      };
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => renderGlobalFaculty(e.target.value));
+      }
+
+      const deptAbbr = {
         'Computer Science': 'CSE',
         'Information Science': 'ISE',
         'Electronics & Communication Engineering': 'ECE',
@@ -696,16 +816,30 @@ document.addEventListener('DOMContentLoaded', () => {
         'Electrical & Elecs': 'text-[#FF66CC] bg-[#FF66CC]/10'
       };
 
+      const deptImages = {
+        'Computer Science': 'LOGOS/CSE.png',
+        'Information Science': 'LOGOS/ISE.png',
+        'Electronics & Communication Engineering': 'LOGOS/ECE.png',
+        'Mechanical': 'LOGOS/Mech.png',
+        'Civil Engineering': 'LOGOS/CIVIL.png',
+        'Electrical & Elecs': 'LOGOS/EEE.png'
+      };
+
       if (grid && window.departmentsData) {
         grid.innerHTML = window.departmentsData.map(dept => {
-          const abbr = deptAbbr[dept] || dept.substring(0,3).toUpperCase();
+          const abbr = deptAbbr[dept] || dept.substring(0, 3).toUpperCase();
           const colorClass = deptColors[dept] || 'text-[var(--text-primary)] bg-[var(--surface-2)]';
+          const imageUrl = deptImages[dept];
           const facultyCount = (window.facultyData || []).filter(f => f.department === dept).length;
-          
+
+          const logoContent = imageUrl
+            ? '<img src="' + imageUrl + '" alt="' + abbr + ' Logo" class="w-10 h-10 object-contain drop-shadow-md" />'
+            : '<span class="font-syne font-bold text-xl">' + abbr + '</span>';
+
           return `
             <a href="#directory?q=${encodeURIComponent(dept)}" class="card-global flex flex-col p-6 rounded-[20px] cursor-pointer">
               <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${colorClass}">
-                <span class="font-syne font-bold text-xl">${abbr}</span>
+                ${logoContent}
               </div>
               
               <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-2">${dept}</h3>
@@ -724,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
         }).join('');
       }
-      
+
       if (banner) {
         banner.innerHTML = `
           <a href="#clubs" class="card-global relative overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 rounded-[24px] cursor-pointer border border-[var(--purple)]/30 hover:border-[var(--purple)]">
@@ -787,9 +921,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const { data, error } = await window.supabaseClient.from('events').select('*').order('created_at', { ascending: false });
           if (error) throw error;
-          
+
           const featuredContainer = document.getElementById('featured-event-container');
-          
+
           if (!data || data.length === 0) {
             grid.innerHTML = `
               <div class="col-span-full py-20 flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] rounded-[24px] bg-[var(--surface-2)]/50">
@@ -816,7 +950,7 @@ document.addEventListener('DOMContentLoaded', () => {
             poster_url: 'steelwool.jpg',
             registration_link: 'https://forms.gle/p86xdWU9DHSd1NXE8'
           };
-          
+
           const featuredEvent = mockFeatured;
           const otherEvents = data;
 
@@ -824,10 +958,10 @@ document.addEventListener('DOMContentLoaded', () => {
             featuredContainer.innerHTML = `
               <div class="card-global flex flex-col lg:flex-row overflow-hidden border border-[var(--border)] hover:border-[var(--accent)]/50 transition-colors animate-in fade-in slide-in-from-bottom-8 duration-700">
                 <div class="lg:w-[45%] h-[300px] lg:h-auto relative overflow-hidden bg-[var(--surface-2)] group cursor-pointer">
-                  ${featuredEvent.poster_url 
-                    ? `<img src="${featuredEvent.poster_url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />`
-                    : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-12 h-12 mb-4"></i><span>No Poster</span></div>`
-                  }
+                  ${featuredEvent.poster_url
+                ? `<img src="${featuredEvent.poster_url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />`
+                : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-12 h-12 mb-4"></i><span>No Poster</span></div>`
+              }
                   <div class="absolute top-4 left-4 z-10">
                     <span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-lg backdrop-blur-md inline-flex items-center gap-1">
                       <i data-lucide="star" class="w-3 h-3"></i> Featured
@@ -875,41 +1009,42 @@ document.addEventListener('DOMContentLoaded', () => {
               if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
                 pUrl = 'fusion.jpg';
               }
-              
-              const delay = index * 100;
+
+              const delay = index * 120;
               return `
-                <div class="card-global p-6 flex flex-col h-full border border-[var(--border)] hover:border-[var(--accent)]/50 hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8" style="animation-fill-mode: both; animation-delay: ${delay}ms;">
-                  <div class="relative overflow-hidden rounded-lg mb-6 group/img cursor-pointer">
-                    ${pUrl 
-                      ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-500 group-hover/img:scale-110" />` 
-                      : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                       <span class="text-white font-dm-sans font-medium text-sm flex items-center gap-1"><i data-lucide="eye" class="w-4 h-4"></i> View Event</span>
+                <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group" style="animation-delay: ${delay}ms;">
+                  <div class="event-card-inner flex-1 flex flex-col pointer-events-none">
+                    <div class="relative overflow-hidden rounded-lg mb-6 w-full">
+                      ${pUrl
+                  ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-500 group-hover:scale-110" />`
+                  : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
+                      
+                      <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110 pointer-events-auto" title="Delete Event">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                      </button>
                     </div>
-                    <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110" title="Delete Event">
-                      <i data-lucide="trash-2" class="w-4 h-4"></i>
-                    </button>
-                  </div>
-                  <div class="flex-1 flex flex-col">
-                    <h3 class="font-syne font-bold text-[20px] text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
-                    <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 line-clamp-3 leading-relaxed flex-1">${event.description || ''}</p>
                     
-                    <div class="flex flex-col gap-3 mb-6 bg-[var(--surface-2)] p-4 rounded-xl border border-[var(--border)]">
-                      ${event.date ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="calendar" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>${event.date}</div>` : ''}
+                    ${event.date ? `<div class="mb-4"><span class="event-date-badge inline-block">${event.date}</span></div>` : ''}
+                    
+                    <h3 class="event-title mb-3">${event.title}</h3>
+                    <p class="event-desc mb-6 flex-1 line-clamp-3">${event.description || ''}</p>
+                    
+                    <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
                       ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="clock" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>${event.time}</div>` : ''}
                       ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i><span class="truncate">${event.venue}</span></div>` : ''}
                     </div>
                   </div>
+                  
                   ${event.registration_link ? `
-                    <a href="${event.registration_link}" target="_blank" class="w-full text-center text-[14px] py-3 font-semibold text-[var(--accent)] bg-[var(--accent)]/10 hover:bg-[var(--accent)] hover:text-[#000] rounded-[10px] transition-all block border border-[var(--accent)]/20 shadow-sm">
-                      Register
+                    <a href="${event.registration_link}" target="_blank" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto">
+                      Register <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
                     </a>
                   ` : ''}
                 </div>
               `;
             }).join('');
           } else {
-             grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
+            grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
           }
           if (window.lucide) window.lucide.createIcons();
         } catch (e) {
@@ -923,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (addForm) {
         const fileInput = document.getElementById('event-poster-file');
         const imgPreview = document.getElementById('event-poster-preview');
-        
+
         if (fileInput && imgPreview) {
           fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -953,7 +1088,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const duration = document.getElementById('event-duration').value;
             const venue = document.getElementById('event-venue').value;
             const link = document.getElementById('event-link').value;
-            
+
             let posterUrl = '';
 
             if (fileInput.files && fileInput.files[0]) {
@@ -973,7 +1108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (insertError) throw insertError;
 
             addForm.reset();
-            if(imgPreview) imgPreview.classList.add('hidden');
+            if (imgPreview) imgPreview.classList.add('hidden');
             addModal.classList.add('hidden');
             addModal.classList.remove('flex');
             fetchEvents();
@@ -991,10 +1126,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('clubs-search');
       const grid = document.getElementById('clubs-grid');
       const filtersContainer = document.getElementById('clubs-filters');
-      
+
       const categories = ['All', 'Technical', 'Cultural', 'Sports', 'Social', 'R&D'];
       let activeCategory = 'All';
-      
+
       const renderFilters = () => {
         const btns = categories.map(cat => {
           const isActive = activeCategory === cat;
@@ -1002,7 +1137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
         filtersContainer.innerHTML = btns;
         if (window.lucide) window.lucide.createIcons();
-        
+
         filtersContainer.querySelectorAll('button').forEach(b => {
           b.addEventListener('click', (e) => {
             activeCategory = e.target.getAttribute('data-cat');
@@ -1011,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
       };
-      
+
       const categoryColors = {
         Technical: 'text-[var(--accent)]',
         Cultural: 'text-[var(--purple)]',
@@ -1027,7 +1162,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const mCat = activeCategory === 'All' || c.category === activeCategory;
           return mSearch && mCat;
         });
-        
+
         if (filtered.length === 0) {
           grid.innerHTML = `
             <div class="col-span-full text-center py-20">
@@ -1069,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (window.lucide) window.lucide.createIcons();
       };
-      
+
       if (searchInput && grid && filtersContainer) {
         renderFilters();
         renderClubs();
@@ -1080,7 +1215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const broadcastContainer = document.getElementById('faculty-broadcast-container');
       const formContainer = document.getElementById('faculty-req-form');
       const trackerContainer = document.getElementById('faculty-student-tracker');
-      
+
       if (formContainer) {
         const renderDefaultBtn = () => {
           formContainer.innerHTML = `
@@ -1107,7 +1242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.lucide) window.lucide.createIcons();
             setTimeout(() => {
               const msg = formContainer.querySelector('.confirm-msg');
-              if(msg) msg.classList.add('confirm-out');
+              if (msg) msg.classList.add('confirm-out');
             }, 2700);
             setTimeout(renderDefaultBtn, 3000);
           });
@@ -1131,9 +1266,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
               </div>
               <p class="text-xs text-white/60 leading-relaxed">
-                ${isBroadcasting 
-                  ? "Transmitting live Uber-style coordinates. Students viewing your profile can currently track your position on campus."
-                  : "Enable if walking to a lab or event. Students will track your live ETA on the grid."}
+                ${isBroadcasting
+              ? "Transmitting live Uber-style coordinates. Students viewing your profile can currently track your position on campus."
+              : "Enable if walking to a lab or event. Students will track your live ETA on the grid."}
               </p>
             </div>
           `;
@@ -1150,25 +1285,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (trackerContainer) {
         // Find the map container inside the tracker
         const mapEl = document.getElementById('faculty-live-map');
-        
+
         if (mapEl) {
           if (!window.L) {
-             mapEl.innerHTML = `<div class="p-4 text-red-500">Error: Leaflet library (window.L) failed to load.</div>`;
-             return;
+            mapEl.innerHTML = `<div class="p-4 text-red-500">Error: Leaflet library (window.L) failed to load.</div>`;
+            return;
           }
 
           // Check if faculty is tracking
           const checkTrackingStatus = async () => {
             try {
               if (!window.supabaseClient) {
-                 const reason = window.SUPABASE_INIT_ERROR || "Failed to load library";
-                 mapEl.innerHTML = `<div class="p-4 text-red-500 font-ibm-mono text-sm h-full flex flex-col justify-center">
+                const reason = window.SUPABASE_INIT_ERROR || "Failed to load library";
+                mapEl.innerHTML = `<div class="p-4 text-red-500 font-ibm-mono text-sm h-full flex flex-col justify-center">
                     <h4 class="font-bold mb-2">Connection Error</h4>
                     <p>Error: ${reason}</p>
                  </div>`;
-                 return;
+                return;
               }
-              
+
               // Get current faculty location from DB
               const { data, error } = await window.supabaseClient
                 .from('faculty')
@@ -1177,11 +1312,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 .single();
 
               if (error && error.code !== 'PGRST116') {
-                 console.error("Supabase fetch error:", error);
-                 // We won't block the map load if it's just a row not found error (PGRST116)
-                 // But if it's another error, we might want to log it
+                console.error("Supabase fetch error:", error);
+                // We won't block the map load if it's just a row not found error (PGRST116)
+                // But if it's another error, we might want to log it
               }
-                
+
               // Remove loading overlay
               const overlay = document.getElementById('map-loading-overlay');
               if (overlay) overlay.style.display = 'none';
@@ -1198,14 +1333,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
               // Cleanup old map if it exists
               if (window.__currentLeafletMap) {
-                 window.__currentLeafletMap.remove();
+                window.__currentLeafletMap.remove();
               }
 
               // Initialize Leaflet Map
               const map = L.map('faculty-live-map', {
                 zoomControl: false // Minimalist UI
               }).setView([lat, lng], 17);
-              
+
               window.__currentLeafletMap = map;
 
               // Add dark mode tile layer for premium aesthetic
@@ -1214,14 +1349,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 subdomains: 'abcd',
                 maxZoom: 20
               }).addTo(map);
-              
+
               // Add custom styled marker
               const markerHtml = `
                 <div style="width:20px;height:20px;border-radius:50%;background-color:var(--accent);box-shadow:0 0 15px var(--accent-glow);border:2px solid var(--surface-2);position:relative;">
                   ${isTracking ? '<div style="position:absolute;inset:0;border-radius:50%;background-color:var(--accent);animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>' : ''}
                 </div>
               `;
-              
+
               const customIcon = L.divIcon({
                 className: 'custom-leaflet-icon',
                 html: markerHtml,
@@ -1244,41 +1379,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapEl.appendChild(stopOverlay);
                 if (window.lucide) window.lucide.createIcons();
               } else {
-                 // Setup Realtime Subscription
-                 // Use a unique channel name to prevent "already subscribed" errors on page re-entry
-                 const channelName = 'faculty-location-' + Date.now();
-                 const subscription = window.supabaseClient
-                   .channel(channelName)
-                   .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'faculty', filter: "id=eq.cs1" }, (payload) => {
-                     console.log('Realtime location update received:', payload);
-                     const newLat = payload.new.latitude;
-                     const newLng = payload.new.longitude;
-                     const newTracking = payload.new.is_tracking;
-                     
-                     if (newTracking && newLat && newLng) {
-                        // Animate marker to new position
-                        marker.setLatLng([newLat, newLng]);
-                        map.setView([newLat, newLng], map.getZoom(), { animate: true, duration: 1 });
-                     } else {
-                       // Faculty stopped tracking, refresh the UI
-                       handleRoute(); 
-                     }
-                   })
-                   .subscribe();
+                // Setup Realtime Subscription
+                // Use a unique channel name to prevent "already subscribed" errors on page re-entry
+                const channelName = 'faculty-location-' + Date.now();
+                const subscription = window.supabaseClient
+                  .channel(channelName)
+                  .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'faculty', filter: "id=eq.cs1" }, (payload) => {
+                    console.log('Realtime location update received:', payload);
+                    const newLat = payload.new.latitude;
+                    const newLng = payload.new.longitude;
+                    const newTracking = payload.new.is_tracking;
 
-                 // Clean up subscription when leaving the page
-                 const cleanup = () => {
-                   window.supabaseClient.removeChannel(subscription);
-                   window.removeEventListener('hashchange', cleanup);
-                 };
-                 window.addEventListener('hashchange', cleanup);
+                    if (newTracking && newLat && newLng) {
+                      // Animate marker to new position
+                      marker.setLatLng([newLat, newLng]);
+                      map.setView([newLat, newLng], map.getZoom(), { animate: true, duration: 1 });
+                    } else {
+                      // Faculty stopped tracking, refresh the UI
+                      handleRoute();
+                    }
+                  })
+                  .subscribe();
+
+                // Clean up subscription when leaving the page
+                const cleanup = () => {
+                  window.supabaseClient.removeChannel(subscription);
+                  window.removeEventListener('hashchange', cleanup);
+                };
+                window.addEventListener('hashchange', cleanup);
               }
             } catch (err) {
-               console.error("Map rendering error:", err);
-               mapEl.innerHTML = `<div class="p-4 text-red-500 font-ibm-mono text-xs overflow-auto h-full w-full">Error: ${err.message}<br/>${err.stack}</div>`;
+              console.error("Map rendering error:", err);
+              mapEl.innerHTML = `<div class="p-4 text-red-500 font-ibm-mono text-xs overflow-auto h-full w-full">Error: ${err.message}<br/>${err.stack}</div>`;
             }
           };
-          
+
           checkTrackingStatus();
         }
       }
@@ -1290,7 +1425,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const listAnnouncement = document.getElementById('faculty-announcements-list');
 
       let allAnnouncements = JSON.parse(localStorage.getItem('vvce_announcements') || '{}');
-      
+
       // Seed a demo announcement if empty
       if (!allAnnouncements[params]) {
         allAnnouncements[params] = [
@@ -1347,14 +1482,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const sem = document.getElementById('announcement-sem').value;
           const branch = document.getElementById('announcement-branch').value;
           const section = document.getElementById('announcement-section').value;
-          
+
           let audienceParts = [];
           if (sem !== 'All') audienceParts.push(sem);
           if (branch !== 'All') audienceParts.push(branch);
           if (section !== 'All') audienceParts.push('Sec ' + section);
-          
+
           const audience = audienceParts.length > 0 ? audienceParts.join(' ') : 'All Students';
-          
+
           if (!allAnnouncements[params]) allAnnouncements[params] = [];
           allAnnouncements[params].push({
             id: Date.now().toString(),
@@ -1362,9 +1497,9 @@ document.addEventListener('DOMContentLoaded', () => {
             text,
             audience
           });
-          
+
           localStorage.setItem('vvce_announcements', JSON.stringify(allAnnouncements));
-          
+
           formAnnouncement.reset();
           modalAnnouncement.classList.add('hidden');
           modalAnnouncement.classList.remove('flex');
@@ -1376,13 +1511,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const addModal = document.getElementById('add-lf-modal');
       const viewModal = document.getElementById('view-lf-modal');
       const searchInput = document.getElementById('lf-search');
-      
+
       let allItems = [];
 
       const renderItems = (query = '') => {
         if (!grid) return;
-        const filtered = allItems.filter(item => 
-          item.title.toLowerCase().includes(query.toLowerCase()) || 
+        const filtered = allItems.filter(item =>
+          item.title.toLowerCase().includes(query.toLowerCase()) ||
           item.location.toLowerCase().includes(query.toLowerCase())
         );
 
@@ -1411,7 +1546,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `;
         }).join('');
-        
+
         if (window.lucide) window.lucide.createIcons();
 
         // Add click listeners to cards
@@ -1423,30 +1558,30 @@ document.addEventListener('DOMContentLoaded', () => {
               document.getElementById('view-lf-title').textContent = item.title;
               document.getElementById('view-lf-desc').textContent = item.description;
               document.getElementById('view-lf-location').querySelector('span').textContent = item.location;
-              
+
               const typeSpan = document.getElementById('view-lf-type');
               typeSpan.textContent = item.type;
               typeSpan.className = 'font-dm-sans text-[12px] px-[10px] py-[4px] rounded-full uppercase tracking-wider font-semibold ' + (item.type === 'lost' ? 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]' : 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]');
-              
+
               document.getElementById('view-lf-date').textContent = new Date(item.created_at).toLocaleDateString();
-              
+
               document.getElementById('view-lf-contact-name').textContent = item.contact_name;
               const contactNumEl = document.getElementById('view-lf-contact-number');
               contactNumEl.textContent = item.contact_number;
               contactNumEl.href = 'tel:' + item.contact_number;
-              
+
               const imgContainer = document.getElementById('view-lf-image-container');
               const imgEl = document.getElementById('view-lf-image');
               if (item.image_url) {
-                 const { data: pubData } = window.supabaseClient.storage.from('lost_and_found_images').getPublicUrl(item.image_url);
-                 imgEl.src = pubData.publicUrl;
-                 imgContainer.classList.remove('hidden');
-                 document.getElementById('view-lf-close-btn').classList.add('hidden');
+                const { data: pubData } = window.supabaseClient.storage.from('lost_and_found_images').getPublicUrl(item.image_url);
+                imgEl.src = pubData.publicUrl;
+                imgContainer.classList.remove('hidden');
+                document.getElementById('view-lf-close-btn').classList.add('hidden');
               } else {
-                 imgContainer.classList.add('hidden');
-                 document.getElementById('view-lf-close-btn').classList.remove('hidden');
+                imgContainer.classList.add('hidden');
+                document.getElementById('view-lf-close-btn').classList.remove('hidden');
               }
-              
+
               viewModal.classList.remove('hidden');
             }
           });
@@ -1487,9 +1622,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnReport) {
         btnReport.addEventListener('click', () => {
           if (!window.State.user) {
-             alert('Please login as a Student or Faculty to report an item.');
-             window.location.hash = '#login';
-             return;
+            alert('Please login as a Student or Faculty to report an item.');
+            window.location.hash = '#login';
+            return;
           }
           addModal.classList.remove('hidden');
         });
@@ -1519,48 +1654,48 @@ document.addEventListener('DOMContentLoaded', () => {
           btnSubmit.disabled = true;
 
           try {
-             let imagePath = null;
-             if (imgInput.files && imgInput.files.length > 0) {
-               const file = imgInput.files[0];
-               const fileExt = file.name.split('.').pop();
-               const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '.' + fileExt;
-               
-               const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
-                  .from('lost_and_found_images')
-                  .upload(fileName, file);
-                  
-               if (uploadError) throw uploadError;
-               imagePath = uploadData.path;
-             }
+            let imagePath = null;
+            if (imgInput.files && imgInput.files.length > 0) {
+              const file = imgInput.files[0];
+              const fileExt = file.name.split('.').pop();
+              const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '.' + fileExt;
 
-             const type = document.querySelector('input[name="type"]:checked').value;
-             const newItem = {
-               type,
-               title: document.getElementById('lf-title').value,
-               location: document.getElementById('lf-location').value,
-               description: document.getElementById('lf-desc').value,
-               contact_name: document.getElementById('lf-name').value,
-               contact_number: document.getElementById('lf-number').value,
-               image_url: imagePath,
-               status: 'unresolved'
-             };
+              const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
+                .from('lost_and_found_images')
+                .upload(fileName, file);
 
-             const { error } = await window.supabaseClient.from('lost_and_found').insert([newItem]);
-             if (error) throw error;
+              if (uploadError) throw uploadError;
+              imagePath = uploadData.path;
+            }
 
-             addModal.classList.add('hidden');
-             lfForm.reset();
-             imgPreview.classList.add('hidden');
-             imgPreview.src = '';
-             imgPlaceholder.classList.remove('hidden');
-             
-             await fetchItems();
+            const type = document.querySelector('input[name="type"]:checked').value;
+            const newItem = {
+              type,
+              title: document.getElementById('lf-title').value,
+              location: document.getElementById('lf-location').value,
+              description: document.getElementById('lf-desc').value,
+              contact_name: document.getElementById('lf-name').value,
+              contact_number: document.getElementById('lf-number').value,
+              image_url: imagePath,
+              status: 'unresolved'
+            };
+
+            const { error } = await window.supabaseClient.from('lost_and_found').insert([newItem]);
+            if (error) throw error;
+
+            addModal.classList.add('hidden');
+            lfForm.reset();
+            imgPreview.classList.add('hidden');
+            imgPreview.src = '';
+            imgPlaceholder.classList.remove('hidden');
+
+            await fetchItems();
           } catch (err) {
-             console.error("Error submitting report:", err);
-             alert("Failed to submit report. Please try again.");
+            console.error("Error submitting report:", err);
+            alert("Failed to submit report. Please try again.");
           } finally {
-             btnSubmit.textContent = originalText;
-             btnSubmit.disabled = false;
+            btnSubmit.textContent = originalText;
+            btnSubmit.disabled = false;
           }
         });
       }
@@ -1574,7 +1709,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formUpload = document.getElementById('notes-upload-form');
       const fileInput = document.getElementById('note-file');
       const fileDisplay = document.getElementById('file-name-display');
-      
+
       let allNotes = [];
 
       const renderNotes = () => {
@@ -1583,9 +1718,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sem = semesterSelect?.value || '';
 
         const filtered = allNotes.filter(n => {
-          const matchQuery = n.title.toLowerCase().includes(query) || 
-                             n.subject.toLowerCase().includes(query) || 
-                             n.department.toLowerCase().includes(query);
+          const matchQuery = n.title.toLowerCase().includes(query) ||
+            n.subject.toLowerCase().includes(query) ||
+            n.department.toLowerCase().includes(query);
           const matchSem = sem ? n.semester.toString() === sem : true;
           return matchQuery && matchSem;
         });
@@ -1618,7 +1753,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `;
         }).join('');
-        
+
         if (window.lucide) window.lucide.createIcons();
       };
 
@@ -1644,9 +1779,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnUpload) {
         btnUpload.addEventListener('click', () => {
           if (!window.State.user) {
-             alert('Please login as a Student or Faculty to upload notes.');
-             window.location.hash = '#login';
-             return;
+            alert('Please login as a Student or Faculty to upload notes.');
+            window.location.hash = '#login';
+            return;
           }
           modalUpload.classList.remove('hidden');
         });
@@ -1678,50 +1813,50 @@ document.addEventListener('DOMContentLoaded', () => {
           btnSubmit.disabled = true;
 
           try {
-             let fileUrl = null;
-             if (fileInput.files && fileInput.files.length > 0) {
-               const file = fileInput.files[0];
-               const fileExt = file.name.split('.').pop();
-               const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '.' + fileExt;
-               
-               const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
-                  .from('study_notes')
-                  .upload(fileName, file);
-                  
-               if (uploadError) throw uploadError;
-               
-               const { data: publicUrlData } = window.supabaseClient.storage
-                  .from('study_notes')
-                  .getPublicUrl(fileName);
-                  
-               fileUrl = publicUrlData.publicUrl;
-             } else {
-               throw new Error("File is required");
-             }
+            let fileUrl = null;
+            if (fileInput.files && fileInput.files.length > 0) {
+              const file = fileInput.files[0];
+              const fileExt = file.name.split('.').pop();
+              const fileName = Date.now() + '-' + Math.random().toString(36).substring(2) + '.' + fileExt;
 
-             const newNote = {
-               title: document.getElementById('note-title').value,
-               subject: document.getElementById('note-subject').value,
-               department: document.getElementById('note-department').value,
-               semester: parseInt(document.getElementById('note-semester').value, 10),
-               uploader_name: window.State.user?.id || 'Anonymous',
-               file_url: fileUrl
-             };
+              const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
+                .from('study_notes')
+                .upload(fileName, file);
 
-             const { error } = await window.supabaseClient.from('notes').insert([newNote]);
-             if (error) throw error;
+              if (uploadError) throw uploadError;
 
-             modalUpload.classList.add('hidden');
-             formUpload.reset();
-             fileDisplay.innerHTML = '<span class="font-medium text-[var(--accent)]">Click to upload</span> or drag and drop';
-             
-             await fetchNotes();
+              const { data: publicUrlData } = window.supabaseClient.storage
+                .from('study_notes')
+                .getPublicUrl(fileName);
+
+              fileUrl = publicUrlData.publicUrl;
+            } else {
+              throw new Error("File is required");
+            }
+
+            const newNote = {
+              title: document.getElementById('note-title').value,
+              subject: document.getElementById('note-subject').value,
+              department: document.getElementById('note-department').value,
+              semester: parseInt(document.getElementById('note-semester').value, 10),
+              uploader_name: window.State.user?.id || 'Anonymous',
+              file_url: fileUrl
+            };
+
+            const { error } = await window.supabaseClient.from('notes').insert([newNote]);
+            if (error) throw error;
+
+            modalUpload.classList.add('hidden');
+            formUpload.reset();
+            fileDisplay.innerHTML = '<span class="font-medium text-[var(--accent)]">Click to upload</span> or drag and drop';
+
+            await fetchNotes();
           } catch (err) {
-             console.error("Error submitting note:", err);
-             alert("Failed to upload note. Please try again.");
+            console.error("Error submitting note:", err);
+            alert("Failed to upload note. Please try again.");
           } finally {
-             btnSubmit.textContent = originalText;
-             btnSubmit.disabled = false;
+            btnSubmit.textContent = originalText;
+            btnSubmit.disabled = false;
           }
         });
       }
@@ -1730,9 +1865,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const btnAdd = document.getElementById('btn-add-journal');
       const modalAdd = document.getElementById('add-journal-modal');
       const formJournal = document.getElementById('journal-form');
-      
+
       let journals = JSON.parse(localStorage.getItem('vvce_journals') || '[]');
-      
+
       // Inject demo entries for 2nd Sem ECE if not present
       if (!journals.some(j => j.id === 'demo1')) {
         journals.unshift(
@@ -1825,7 +1960,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
         `).join('');
-        
+
         if (window.lucide) window.lucide.createIcons();
       };
 
@@ -1850,7 +1985,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (formJournal) {
         formJournal.addEventListener('submit', (e) => {
           e.preventDefault();
-          
+
           const newEntry = {
             id: Date.now().toString(),
             date: document.getElementById('journal-date').value,
@@ -1864,7 +1999,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           journals.push(newEntry);
           localStorage.setItem('vvce_journals', JSON.stringify(journals));
-          
+
           modalAdd.classList.add('hidden');
           modalAdd.classList.remove('flex');
           formJournal.reset();
@@ -1878,12 +2013,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.State.subscribe(() => {
     renderHeader();
     // In a full SPA, we might want to re-render the page too if translations are used in the page body
-    handleRoute(); 
+    handleRoute();
   });
 
   // Listen for hash changes
   window.addEventListener('hashchange', handleRoute);
-  
+
   // Close notifications if clicked outside
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('notifications-dropdown');
