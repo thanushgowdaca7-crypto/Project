@@ -77,90 +77,117 @@ window.Pages = {
     <div class="relative z-10 flex flex-col min-h-[calc(100vh-64px)] overflow-x-hidden">
       <!-- Fixed Viewport Background Container -->
       <div class="fixed inset-0 w-full h-[100vh] z-[-5] pointer-events-none overflow-hidden">
-        <!-- Bright Elegant Antigravity Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0b132b] via-[#1c2541] to-[#0b132b]"></div>
+        <!-- Section background with radial gradients -->
+        <div class="absolute inset-0 hero-background"></div>
         <div class="absolute inset-0 grid-bg opacity-[0.25]"></div>
         
-        <!-- Vivid yet Soft Glowing Orbs -->
-        <div class="absolute top-[-10%] left-[-10%] w-[55%] h-[55%] rounded-full bg-[#00f2fe] filter blur-[140px] opacity-[0.35] animate-float-1"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[65%] h-[65%] rounded-full bg-[#a855f7] filter blur-[150px] opacity-[0.35] animate-float-2"></div>
-        <div class="absolute top-[20%] left-[30%] w-[45%] h-[45%] rounded-full bg-[#3ecf8e] filter blur-[160px] opacity-[0.25] animate-float-y-slow"></div>
-
-        <!-- Floating Geometric Elements -->
-        <div class="absolute top-[20%] right-[15%] w-32 h-32 border-[4px] border-[#00f2fe]/60 rounded-full opacity-60 animate-float-3d shadow-[0_0_25px_rgba(0,242,254,0.3)] backdrop-blur-sm"></div>
-        <div class="absolute bottom-[25%] left-[10%] w-24 h-24 border-[4px] border-[#a855f7]/60 transform rotate-45 opacity-60 animate-float-y shadow-[0_0_25px_rgba(168,85,247,0.3)] backdrop-blur-sm"></div>
-        
-        <!-- Elegant Cross Element -->
-        <div class="absolute top-[60%] left-[30%] flex items-center justify-center opacity-60 animate-float-2 transform rotate-[15deg]">
-          <div class="w-[2px] h-16 bg-gradient-to-b from-transparent via-[#3ecf8e] to-transparent"></div>
-          <div class="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#3ecf8e] to-transparent absolute"></div>
-        </div>
+        <!-- Ambient Blobs -->
+        <div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full bg-[rgba(97,19,161,0.12)] filter blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-[rgba(16,185,129,0.10)] filter blur-[80px] pointer-events-none"></div>
       </div>
       
       <!-- Hero Section -->
       <main class="flex flex-1 flex-col items-center justify-center text-center px-6 w-full h-full min-h-[70vh] relative z-10 pt-16">
         
-        <div class="relative w-[180px] h-[180px] md:w-[240px] md:h-[240px] mb-12 hero-item animate-float-3d">
-          <!-- Abstract 3D Campus Graphic -->
-          <div class="absolute inset-0 border border-[var(--accent)]/30 rounded-3xl transform rotate-12 bg-gradient-to-tr from-[var(--accent-glow)] to-transparent backdrop-blur-sm shadow-[0_0_40px_var(--accent-glow)]"></div>
-          <div class="absolute inset-4 border border-[var(--purple)]/30 rounded-3xl transform -rotate-6 bg-[rgba(139,108,247,0.1)] backdrop-blur-md"></div>
-          <div class="absolute inset-8 border border-[var(--success)]/20 rounded-2xl transform rotate-3 bg-[rgba(62,207,142,0.05)] flex items-center justify-center overflow-hidden">
-             <i data-lucide="zap" class="w-16 h-16 text-[var(--accent)] drop-shadow-[0_0_15px_var(--accent)] animate-pulse"></i>
+        <div class="hero-visual-perspective mb-12">
+          <!-- Main 3D Hero Visual -->
+          <div class="hero-visual-3d w-[180px] h-[180px] md:w-[240px] md:h-[240px] relative">
+            <div class="absolute inset-0 border border-[var(--accent)]/30 rounded-3xl transform rotate-12 bg-gradient-to-tr from-[var(--accent-glow)] to-transparent backdrop-blur-sm shadow-[0_0_40px_var(--accent-glow)]"></div>
+            <div class="absolute inset-4 border border-[var(--purple)]/30 rounded-3xl transform -rotate-6 bg-[rgba(139,108,247,0.1)] backdrop-blur-md"></div>
+            <div class="absolute inset-8 border border-[var(--success)]/20 rounded-2xl transform rotate-3 bg-[rgba(62,207,142,0.05)] flex items-center justify-center overflow-hidden">
+               <img src="VVCE LOGO.png" alt="VVCE Logo" class="w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-[0_0_15px_var(--accent)] animate-pulse" />
+            </div>
+          </div>
+          <!-- Reflection Shadow -->
+          <div class="hero-visual-reflection w-[180px] h-[180px] md:w-[240px] md:h-[240px] absolute">
+            <div class="absolute inset-0 border border-[var(--accent)]/30 rounded-3xl transform rotate-12 bg-gradient-to-tr from-[var(--accent-glow)] to-transparent backdrop-blur-sm shadow-[0_0_40px_var(--accent-glow)]"></div>
+            <div class="absolute inset-4 border border-[var(--purple)]/30 rounded-3xl transform -rotate-6 bg-[rgba(139,108,247,0.1)] backdrop-blur-md"></div>
+            <div class="absolute inset-8 border border-[var(--success)]/20 rounded-2xl transform rotate-3 bg-[rgba(62,207,142,0.05)] flex items-center justify-center overflow-hidden">
+               <i data-lucide="zap" class="w-16 h-16 text-[var(--accent)] drop-shadow-[0_0_15px_var(--accent)] animate-pulse"></i>
+            </div>
           </div>
         </div>
         
-        <h1 class="hero-item block font-syne font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[1] text-[var(--text-primary)] tracking-tight">
+        <h1 class="hero-title font-syne font-extrabold leading-[1.05] text-[var(--color-text-primary)] tracking-tight">
           Welcome to
         </h1>
-        <h1 class="hero-item block font-syne font-bold text-[56px] md:text-[80px] lg:text-[96px] leading-[1] text-[var(--accent)] shiny-text mb-6 tracking-tight">
+        <h1 class="hero-title font-syne font-extrabold leading-[1.05] text-gradient-emerald mb-6 tracking-tight">
           VVCE Connect.
         </h1>
 
-        <p class="hero-item font-dm-sans text-[16px] md:text-[20px] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium max-w-[600px] mx-auto mb-16 leading-relaxed px-4">
+        <p class="hero-subheadline font-dm-sans mx-auto mb-10 px-4">
           The ultimate digital hub for engineering students. Experience a weightless, frictionless, and connected campus life.
         </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-wrapper flex flex-wrap justify-center gap-6 mb-16">
+          <a href="#notes" class="btn-hero-primary">
+            Get Started
+          </a>
+          <a href="#directory" class="btn-hero-secondary">
+            Faculty Directory
+          </a>
+        </div>
       </main>
 
-      <!-- Quick Access Tiles Grid -->
-      <section class="w-full relative z-10 py-16 px-6 lg:px-8 max-w-[1280px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Features Section -->
+      <section id="features" class="w-full relative z-10 py-24 features-section features-border-top">
+        <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
           
-          <a href="#notes" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-accent cursor-pointer">
-            <div class="w-14 h-14 rounded-2xl bg-[rgba(91,187,245,0.1)] text-[var(--accent)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
-              <i data-lucide="layout-dashboard" class="w-7 h-7"></i>
-            </div>
-            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Student Dashboard</h3>
-            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Access your personalized notes, attendance, and academic tracking.</p>
-            <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Enter Portal <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-          </a>
-          
-          <a href="#departments" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-success cursor-pointer" style="animation-delay: 100ms;">
-            <div class="w-14 h-14 rounded-2xl bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
-              <i data-lucide="briefcase" class="w-7 h-7"></i>
-            </div>
-            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Departments</h3>
-            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Explore various engineering departments and branches.</p>
-            <span class="text-[13px] font-dm-sans text-[var(--success)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-          </a>
-          
-          <a href="#events" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-purple cursor-pointer" style="animation-delay: 200ms;">
-            <div class="w-14 h-14 rounded-2xl bg-[rgba(139,108,247,0.1)] text-[var(--purple)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
-              <i data-lucide="calendar-days" class="w-7 h-7"></i>
-            </div>
-            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Event Calendar</h3>
-            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Never miss a hackathon, fest, or technical workshop again.</p>
-            <span class="text-[13px] font-dm-sans text-[var(--purple)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">View Schedule <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-          </a>
-          
-          <a href="#clubs" class="reveal-card glass-panel p-8 flex flex-col group hover-float glow-danger cursor-pointer" style="animation-delay: 300ms;">
-            <div class="w-14 h-14 rounded-2xl bg-[rgba(240,82,82,0.1)] text-[var(--danger)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
-              <i data-lucide="cpu" class="w-7 h-7"></i>
-            </div>
-            <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3">Tech Clubs</h3>
-            <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Join the buzz. Collaborate, innovate, and build with peers.</p>
-            <span class="text-[13px] font-dm-sans text-[var(--danger)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Discover <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
-          </a>
-          
+          <div class="mb-16 text-center features-header reveal-card">
+            <span class="features-eyebrow">PLATFORM FEATURES</span>
+            <h2 class="features-heading font-syne font-extrabold mt-4">
+              Explore the <span class="text-gradient-emerald">Platform</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="#notes" class="features-reveal reveal-card glass-card p-[28px_24px] rounded-[20px] flex flex-col group feature-card-3d cursor-pointer">
+              <div class="feature-card-inner flex flex-col h-full pointer-events-none">
+                <div class="w-14 h-14 rounded-2xl bg-[rgba(91,187,245,0.1)] text-[var(--accent)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="layout-dashboard" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[#10B981] transition-colors">Student Dashboard</h3>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Access your personalized notes, attendance, and academic tracking.</p>
+                <span class="text-[13px] font-dm-sans text-[var(--accent)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Enter Portal <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+              </div>
+            </a>
+            
+            <a href="#departments" class="features-reveal reveal-card glass-card p-[28px_24px] rounded-[20px] flex flex-col group feature-card-3d cursor-pointer" style="animation-delay: 100ms;">
+              <div class="feature-card-inner flex flex-col h-full pointer-events-none">
+                <div class="w-14 h-14 rounded-2xl bg-[rgba(62,207,142,0.1)] text-[var(--success)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="briefcase" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[#10B981] transition-colors">Departments</h3>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Explore various engineering departments and branches.</p>
+                <span class="text-[13px] font-dm-sans text-[var(--success)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Explore <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+              </div>
+            </a>
+            
+            <a href="#events" class="features-reveal reveal-card glass-card p-[28px_24px] rounded-[20px] flex flex-col group feature-card-3d cursor-pointer" style="animation-delay: 200ms;">
+              <div class="feature-card-inner flex flex-col h-full pointer-events-none">
+                <div class="w-14 h-14 rounded-2xl bg-[rgba(139,108,247,0.1)] text-[var(--purple)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="calendar-days" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[#10B981] transition-colors">Event Calendar</h3>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Never miss a hackathon, fest, or technical workshop again.</p>
+                <span class="text-[13px] font-dm-sans text-[var(--purple)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">View Schedule <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+              </div>
+            </a>
+            
+            <a href="#clubs" class="features-reveal reveal-card glass-card p-[28px_24px] rounded-[20px] flex flex-col group feature-card-3d cursor-pointer" style="animation-delay: 300ms;">
+              <div class="feature-card-inner flex flex-col h-full pointer-events-none">
+                <div class="w-14 h-14 rounded-2xl bg-[rgba(240,82,82,0.1)] text-[var(--danger)] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="cpu" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[#10B981] transition-colors">Tech Clubs</h3>
+                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1">Join the buzz. Collaborate, innovate, and build with peers.</p>
+                <span class="text-[13px] font-dm-sans text-[var(--danger)] font-medium inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">Discover <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+              </div>
+            </a>
+            
+          </div>
         </div>
       </section>
 
@@ -328,13 +355,6 @@ window.Pages = {
         </div>
       </section>
 
-      <!-- Footer -->
-      <footer class="w-full border-t border-white/10 bg-black/50 backdrop-blur-xl relative z-10 py-12 text-center mt-auto reveal-card">
-        <p class="font-syne font-bold text-[24px] text-[var(--text-primary)] mb-2 tracking-tight">VVCE Connect</p>
-        <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6">Designed with an Antigravity aesthetic for engineering students.</p>
-        <p class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase tracking-widest">&copy; 2026 Vidyavardhaka College of Engineering</p>
-      </footer>
-
     </div>
   `,
 
@@ -428,20 +448,18 @@ window.Pages = {
   `,
 
   events: () => `
-    <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-16 flex-1 flex flex-col">
+    <div id="events" class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-16 flex-1 flex flex-col events-section-bg rounded-[24px]">
       
       <!-- Hero Header -->
-      <div class="relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[var(--surface-2)] to-[var(--bg)] border border-[var(--border)] p-10 md:p-16 mb-12 flex flex-col md:flex-row items-center justify-between gap-8 group shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none mix-blend-overlay"></div>
+      <div class="relative w-full rounded-[32px] overflow-hidden bg-[var(--surface-2)]/30 border border-[var(--border)] p-10 md:p-16 mb-12 flex flex-col md:flex-row items-center justify-between gap-8 group shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--accent)]/10 rounded-full blur-[120px] pointer-events-none transform translate-x-1/2 -translate-y-1/2 transition-transform duration-1000 group-hover:scale-110"></div>
         
-        <div class="relative z-10 max-w-[600px] text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] text-sm font-ibm-mono mb-6 backdrop-blur-md">
-            <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent-glow)]"></span>
-            Campus Buzz
-          </div>
-          <h1 class="font-syne font-bold text-[48px] md:text-[64px] text-[var(--text-primary)] leading-[1.1] mb-6 tracking-tight" id="events-title">Events & Fest</h1>
-          <p class="font-dm-sans text-[16px] md:text-[18px] text-[var(--text-secondary)] leading-relaxed mb-8 max-w-[480px] mx-auto md:mx-0">Stay in the loop with the latest technical fests, hackathons, seminars, and vibrant campus activities happening at VVCE.</p>
+        <div class="relative z-10 max-w-[600px] text-center md:text-left reveal-card features-header">
+          <span class="features-eyebrow">CAMPUS BUZZ</span>
+          <h1 class="features-heading font-syne font-extrabold mt-4" id="events-title">
+            Events & <span class="text-gradient-emerald">Fest</span>
+          </h1>
+          <p class="font-dm-sans text-[16px] md:text-[18px] text-[var(--text-secondary)] leading-relaxed mb-8 max-w-[480px] mx-auto md:mx-0 mt-6">Stay in the loop with the latest technical fests, hackathons, seminars, and vibrant campus activities happening at VVCE.</p>
           <button id="btn-add-event" class="btn-primary shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)] px-8 py-4 text-[16px] flex items-center justify-center gap-2 md:justify-start mx-auto md:mx-0 transition-all hover:-translate-y-1">
             <i data-lucide="calendar-plus" class="w-5 h-5"></i> Host an Event
           </button>
@@ -495,16 +513,20 @@ window.Pages = {
            <div class="h-4 bg-[var(--surface-2)] rounded w-full mb-2"></div>
            <div class="h-4 bg-[var(--surface-2)] rounded w-5/6 mb-8"></div>
            <div class="h-10 bg-[var(--surface-2)] rounded-xl w-full"></div>
+            <div class="w-full h-40 bg-[var(--surface-2)] rounded-lg mb-6"></div>
+           <div class="h-6 bg-[var(--surface-2)] rounded w-3/4 mb-4"></div>
+           <div class="h-4 bg-[var(--surface-2)] rounded w-full mb-2"></div>
+           <div class="h-4 bg-[var(--surface-2)] rounded w-5/6 mb-8"></div>
+           <div class="h-10 bg-[var(--surface-2)] rounded-xl w-full"></div>
         </div>
       </div>
       </div>
 
       <!-- Upcoming Club Events -->
-      <!-- Upcoming Club Events -->
       <div class="mt-[120px] relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-[var(--accent)]/5 blur-[150px] rounded-full pointer-events-none"></div>
         
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[var(--border)] relative z-10">
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[var(--border)] relative z-10 reveal-card">
           <h2 class="font-syne font-bold text-[28px] text-[var(--text-primary)] flex items-center gap-4">
             <div class="w-10 h-10 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] flex items-center justify-center shadow-md">
               <i data-lucide="users-2" class="w-5 h-5 text-[#64CEFB]"></i>
@@ -516,81 +538,72 @@ window.Pages = {
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
           
           <!-- Card 1 -->
-          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[var(--accent)]/40 hover:shadow-[0_8px_30px_rgba(62,207,142,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--accent)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--accent)]/20 transition-colors"></div>
-            
-            <div class="flex flex-col mb-5 relative z-10">
-              <div class="w-12 h-12 rounded-[12px] bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                <i data-lucide="code" class="w-6 h-6"></i>
-              </div>
-              <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[var(--accent)] mb-2 flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> Technical
-              </span>
-              <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[var(--accent)] transition-colors">Open Source Contribution Bootcamp</h3>
-            </div>
-            
-            <div class="flex flex-col gap-2 mt-auto pt-6 border-t border-[var(--border)] relative z-10">
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">Next Wednesday, 4:00 PM</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">Lab 1, CS Block</span>
+          <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group" style="animation-delay: 120ms;">
+            <div class="event-card-inner flex flex-col h-full pointer-events-none">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--accent)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--accent)]/20 transition-colors"></div>
+              
+              <div class="mb-4"><span class="event-date-badge inline-block">Next Wed, 4 PM</span></div>
+              
+              <h3 class="event-title mb-3">Open Source Contribution Bootcamp</h3>
+              <p class="event-desc mb-6 flex-1 line-clamp-3">Join us for a comprehensive workshop on contributing to open source projects. Learn git workflows and make your first PR!</p>
+              
+              <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
+                <div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium">
+                  <i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>
+                  <span>Lab 1, CS Block</span>
+                </div>
               </div>
             </div>
+            
+            <a href="#" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto">
+              Learn More <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
           </div>
 
           <!-- Card 2 -->
-          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[var(--danger)]/40 hover:shadow-[0_8px_30px_rgba(240,82,82,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--danger)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--danger)]/20 transition-colors"></div>
-            
-            <div class="flex flex-col mb-5 relative z-10">
-              <div class="w-12 h-12 rounded-[12px] bg-[var(--danger)]/10 text-[var(--danger)] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                <i data-lucide="rocket" class="w-6 h-6"></i>
-              </div>
-              <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[var(--danger)] mb-2 flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--danger)]"></span> R&D
-              </span>
-              <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[var(--danger)] transition-colors">Model Rocketry Workshop</h3>
-            </div>
-            
-            <div class="flex flex-col gap-2 mt-auto pt-6 border-t border-[var(--border)] relative z-10">
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">Friday, 2:00 PM</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">Mechanical Block</span>
+          <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group" style="animation-delay: 240ms;">
+            <div class="event-card-inner flex flex-col h-full pointer-events-none">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--danger)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--danger)]/20 transition-colors"></div>
+              
+              <div class="mb-4"><span class="event-date-badge inline-block">Friday, 2 PM</span></div>
+              
+              <h3 class="event-title mb-3">Model Rocketry Workshop</h3>
+              <p class="event-desc mb-6 flex-1 line-clamp-3">Build and launch your own model rocket! A hands-on experience covering aerodynamics and propulsion.</p>
+              
+              <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
+                <div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium">
+                  <i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>
+                  <span>Mechanical Block</span>
+                </div>
               </div>
             </div>
+            
+            <a href="#" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto">
+              Learn More <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
           </div>
 
           <!-- Card 3 -->
-          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[var(--purple)]/40 hover:shadow-[0_8px_30px_rgba(139,108,247,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--purple)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--purple)]/20 transition-colors"></div>
-            
-            <div class="flex flex-col mb-5 relative z-10">
-              <div class="w-12 h-12 rounded-[12px] bg-[var(--purple)]/10 text-[var(--purple)] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                <i data-lucide="users" class="w-6 h-6"></i>
-              </div>
-              <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[var(--purple)] mb-2 flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--purple)]"></span> Social
-              </span>
-              <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[var(--purple)] transition-colors">Ideathon: Smart Campus Solutions</h3>
-            </div>
-            
-            <div class="flex flex-col gap-2 mt-auto pt-6 border-t border-[var(--border)] relative z-10">
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">Saturday, 10:00 AM</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">Seminar Hall</span>
+          <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[rgba(97,19,161,0.7)] group" style="animation-delay: 360ms;">
+            <div class="event-card-inner flex flex-col h-full pointer-events-none">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--purple)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--purple)]/20 transition-colors"></div>
+              
+              <div class="mb-4"><span class="event-date-badge inline-block" style="background: rgba(97,19,161,0.12); border-color: rgba(97,19,161,0.25); color: #B288FF;">Last Week</span></div>
+              
+              <h3 class="event-title mb-3">AI in Healthcare Seminar</h3>
+              <p class="event-desc mb-6 flex-1 line-clamp-3">Exploring the intersection of artificial intelligence and modern medicine. Guest lecture by Dr. Alan.</p>
+              
+              <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
+                <div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium">
+                  <i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>
+                  <span>Main Auditorium</span>
+                </div>
               </div>
             </div>
+            
+            <a href="#" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto" style="color: #B288FF;">
+              View Recording <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
           </div>
 
           <!-- Card 4 -->
@@ -1047,7 +1060,7 @@ window.Pages = {
                 ${club.studentCoordinators.map(s => `
                   <div class="flex items-center gap-4">
                     <div class="w-[24px] h-[24px] rounded-full bg-gradient-to-tr from-[var(--purple)] to-[var(--accent)] flex items-center justify-center shrink-0">
-                      <span class="font-ibm-mono text-[8px] font-bold text-[#000]">${s.name.substring(0,2).toUpperCase()}</span>
+                      <span class="font-ibm-mono text-[8px] font-bold text-[#000]">${s.name.substring(0, 2).toUpperCase()}</span>
                     </div>
                     <div class="flex flex-col flex-1">
                       <span class="font-syne font-medium text-[14px] text-[var(--text-primary)]">${s.name}</span>
@@ -1074,24 +1087,24 @@ window.Pages = {
     const getStatusBadge = (status) => {
       let colorClass = '';
       let dotClass = '';
-      switch(status) {
-        case 'Available': 
+      switch (status) {
+        case 'Available':
           colorClass = 'bg-[rgba(62,207,142,0.1)] text-[var(--success)]';
           dotClass = 'bg-[var(--success)] animate-pulse-success';
           break;
-        case 'In Class': 
+        case 'In Class':
           colorClass = 'bg-[var(--accent-dim)] text-[var(--accent)]';
           dotClass = 'bg-[var(--accent)]';
           break;
-        case 'On Leave': 
+        case 'On Leave':
           colorClass = 'bg-[rgba(240,82,82,0.1)] text-[var(--danger)]';
           dotClass = 'bg-[var(--danger)]';
           break;
-        case 'Meeting': 
+        case 'Meeting':
           colorClass = 'bg-[rgba(240,162,42,0.1)] text-[var(--warning)]';
           dotClass = 'bg-[var(--warning)]';
           break;
-        default: 
+        default:
           colorClass = 'bg-[rgba(136,136,136,0.1)] text-[var(--text-secondary)]';
           dotClass = 'bg-[var(--text-secondary)]';
       }
@@ -1300,15 +1313,96 @@ window.Pages = {
   `,
 
   schedules: () => `
-    <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-12 flex-1 flex flex-col mt-4">
-      <div class="mb-10">
-        <h1 class="font-syne font-bold text-[32px] text-[var(--text-primary)] mb-2">Schedules</h1>
+    <section id="timetable" class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-16 flex-1 flex flex-col mt-4 timetable-section rounded-[24px] mb-12">
+      
+      <div class="mb-12 text-center features-header reveal-card">
+        <span class="features-eyebrow">ACADEMIC SCHEDULE</span>
+        <h2 class="features-heading font-syne font-extrabold mt-4">
+          Class <span class="text-gradient-emerald">Timetable</span>
+        </h2>
       </div>
-      <div class="card-global p-12 text-center flex flex-col items-center">
-         <i data-lucide="calendar" class="w-[48px] h-[48px] text-[var(--text-muted)] mb-6"></i>
-         <p class="font-dm-sans text-[15px] text-[var(--text-secondary)]">Scheduling synchronization in progress.</p>
+
+      <!-- Selector Controls -->
+      <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-10 reveal-card" style="animation-delay: 100ms;">
+        <select class="timetable-selector w-full md:w-auto">
+          <option>Computer Science (CSE)</option>
+          <option>Information Science (ISE)</option>
+          <option>Mechanical (ME)</option>
+        </select>
+        
+        <select class="timetable-selector w-full md:w-auto">
+          <option>1st Semester</option>
+          <option selected>4th Semester</option>
+          <option>6th Semester</option>
+        </select>
+        
+        <div class="flex items-center gap-2 bg-[rgba(21,34,56,0.7)] p-1 rounded-[12px] border border-[var(--border)] ml-0 md:ml-4">
+          <button class="timetable-tab active">Section A</button>
+          <button class="timetable-tab">Section B</button>
+          <button class="timetable-tab">Section C</button>
+        </div>
       </div>
-    </div>
+
+      <!-- Timetable Grid -->
+      <div class="timetable-wrapper w-full relative z-10">
+        <div class="timetable-card glass-card reveal-card overflow-x-auto w-full" style="animation-delay: 200ms;">
+          <table class="timetable-table min-w-[800px] w-full text-left">
+            <thead>
+              <tr>
+                <th>Day / Time</th>
+                <th>09:00 - 10:00</th>
+                <th>10:00 - 11:00</th>
+                <th>11:15 - 12:15</th>
+                <th>12:15 - 01:15</th>
+                <th>02:00 - 04:00</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-bold text-[var(--accent)]">Monday</td>
+                <td>Data Structures<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Smith</span></td>
+                <td>OS Concepts<br><span class="text-[11px] text-[var(--text-muted)]">Prof. Jane</span></td>
+                <td>Algorithms<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Alan</span></td>
+                <td>Web Dev<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Ada</span></td>
+                <td class="text-[var(--purple)]">DSA Lab<br><span class="text-[11px] text-[var(--text-muted)]">Lab 2</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold text-[var(--accent)]">Tuesday</td>
+                <td>OS Concepts<br><span class="text-[11px] text-[var(--text-muted)]">Prof. Jane</span></td>
+                <td>Data Structures<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Smith</span></td>
+                <td>Web Dev<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Ada</span></td>
+                <td>Algorithms<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Alan</span></td>
+                <td class="text-[var(--success)]">Web Dev Lab<br><span class="text-[11px] text-[var(--text-muted)]">Lab 4</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold text-[var(--accent)]">Wednesday</td>
+                <td>Algorithms<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Alan</span></td>
+                <td>Web Dev<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Ada</span></td>
+                <td>Data Structures<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Smith</span></td>
+                <td>OS Concepts<br><span class="text-[11px] text-[var(--text-muted)]">Prof. Jane</span></td>
+                <td class="text-[var(--warning)]">Placement Training<br><span class="text-[11px] text-[var(--text-muted)]">Auditorium</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold text-[var(--accent)]">Thursday</td>
+                <td>Web Dev<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Ada</span></td>
+                <td>Algorithms<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Alan</span></td>
+                <td>OS Concepts<br><span class="text-[11px] text-[var(--text-muted)]">Prof. Jane</span></td>
+                <td>Data Structures<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Smith</span></td>
+                <td class="text-[var(--danger)]">OS Lab<br><span class="text-[11px] text-[var(--text-muted)]">Lab 1</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold text-[var(--accent)]">Friday</td>
+                <td>Data Structures<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Smith</span></td>
+                <td>OS Concepts<br><span class="text-[11px] text-[var(--text-muted)]">Prof. Jane</span></td>
+                <td>Web Dev<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Ada</span></td>
+                <td>Algorithms<br><span class="text-[11px] text-[var(--text-muted)]">Dr. Alan</span></td>
+                <td class="text-[var(--accent)]">Mini Project<br><span class="text-[11px] text-[var(--text-muted)]">Lab 3</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   `,
 
   notes: () => `
@@ -1516,6 +1610,105 @@ window.Pages = {
         </div>
       </div>
       ` : ''}
+    </div>
+  `,
+
+  community: () => `
+    <div id="community" class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-16 flex-1 flex flex-col community-section-bg rounded-[24px]">
+      
+      <!-- Hero Header -->
+      <div class="relative z-10 max-w-[600px] text-center md:text-left reveal-card features-header mb-12">
+        <span class="features-eyebrow">CAMPUS CONNECT</span>
+        <h1 class="features-heading font-syne font-extrabold mt-4">
+          Student <span class="text-gradient-emerald">Community</span>
+        </h1>
+        <p class="font-dm-sans text-[16px] md:text-[18px] text-[var(--text-secondary)] leading-relaxed mt-4">Join the conversation. Share updates, ask questions, and connect with your peers across VVCE.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center gap-3 mb-10 reveal-card">
+        <button class="community-filter-btn active">All Discussions</button>
+        <button class="community-filter-btn">Announcements</button>
+        <button class="community-filter-btn">Q&A</button>
+        <button class="community-filter-btn">Projects</button>
+      </div>
+
+      <!-- Feed Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="community-feed">
+        
+        <!-- Post 1 -->
+        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 100ms;">
+          <div class="community-card-inner pointer-events-none">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="community-avatar">
+                <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-full h-full rounded-full object-cover">
+              </div>
+              <div>
+                <h4 class="community-username">Rahul S.</h4>
+                <span class="community-timestamp">2 hours ago</span>
+              </div>
+            </div>
+            <p class="community-post-content">
+              Hey everyone! We're putting together a team for the upcoming Smart India Hackathon. If you have experience with React and Node.js, drop a comment below or DM me. Let's build something awesome! 🚀
+            </p>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 200ms;">
+          <div class="community-card-inner pointer-events-none">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="community-avatar">
+                <img src="https://i.pravatar.cc/150?img=47" alt="Avatar" class="w-full h-full rounded-full object-cover">
+              </div>
+              <div>
+                <h4 class="community-username">Priya M.</h4>
+                <span class="community-timestamp">5 hours ago</span>
+              </div>
+            </div>
+            <p class="community-post-content">
+              Just uploaded the complete notes for Module 3 of Computer Networks to the Study Hub. Make sure to check them out before next week's internals. Good luck! 📚
+            </p>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 300ms;">
+          <div class="community-card-inner pointer-events-none">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="community-avatar">
+                <img src="https://i.pravatar.cc/150?img=33" alt="Avatar" class="w-full h-full rounded-full object-cover">
+              </div>
+              <div>
+                <h4 class="community-username">Karthik V.</h4>
+                <span class="community-timestamp">Yesterday</span>
+              </div>
+            </div>
+            <p class="community-post-content">
+              Does anyone have the syllabus copy for the open elective "Cyber Security"? The link on the college portal seems to be broken. Thanks in advance!
+            </p>
+          </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 400ms;">
+          <div class="community-card-inner pointer-events-none">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="community-avatar">
+                <img src="https://i.pravatar.cc/150?img=5" alt="Avatar" class="w-full h-full rounded-full object-cover">
+              </div>
+              <div>
+                <h4 class="community-username">Prof. Sharma</h4>
+                <span class="community-timestamp">2 days ago</span>
+              </div>
+            </div>
+            <p class="community-post-content">
+              Reminder: The deadline for submitting your final year project abstracts is this Friday by 5 PM. No late submissions will be accepted. Ensure your guide has approved the topic.
+            </p>
+          </div>
+        </div>
+
+      </div>
     </div>
   `
 };
