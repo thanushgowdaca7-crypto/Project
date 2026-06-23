@@ -608,7 +608,7 @@ window.Pages = {
       <!-- Actions Bar -->
       <div class="sticky top-[80px] z-30 bg-[var(--bg)]/80 backdrop-blur-xl border border-[var(--border)] rounded-[20px] p-3 mb-10 flex items-center justify-end shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         <div class="flex items-center gap-4">
-          <button id="btn-add-event" class="btn-primary py-2 px-4 text-sm flex items-center gap-2 shadow-[0_0_15px_var(--accent-glow)] rounded-[12px]">
+          <button id="btn-add-event" type="button" onclick="document.getElementById('add-event-modal').classList.remove('hidden'); document.getElementById('add-event-modal').classList.add('flex');" class="btn-primary py-2 px-4 text-sm flex items-center gap-2 shadow-[0_0_15px_var(--accent-glow)] rounded-[12px]">
             <i data-lucide="calendar-plus" class="w-4 h-4"></i> Host Event
           </button>
           
@@ -634,10 +634,12 @@ window.Pages = {
          <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full"></div>
          <div class="col-span-full py-20 flex justify-center"><i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--text-muted)]"></i></div>
       </div>
-      
-      <!-- Add Event Modal -->
-      <div id="add-event-modal" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
-        <div id="close-add-event-modal-bg" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
+      </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="add-event-modal" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
+        <div id="close-add-event-modal-bg" onclick="document.getElementById('add-event-modal').classList.add('hidden'); document.getElementById('add-event-modal').classList.remove('flex');" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
         <div class="w-full flex min-h-full items-center justify-center p-4 sm:p-6 relative z-10 pointer-events-none">
           <div class="relative w-full max-w-2xl mx-auto bg-[#0d121f] border border-white/10 rounded-[24px] p-8 shadow-[0_0_50px_rgba(0,0,0,0.6)] pointer-events-auto my-8">
             <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
@@ -645,7 +647,7 @@ window.Pages = {
                 <i data-lucide="calendar-plus" class="w-6 h-6 text-[var(--accent)]"></i>
                 Host an Event
               </h2>
-              <button id="close-add-event-modal-btn" class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-2 transition-all">
+              <button id="close-add-event-modal-btn" type="button" onclick="document.getElementById('add-event-modal').classList.add('hidden'); document.getElementById('add-event-modal').classList.remove('flex');" class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-2 transition-all">
                 <i data-lucide="x" class="w-5 h-5"></i>
               </button>
             </div>
@@ -706,7 +708,6 @@ window.Pages = {
           </div>
         </div>
       </div>
-    </div>
   `,
 
   'lost-and-found': () => `

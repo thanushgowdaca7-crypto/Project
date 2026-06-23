@@ -917,218 +917,211 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const fetchEvents = async () => {
         if (!grid) return;
+        
+        let data = [];
         try {
-          const { data, error } = await window.supabaseClient.from('events').select('*').order('created_at', { ascending: false });
-          if (error) throw error;
-
-          const featuredContainer = document.getElementById('featured-event-container');
-
-          if (!data || data.length === 0) {
-            grid.innerHTML = `
-              <div class="col-span-full py-20 flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] rounded-[24px] bg-[var(--surface-2)]/50">
-                <div class="w-16 h-16 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                  <i data-lucide="calendar-x" class="w-8 h-8 text-[var(--accent)]"></i>
-                </div>
-                <h3 class="font-syne font-semibold text-xl text-[var(--text-primary)] mb-2">No Events Yet</h3>
-                <p class="font-dm-sans text-[var(--text-secondary)] text-center max-w-[400px]">There are currently no upcoming events. Check back later or host your own!</p>
-              </div>
-            `;
-            if (featuredContainer) featuredContainer.innerHTML = '';
-            if (window.lucide) window.lucide.createIcons();
-            return;
+          if (window.supabaseClient) {
+            const fetchPromise = window.supabaseClient.from('events').select('*').order('created_at', { ascending: false });
+            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Supabase fetch timeout')), 3000));
+            const res = await Promise.race([fetchPromise, timeoutPromise]);
+            if (res.error) throw res.error;
+            data = res.data || [];
+          } else {
+            throw new Error('Supabase client not initialized');
           }
+        } catch (e) {
+          console.error("Error fetching events:", e);
+        }
 
-          const mockFeatured = {
-            id: 'featured-steelwool',
-            title: 'SteelWool Photography',
-            description: 'Ignite your creativity! Step into a night filled with sparks, motion, and breathtaking visuals. Capture stunning long-exposure shots and experience the magic of painting with light.',
-            date: 'May 25th 2026',
-            time: '5:30 PM Onwards',
-            venue: 'Basketball Court',
-            duration: '',
-            poster_url: 'LOGOS/Pixel.jpeg',
-            registration_link: 'https://forms.gle/p86xdWU9DHSd1NXE8'
-          };
+        const featuredContainer = document.getElementById('featured-event-container');
 
-          const featuredEvent = mockFeatured;
-          const otherEvents = data;
+        const mockFeatured = {
+          id: 'featured-steelwool',
+          title: 'SteelWool Photography',
+          description: 'Ignite your creativity! Step into a night filled with sparks, motion, and breathtaking visuals. Capture stunning long-exposure shots and experience the magic of painting with light.',
+          date: 'May 25th 2026',
+          time: '5:30 PM Onwards',
+          venue: 'Basketball Court',
+          duration: '',
+          poster_url: 'LOGOS/Pixel.jpeg',
+          registration_link: 'https://forms.gle/p86xdWU9DHSd1NXE8'
+        };
 
-          if (featuredContainer) {
-            featuredContainer.innerHTML = `
-              <div class="card-global flex flex-col lg:flex-row overflow-hidden border border-[var(--border)] hover:border-[var(--accent)]/50 transition-colors animate-in fade-in slide-in-from-bottom-8 duration-700">
-                <div class="lg:w-[45%] h-[300px] lg:h-auto relative overflow-hidden bg-[var(--surface-2)] group cursor-pointer">
-                  ${featuredEvent.poster_url
-                ? `<img src="${featuredEvent.poster_url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />`
-                : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-12 h-12 mb-4"></i><span>No Poster</span></div>`
-              }
-                  <div class="absolute top-4 left-4 z-10">
-                    <span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-lg backdrop-blur-md inline-flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3"></i> Featured
-                    </span>
+        const featuredEvent = mockFeatured;
+        const otherEvents = data;
+
+        if (featuredContainer) {
+          featuredContainer.innerHTML = `
+            <div class="card-global flex flex-col lg:flex-row overflow-hidden border border-[var(--border)] hover:border-[var(--accent)]/50 transition-colors animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <div class="lg:w-[45%] h-[300px] lg:h-auto relative overflow-hidden bg-[var(--surface-2)] group cursor-pointer">
+                ${featuredEvent.poster_url
+              ? `<img src="${featuredEvent.poster_url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />`
+              : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-12 h-12 mb-4"></i><span>No Poster</span></div>`
+            }
+                <div class="absolute top-4 left-4 z-10">
+                  <span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-lg backdrop-blur-md inline-flex items-center gap-1">
+                    <i data-lucide="star" class="w-3 h-3"></i> Featured
+                  </span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#000]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+              
+              <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative">
+                <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-[var(--purple)]/5 blur-[100px] pointer-events-none rounded-full"></div>
+                
+                <h2 class="font-syne font-[800] text-[32px] md:text-[40px] text-[var(--text-primary)] leading-[1.1] mb-4 relative z-10">${featuredEvent.title}</h2>
+                <p class="font-dm-sans text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-relaxed mb-8 relative z-10">
+                  ${featuredEvent.description || 'No description provided.'}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-10">
+                  ${featuredEvent.date ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)] shadow-sm"><i data-lucide="calendar" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.date}</span></div>` : ''}
+                  ${featuredEvent.time ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)] shadow-sm"><i data-lucide="clock" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.time}</span></div>` : ''}
+                  ${featuredEvent.duration ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[#64CEFB] shadow-sm"><i data-lucide="timer" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.duration}</span></div>` : ''}
+                  ${featuredEvent.venue ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--warning)] shadow-sm"><i data-lucide="map-pin" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.venue}</span></div>` : ''}
+                </div>
+
+                <div class="relative z-10 mt-auto pt-4 flex items-center justify-between">
+                  ${featuredEvent.registration_link ? `
+                    <a href="${featuredEvent.registration_link}" target="_blank" class="btn-primary py-3 px-8 text-[15px] shadow-[0_4px_14px_0_rgba(62,207,142,0.39)] hover:shadow-[0_6px_20px_rgba(62,207,142,0.23)] hover:-translate-y-1 transition-all inline-flex items-center gap-2">
+                      Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                  ` : '<div></div>'}
+                  
+                  <div class="flex flex-col items-end">
+                    <span class="font-ibm-mono text-[10px] text-[var(--accent)] uppercase tracking-widest mb-1 shadow-sm">Starts In</span>
+                    <div class="flex gap-2 font-syne font-bold text-xl text-white">
+                      <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">12<span class="text-[10px] ml-1 text-white/50">d</span></div>
+                      <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">04<span class="text-[10px] ml-1 text-white/50">h</span></div>
+                      <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">45<span class="text-[10px] ml-1 text-white/50">m</span></div>
+                    </div>
                   </div>
-                  <div class="absolute top-4 right-4 z-20">
-                    <button onclick="window.deleteEvent('${featuredEvent.id}')" class="bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg hover:scale-110" title="Delete Event">
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        if (otherEvents.length > 0) {
+          grid.innerHTML = otherEvents.map((event, index) => {
+            let pUrl = event.poster_url;
+            if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
+              pUrl = 'LOGOS/fusion.jpeg';
+            }
+
+            const delay = index * 120;
+            return `
+              <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group hover:shadow-[0_12px_40px_var(--accent-glow)] transition-all" style="animation-delay: ${delay}ms;">
+                <div class="event-card-inner flex-1 flex flex-col pointer-events-none">
+                  <div class="relative overflow-hidden rounded-[12px] mb-6 w-full shadow-md">
+                    ${pUrl
+                ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-[1.15]" />`
+                : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
+                    
+                    <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110 pointer-events-auto" title="Delete Event">
                       <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                   </div>
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#000]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  ${event.date ? `<div class="mb-4"><span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-sm">${event.date}</span></div>` : ''}
+                  
+                  <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
+                  <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1 line-clamp-3">${event.description || ''}</p>
+                  
+                  <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
+                    ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)]"><i data-lucide="clock" class="w-[14px] h-[14px]"></i></div>${event.time}</div>` : ''}
+                    ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)]"><i data-lucide="map-pin" class="w-[14px] h-[14px]"></i></div><span class="truncate">${event.venue}</span></div>` : ''}
+                  </div>
                 </div>
                 
-                <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative">
-                  <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-[var(--purple)]/5 blur-[100px] pointer-events-none rounded-full"></div>
-                  
-                  <h2 class="font-syne font-[800] text-[32px] md:text-[40px] text-[var(--text-primary)] leading-[1.1] mb-4 relative z-10">${featuredEvent.title}</h2>
-                  <p class="font-dm-sans text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-relaxed mb-8 relative z-10">
-                    ${featuredEvent.description || 'No description provided.'}
-                  </p>
-
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-10">
-                    ${featuredEvent.date ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)] shadow-sm"><i data-lucide="calendar" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.date}</span></div>` : ''}
-                    ${featuredEvent.time ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)] shadow-sm"><i data-lucide="clock" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.time}</span></div>` : ''}
-                    ${featuredEvent.duration ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[#64CEFB] shadow-sm"><i data-lucide="timer" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.duration}</span></div>` : ''}
-                    ${featuredEvent.venue ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--warning)] shadow-sm"><i data-lucide="map-pin" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.venue}</span></div>` : ''}
+                ${event.registration_link ? `
+                  <div class="mt-auto pt-4 border-t border-[var(--border)]">
+                    <a href="${event.registration_link}" target="_blank" class="text-[14px] font-dm-sans text-[var(--accent)] hover:text-white transition-colors inline-flex items-center gap-2 group/link pointer-events-auto font-medium">
+                      Register Now <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
                   </div>
-
-                  <div class="relative z-10 mt-auto pt-4 flex items-center justify-between">
-                    ${featuredEvent.registration_link ? `
-                      <a href="${featuredEvent.registration_link}" target="_blank" class="btn-primary py-3 px-8 text-[15px] shadow-[0_4px_14px_0_rgba(62,207,142,0.39)] hover:shadow-[0_6px_20px_rgba(62,207,142,0.23)] hover:-translate-y-1 transition-all inline-flex items-center gap-2">
-                        Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                      </a>
-                    ` : '<div></div>'}
-                    
-                    <div class="flex flex-col items-end">
-                      <span class="font-ibm-mono text-[10px] text-[var(--accent)] uppercase tracking-widest mb-1 shadow-sm">Starts In</span>
-                      <div class="flex gap-2 font-syne font-bold text-xl text-white">
-                        <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">12<span class="text-[10px] ml-1 text-white/50">d</span></div>
-                        <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">04<span class="text-[10px] ml-1 text-white/50">h</span></div>
-                        <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">45<span class="text-[10px] ml-1 text-white/50">m</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ` : ''}
               </div>
             `;
-          }
-
-          if (otherEvents.length > 0) {
-            grid.innerHTML = otherEvents.map((event, index) => {
-              // Inject local poster for FUSION X if missing from database
-              let pUrl = event.poster_url;
-              if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
-                pUrl = 'LOGOS/fusion.jpeg';
-              }
-
-              const delay = index * 120;
-              return `
-                <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group hover:shadow-[0_12px_40px_var(--accent-glow)] transition-all" style="animation-delay: ${delay}ms;">
-                  <div class="event-card-inner flex-1 flex flex-col pointer-events-none">
-                    <div class="relative overflow-hidden rounded-[12px] mb-6 w-full shadow-md">
-                      ${pUrl
-                  ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-[1.15]" />`
-                  : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
-                      
-                      <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110 pointer-events-auto" title="Delete Event">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                      </button>
-                    </div>
-                    
-                    ${event.date ? `<div class="mb-4"><span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-sm">${event.date}</span></div>` : ''}
-                    
-                    <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
-                    <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1 line-clamp-3">${event.description || ''}</p>
-                    
-                    <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
-                      ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)]"><i data-lucide="clock" class="w-[14px] h-[14px]"></i></div>${event.time}</div>` : ''}
-                      ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)]"><i data-lucide="map-pin" class="w-[14px] h-[14px]"></i></div><span class="truncate">${event.venue}</span></div>` : ''}
-                    </div>
-                  </div>
-                  
-                  ${event.registration_link ? `
-                    <div class="mt-auto pt-4 border-t border-[var(--border)]">
-                      <a href="${event.registration_link}" target="_blank" class="text-[14px] font-dm-sans text-[var(--accent)] hover:text-white transition-colors inline-flex items-center gap-2 group/link pointer-events-auto font-medium">
-                        Register Now <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
-                      </a>
-                    </div>
-                  ` : ''}
-                </div>
-              `;
-            }).join('');
-            
-            if (timeline) {
-               timeline.innerHTML = `
-                 <!-- The vertical line -->
-                 <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full hidden md:block"></div>
-                 ${otherEvents.map((event, index) => {
-                    let pUrl = event.poster_url;
-                    if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
-                      pUrl = 'LOGOS/fusion.jpeg';
-                    }
-                    const isEven = index % 2 === 0;
-                    return `
-                      <div class="reveal-card relative flex flex-col md:flex-row items-center justify-between w-full mb-8 z-10 group" style="animation-delay: ${index * 100}ms">
-                        <!-- Node -->
-                        <div class="absolute left-[32px] md:left-[50%] w-4 h-4 rounded-full bg-[var(--accent)] shadow-[0_0_15px_var(--accent-glow)] md:-translate-x-1/2 border-4 border-[#0d121f] z-20 transition-transform group-hover:scale-150"></div>
-                        
-                        <div class="${isEven ? 'md:w-5/12 md:pr-12 md:text-right' : 'md:w-5/12 md:pl-12 md:order-last'} w-full pl-16 md:pl-0">
-                           <div class="glass-card p-6 rounded-2xl hover:border-[var(--accent)] transition-all hover:shadow-[0_10px_30px_var(--accent-glow)] group-hover:-translate-y-1">
-                             <div class="flex items-center gap-2 mb-3 ${isEven ? 'md:justify-end' : ''}">
-                               <span class="text-[var(--accent)] font-ibm-mono text-[12px] font-bold tracking-widest uppercase bg-[var(--accent)]/10 px-3 py-1 rounded-md border border-[var(--accent)]/20">${event.date || 'TBA'}</span>
-                             </div>
-                             <h3 class="font-syne text-[22px] font-bold text-white mb-2">${event.title}</h3>
-                             <p class="font-dm-sans text-sm text-[var(--text-secondary)] line-clamp-2 mb-4">${event.description || ''}</p>
-                             <div class="flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)] font-dm-sans ${isEven ? 'md:justify-end' : ''}">
-                               ${event.time ? `<span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3 text-[var(--accent)]"></i> ${event.time}</span>` : ''}
-                               ${event.venue ? `<span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3 text-[var(--purple)]"></i> ${event.venue}</span>` : ''}
-                             </div>
-                           </div>
-                        </div>
-                      </div>
-                    `;
-                 }).join('')}
-               `;
-            }
-          } else {
-            grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
-            if(timeline) {
-              timeline.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
-            }
-          }
-          if (window.lucide) window.lucide.createIcons();
+          }).join('');
           
-          // Re-attach observers and tilt listeners for new dynamic content
-          setTimeout(() => {
-            const observer = new IntersectionObserver((entries, obs) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('revealed');
-                  obs.unobserve(entry.target);
-                }
-              });
-            }, { threshold: 0.15 });
-            document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
-
-            const eventCards = document.querySelectorAll('.event-card-3d');
-            eventCards.forEach(card => {
-              card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -6;
-                const rotateY = ((x - centerX) / centerX) * 6;
-                card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-              });
-              card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-              });
-            });
-          }, 100);
-
-        } catch (e) {
-          console.error("Error fetching events:", e);
-          grid.innerHTML = '<div class="col-span-full text-red-400">Failed to load events.</div>';
+          if (timeline) {
+              timeline.innerHTML = `
+                <!-- The vertical line -->
+                <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full hidden md:block"></div>
+                ${otherEvents.map((event, index) => {
+                  let pUrl = event.poster_url;
+                  if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
+                    pUrl = 'LOGOS/fusion.jpeg';
+                  }
+                  const isEven = index % 2 === 0;
+                  return `
+                    <div class="reveal-card relative flex flex-col md:flex-row items-center justify-between w-full mb-8 z-10 group" style="animation-delay: ${index * 100}ms">
+                      <!-- Node -->
+                      <div class="absolute left-[32px] md:left-[50%] w-4 h-4 rounded-full bg-[var(--accent)] shadow-[0_0_15px_var(--accent-glow)] md:-translate-x-1/2 border-4 border-[#0d121f] z-20 transition-transform group-hover:scale-150"></div>
+                      
+                      <div class="${isEven ? 'md:w-5/12 md:pr-12 md:text-right' : 'md:w-5/12 md:pl-12 md:order-last'} w-full pl-16 md:pl-0">
+                          <div class="glass-card p-6 rounded-2xl hover:border-[var(--accent)] transition-all hover:shadow-[0_10px_30px_var(--accent-glow)] group-hover:-translate-y-1">
+                            <div class="flex items-center gap-2 mb-3 ${isEven ? 'md:justify-end' : ''}">
+                              <span class="text-[var(--accent)] font-ibm-mono text-[12px] font-bold tracking-widest uppercase bg-[var(--accent)]/10 px-3 py-1 rounded-md border border-[var(--accent)]/20">${event.date || 'TBA'}</span>
+                            </div>
+                            <h3 class="font-syne text-[22px] font-bold text-white mb-2">${event.title}</h3>
+                            <p class="font-dm-sans text-sm text-[var(--text-secondary)] line-clamp-2 mb-4">${event.description || ''}</p>
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)] font-dm-sans ${isEven ? 'md:justify-end' : ''}">
+                              ${event.time ? `<span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3 text-[var(--accent)]"></i> ${event.time}</span>` : ''}
+                              ${event.venue ? `<span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3 text-[var(--purple)]"></i> ${event.venue}</span>` : ''}
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              `;
+          }
+        } else {
+          grid.innerHTML = `
+            <div class="col-span-full py-20 flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] rounded-[24px] bg-[var(--surface-2)]/50">
+              <div class="w-16 h-16 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
+                <i data-lucide="calendar-x" class="w-8 h-8 text-[var(--accent)]"></i>
+              </div>
+              <h3 class="font-syne font-semibold text-xl text-[var(--text-primary)] mb-2">No Live Events</h3>
+              <p class="font-dm-sans text-[var(--text-secondary)] text-center max-w-[400px]">There are currently no upcoming live events. Check back later or host your own!</p>
+            </div>
+          `;
+          if(timeline) {
+            timeline.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No live events to show on timeline.</div>';
+          }
         }
+        if (window.lucide) window.lucide.createIcons();
+        
+        setTimeout(() => {
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15 });
+          document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
+
+          const eventCards = document.querySelectorAll('.event-card-3d');
+          eventCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = ((y - centerY) / centerY) * -6;
+              const rotateY = ((x - centerX) / centerX) * 6;
+              card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+              card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+          });
+        }, 100);
       };
 
       fetchEvents();
