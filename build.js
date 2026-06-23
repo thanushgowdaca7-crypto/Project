@@ -26,6 +26,8 @@ function copySync(src, dest) {
 // Copy necessary files to dist
 copySync(path.join(__dirname, 'css'), path.join(distDir, 'css'));
 copySync(path.join(__dirname, 'js'), path.join(distDir, 'js'));
+copySync(path.join(__dirname, 'LOGOS'), path.join(distDir, 'LOGOS'));
+copySync(path.join(__dirname, 'images'), path.join(distDir, 'images'));
 
 // Copy public directory contents to dist root
 const publicDir = path.join(__dirname, 'public');
