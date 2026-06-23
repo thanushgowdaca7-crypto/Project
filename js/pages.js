@@ -280,7 +280,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 0ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20B.%20Sadashive%20Gowda.png" alt="Dr. B. Sadashive Gowda" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. B. Sadashive Gowda</h4>
@@ -291,29 +291,29 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 150ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Shobha%20Shankar.png" alt="Dr. Shoba Shankar" class="w-full h-full object-cover" />
                 </div>
               </div>
-              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Sudhakar M</h4>
-              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Dean, Academics</p>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Shoba Shankar</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Vice Principal</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Overseeing academic curriculum, excellence and standard protocols.</p>
             </div>
 
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 300ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20G%20V%20Naveen%20Prakash.png" alt="Dr. G V Naveen Prakash" class="w-full h-full object-cover" />
                 </div>
               </div>
-              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Rajesh T</h4>
-              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Dean, Student Welfare</p>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. G V Naveen Prakash</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Dean Academic Affairs (1st year)</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Fostering a supportive, engaging and inclusive student environment.</p>
             </div>
 
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 450ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Pooja%20M%20R.png" alt="Dr. Pooja M R" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Pooja M R</h4>
@@ -324,10 +324,10 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 600ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Prema%20N%20S.png" alt="Dr. Prema N S" class="w-full h-full object-cover" />
                 </div>
               </div>
-              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Gururaj H L</h4>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Prema N S</h4>
               <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, ISE</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Fostering innovation and emerging technologies in Information Science.</p>
             </div>
@@ -335,10 +335,10 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 750ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Vinay%20K%20B.png" alt="Dr. Vinay K B" class="w-full h-full object-cover" />
                 </div>
               </div>
-              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Ravi Kumar V</h4>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Vinay K B</h4>
               <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, ME</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Leading advancements in Mechanical Engineering and Robotics.</p>
             </div>
@@ -346,7 +346,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 900ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Gopal%20Reddy.png" alt="Dr. Gopal Reddy" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Gopal Reddy</h4>
@@ -357,10 +357,10 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 1050ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Chandrashekar%20M%20Patil.png" alt="Dr. Chandrashekar M Patil" class="w-full h-full object-cover" />
                 </div>
               </div>
-              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Shruti M</h4>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Chandrashekar M Patil</h4>
               <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, ECE</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Driving innovation in Electronics and Communication Systems.</p>
             </div>
@@ -368,10 +368,10 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 1200ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                  <img src="LOGOS/Dr.%20Shilpa%20B%20S.png" alt="Dr. Shilpa B S" class="w-full h-full object-cover" />
                 </div>
               </div>
-              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Naveen P</h4>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Shilpa B S</h4>
               <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, CE</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Pioneering sustainable infrastructure in Civil Engineering.</p>
             </div>
