@@ -562,8 +562,46 @@ window.Pages = {
       
       <!-- Featured Event Container -->
       <div id="featured-event-container" class="mb-4 w-full relative z-10">
-         <div class="w-full h-[400px] flex items-center justify-center bg-[var(--surface-2)] rounded-[24px] shadow-lg border border-[var(--border)]">
-           <i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--accent)]"></i>
+         <div class="card-global flex flex-col lg:flex-row overflow-hidden border border-[var(--border)] hover:border-[var(--accent)]/50 transition-colors animate-in fade-in slide-in-from-bottom-8 duration-700">
+           <div class="lg:w-[45%] h-[300px] lg:h-auto relative overflow-hidden bg-[var(--surface-2)] group cursor-pointer">
+             <img src="LOGOS/steelwool.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+             <div class="absolute top-4 left-4 z-10">
+               <span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-lg backdrop-blur-md inline-flex items-center gap-1">
+                 <i data-lucide="star" class="w-3 h-3"></i> Featured
+               </span>
+             </div>
+             <div class="absolute inset-0 bg-gradient-to-t from-[#000]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+           </div>
+           
+           <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative">
+             <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-[var(--purple)]/5 blur-[100px] pointer-events-none rounded-full"></div>
+             
+             <h2 class="font-syne font-[800] text-[32px] md:text-[40px] text-[var(--text-primary)] leading-[1.1] mb-4 relative z-10">SteelWool Photography</h2>
+             <p class="font-dm-sans text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-relaxed mb-8 relative z-10">
+               Ignite your creativity! Step into a night filled with sparks, motion, and breathtaking visuals at this year's SteelWool Photography Session! Get ready to capture stunning long-exposure shots and experience the magic of painting with light. From fiery trails to cinematic frames, this session is the perfect chance to explore creative photography in a whole new way. Whether you're just starting out or already love shooting at night, this event promises an unforgettable experience.
+             </p>
+
+             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-10">
+               <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)] shadow-sm"><i data-lucide="calendar" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">May 25th 2026</span></div>
+               <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)] shadow-sm"><i data-lucide="clock" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">5:30 PM Onwards</span></div>
+               <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--warning)] shadow-sm"><i data-lucide="map-pin" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">Basketball Court</span></div>
+             </div>
+
+             <div class="relative z-10 mt-auto pt-4 flex items-center justify-between">
+               <a href="https://forms.gle/p86xdWU9DHSd1NXE8" target="_blank" class="btn-primary py-3 px-8 text-[15px] shadow-[0_4px_14px_0_rgba(62,207,142,0.39)] hover:shadow-[0_6px_20px_rgba(62,207,142,0.23)] hover:-translate-y-1 transition-all inline-flex items-center gap-2">
+                 Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+               </a>
+               
+               <div class="flex flex-col items-end">
+                 <span class="font-ibm-mono text-[10px] text-[var(--accent)] uppercase tracking-widest mb-1 shadow-sm">Starts In</span>
+                 <div class="flex gap-2 font-syne font-bold text-xl text-white">
+                   <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">12<span class="text-[10px] ml-1 text-white/50">d</span></div>
+                   <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">04<span class="text-[10px] ml-1 text-white/50">h</span></div>
+                   <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">45<span class="text-[10px] ml-1 text-white/50">m</span></div>
+                 </div>
+               </div>
+             </div>
+           </div>
          </div>
       </div>
 
@@ -625,14 +663,72 @@ window.Pages = {
 
       <!-- Events Container Grid -->
       <div id="dynamic-events-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-[100px] transition-all duration-500">
-         <div class="col-span-full py-20 flex justify-center"><i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--text-muted)]"></i></div>
+         <div class="card-global flex flex-col group hover:border-[var(--accent)]/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style="animation-delay: 0ms">
+           <div class="w-full h-[250px] relative overflow-hidden bg-[var(--surface-2)]">
+             <img src="LOGOS/fusionx.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+             <div class="absolute inset-0 bg-gradient-to-t from-[#000]/90 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+             
+             <div class="absolute top-4 right-4 flex gap-2">
+               <button class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-[var(--accent)] border border-white/10 hover:border-[var(--accent)]/50 transition-colors shadow-lg">
+                 <i data-lucide="share-2" class="w-4 h-4"></i>
+               </button>
+               <button class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-[#ff4b4b] border border-white/10 hover:border-[#ff4b4b]/50 transition-colors shadow-lg">
+                 <i data-lucide="heart" class="w-4 h-4"></i>
+               </button>
+             </div>
+           </div>
+           
+           <div class="p-6 flex flex-col flex-1 relative">
+             <div class="absolute -top-6 left-6 bg-[var(--surface)] border border-[var(--border)] px-4 py-2 rounded-[12px] shadow-lg flex items-center gap-2">
+               <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+               <span class="font-ibm-mono text-[11px] font-bold text-[var(--text-primary)] tracking-wider uppercase">Upcoming</span>
+             </div>
+             
+             <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 mt-2 line-clamp-2 group-hover:text-[var(--accent)] transition-colors">FUSIONX 1.0 – A 24 hour National Level Hackathon</h3>
+             <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-3 mb-6 flex-1">
+               The Department of Electrical & Electronics Engineering, Vidyavardhaka College of Engineering, Mysuru, in collaboration with Inunity, presents a 24-hour national-level hackathon. Domains: Powering the Future, Connected Intelligence, Engineering for Impact, Digital Impact, Intelligent Systems. Build, innovate, and compete with the best minds across the country!
+             </p>
+
+             <div class="space-y-3 mb-6">
+               <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]"><i data-lucide="calendar" class="w-4 h-4 text-[var(--accent)]"></i><span class="font-medium">29th & 30th May</span></div>
+               <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]"><i data-lucide="clock" class="w-4 h-4 text-[var(--purple)]"></i><span class="font-medium">24 Hours</span></div>
+               <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]"><i data-lucide="map-pin" class="w-4 h-4 text-[var(--warning)]"></i><span class="font-medium">Kempegowda Sports Complex, VVCE</span></div>
+             </div>
+
+             <div class="pt-4 border-t border-[var(--border)] mt-auto flex items-center justify-between">
+               <a href="https://fusionx-hackathon.vercel.app" target="_blank" class="text-[13px] font-bold text-[var(--text-primary)] hover:text-[var(--accent)] uppercase tracking-wider flex items-center gap-2 transition-colors pointer-events-auto relative z-20">
+                 Register <i data-lucide="arrow-right" class="w-4 h-4"></i>
+               </a>
+               
+               <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] border border-[var(--border)] px-2 py-1 rounded-[6px] bg-[var(--surface-2)]">Event #FUSX</span>
+             </div>
+           </div>
+         </div>
       </div>
 
       <!-- Events Container Timeline (Hidden by default) -->
       <div id="dynamic-events-timeline" class="hidden flex-col gap-8 mb-[100px] relative transition-all duration-500 max-w-4xl mx-auto w-full">
          <!-- The vertical line -->
          <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full"></div>
-         <div class="col-span-full py-20 flex justify-center"><i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--text-muted)]"></i></div>
+         
+         <div class="reveal-card relative flex flex-col md:flex-row items-center justify-between w-full mb-8 z-10 group" style="animation-delay: 0ms">
+           <!-- Node -->
+           <div class="absolute left-[32px] md:left-[50%] w-4 h-4 rounded-full bg-[var(--accent)] shadow-[0_0_15px_var(--accent-glow)] md:-translate-x-1/2 border-4 border-[#0d121f] z-20 transition-transform group-hover:scale-150"></div>
+           
+           <div class="w-full md:w-5/12 pr-0 md:pr-12 md:text-right pl-[80px] md:pl-0">
+               <div class="glass-card p-6 rounded-2xl hover:border-[var(--accent)] transition-all hover:shadow-[0_10px_30px_var(--accent-glow)] group-hover:-translate-y-1 text-left md:text-right">
+                 <div class="flex items-center gap-2 mb-3 md:justify-end">
+                   <span class="text-[var(--accent)] font-ibm-mono text-[12px] font-bold tracking-widest uppercase bg-[var(--accent)]/10 px-3 py-1 rounded-md border border-[var(--accent)]/20">29th & 30th May</span>
+                 </div>
+                 <h3 class="font-syne text-[22px] font-bold text-white mb-2">FUSIONX 1.0</h3>
+                 <p class="font-dm-sans text-sm text-[var(--text-secondary)] line-clamp-2 mb-4">A 24 hour National Level Hackathon</p>
+                 <div class="flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)] font-dm-sans md:justify-end">
+                   <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3 text-[var(--accent)]"></i> 24 Hours</span>
+                   <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3 text-[var(--purple)]"></i> Kempegowda Sports Complex</span>
+                 </div>
+               </div>
+           </div>
+         </div>
       </div>
       </div>
     </div>
@@ -654,15 +750,15 @@ window.Pages = {
             <form id="add-event-form" class="space-y-6">
               <div>
                 <label class="block text-sm font-dm-sans text-gray-300 mb-2">Event Poster</label>
-                <div class="relative w-full h-[180px] border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center hover:border-[var(--accent)] transition-colors bg-black/40 cursor-pointer overflow-hidden group">
-                  <input type="file" id="event-poster-file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                <label for="event-poster-file" class="relative w-full h-[180px] border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center hover:border-[var(--accent)] transition-colors bg-black/40 cursor-pointer overflow-hidden group">
+                  <input type="file" id="event-poster-file" accept="image/*" class="hidden" />
                   <div class="flex flex-col items-center pointer-events-none text-gray-400 group-hover:text-[var(--accent)] transition-colors">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3"></i>
                     <span class="text-sm font-medium">Click or drag poster to upload</span>
                     <span class="text-xs text-gray-500 mt-1">16:9 ratio recommended</span>
                   </div>
                   <img id="event-poster-preview" class="absolute inset-0 w-full h-full object-cover hidden pointer-events-none" />
-                </div>
+                </label>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

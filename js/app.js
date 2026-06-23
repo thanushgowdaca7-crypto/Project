@@ -947,109 +947,68 @@ document.addEventListener('DOMContentLoaded', () => {
           registration_link: 'https://forms.gle/p86xdWU9DHSd1NXE8'
         };
 
-        const featuredEvent = mockFeatured;
         const otherEvents = data;
 
-        if (featuredContainer) {
-          featuredContainer.innerHTML = `
-            <div class="card-global flex flex-col lg:flex-row overflow-hidden border border-[var(--border)] hover:border-[var(--accent)]/50 transition-colors animate-in fade-in slide-in-from-bottom-8 duration-700">
-              <div class="lg:w-[45%] h-[300px] lg:h-auto relative overflow-hidden bg-[var(--surface-2)] group cursor-pointer">
-                ${featuredEvent.poster_url
-              ? `<img src="${featuredEvent.poster_url}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />`
-              : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-12 h-12 mb-4"></i><span>No Poster</span></div>`
-            }
-                <div class="absolute top-4 left-4 z-10">
-                  <span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-lg backdrop-blur-md inline-flex items-center gap-1">
-                    <i data-lucide="star" class="w-3 h-3"></i> Featured
-                  </span>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#000]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              
-              <div class="flex-1 p-8 md:p-12 flex flex-col justify-center relative">
-                <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-[var(--purple)]/5 blur-[100px] pointer-events-none rounded-full"></div>
-                
-                <h2 class="font-syne font-[800] text-[32px] md:text-[40px] text-[var(--text-primary)] leading-[1.1] mb-4 relative z-10">${featuredEvent.title}</h2>
-                <p class="font-dm-sans text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-relaxed mb-8 relative z-10">
-                  ${featuredEvent.description || 'No description provided.'}
-                </p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-10">
-                  ${featuredEvent.date ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)] shadow-sm"><i data-lucide="calendar" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.date}</span></div>` : ''}
-                  ${featuredEvent.time ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)] shadow-sm"><i data-lucide="clock" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.time}</span></div>` : ''}
-                  ${featuredEvent.duration ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[#64CEFB] shadow-sm"><i data-lucide="timer" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.duration}</span></div>` : ''}
-                  ${featuredEvent.venue ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--warning)] shadow-sm"><i data-lucide="map-pin" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.venue}</span></div>` : ''}
-                </div>
-
-                <div class="relative z-10 mt-auto pt-4 flex items-center justify-between">
-                  ${featuredEvent.registration_link ? `
-                    <a href="${featuredEvent.registration_link}" target="_blank" class="btn-primary py-3 px-8 text-[15px] shadow-[0_4px_14px_0_rgba(62,207,142,0.39)] hover:shadow-[0_6px_20px_rgba(62,207,142,0.23)] hover:-translate-y-1 transition-all inline-flex items-center gap-2">
-                      Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                  ` : '<div></div>'}
-                  
-                  <div class="flex flex-col items-end">
-                    <span class="font-ibm-mono text-[10px] text-[var(--accent)] uppercase tracking-widest mb-1 shadow-sm">Starts In</span>
-                    <div class="flex gap-2 font-syne font-bold text-xl text-white">
-                      <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">12<span class="text-[10px] ml-1 text-white/50">d</span></div>
-                      <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">04<span class="text-[10px] ml-1 text-white/50">h</span></div>
-                      <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">45<span class="text-[10px] ml-1 text-white/50">m</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-
         if (otherEvents.length > 0) {
-          grid.innerHTML = otherEvents.map((event, index) => {
+          const dynamicGridHTML = otherEvents.map((event, index) => {
             let pUrl = event.poster_url;
             if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
               pUrl = 'LOGOS/fusion.jpeg';
             }
-
-            const delay = index * 120;
             return `
-              <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group hover:shadow-[0_12px_40px_var(--accent-glow)] transition-all" style="animation-delay: ${delay}ms;">
-                <div class="event-card-inner flex-1 flex flex-col pointer-events-none">
-                  <div class="relative overflow-hidden rounded-[12px] mb-6 w-full shadow-md">
-                    ${pUrl
-                ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-[1.15]" />`
-                : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
-                    
-                    <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110 pointer-events-auto" title="Delete Event">
+              <div class="card-global flex flex-col group hover:border-[var(--accent)]/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style="animation-delay: ${index * 100}ms">
+                <div class="w-full h-[250px] relative overflow-hidden bg-[var(--surface-2)]">
+                  ${pUrl
+              ? `<img src="${pUrl}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />`
+              : `<div class="absolute inset-0 flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-10 h-10 mb-2"></i><span>No Poster</span></div>`
+            }
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#000]/90 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                  
+                  <div class="absolute top-4 right-4 flex gap-2">
+                    <button class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-[var(--accent)] border border-white/10 hover:border-[var(--accent)]/50 transition-colors shadow-lg">
+                      <i data-lucide="share-2" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="window.deleteEvent('${event.id}')" class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-[#ff4b4b] border border-white/10 hover:border-[#ff4b4b]/50 transition-colors shadow-lg">
                       <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                   </div>
-                  
-                  ${event.date ? `<div class="mb-4"><span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-sm">${event.date}</span></div>` : ''}
-                  
-                  <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
-                  <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1 line-clamp-3">${event.description || ''}</p>
-                  
-                  <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
-                    ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)]"><i data-lucide="clock" class="w-[14px] h-[14px]"></i></div>${event.time}</div>` : ''}
-                    ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)]"><i data-lucide="map-pin" class="w-[14px] h-[14px]"></i></div><span class="truncate">${event.venue}</span></div>` : ''}
-                  </div>
                 </div>
                 
-                ${event.registration_link ? `
-                  <div class="mt-auto pt-4 border-t border-[var(--border)]">
-                    <a href="${event.registration_link}" target="_blank" class="text-[14px] font-dm-sans text-[var(--accent)] hover:text-white transition-colors inline-flex items-center gap-2 group/link pointer-events-auto font-medium">
-                      Register Now <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
-                    </a>
+                <div class="p-6 flex flex-col flex-1 relative">
+                  <div class="absolute -top-6 left-6 bg-[var(--surface)] border border-[var(--border)] px-4 py-2 rounded-[12px] shadow-lg flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                    <span class="font-ibm-mono text-[11px] font-bold text-[var(--text-primary)] tracking-wider uppercase">Upcoming</span>
                   </div>
-                ` : ''}
+                  
+                  <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 mt-2 line-clamp-2 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
+                  <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] line-clamp-3 mb-6 flex-1">
+                    ${event.description || 'No description available.'}
+                  </p>
+
+                  <div class="space-y-3 mb-6">
+                    ${event.date ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]"><i data-lucide="calendar" class="w-4 h-4 text-[var(--accent)]"></i><span class="font-medium">${event.date}</span></div>` : ''}
+                    ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]"><i data-lucide="clock" class="w-4 h-4 text-[var(--purple)]"></i><span class="font-medium">${event.time}</span></div>` : ''}
+                    ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]"><i data-lucide="map-pin" class="w-4 h-4 text-[var(--warning)]"></i><span class="font-medium">${event.venue}</span></div>` : ''}
+                  </div>
+
+                  <div class="pt-4 border-t border-[var(--border)] mt-auto flex items-center justify-between">
+                    ${event.registration_link ? `
+                      <a href="${event.registration_link}" target="_blank" class="text-[13px] font-bold text-[var(--text-primary)] hover:text-[var(--accent)] uppercase tracking-wider flex items-center gap-2 transition-colors pointer-events-auto relative z-20">
+                        Register <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                      </a>
+                    ` : '<span class="text-[13px] text-[var(--text-muted)] italic">No link</span>'}
+                    
+                    <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] border border-[var(--border)] px-2 py-1 rounded-[6px] bg-[var(--surface-2)]">Event #${event.id?.toString().slice(0, 4) || '0000'}</span>
+                  </div>
+                </div>
               </div>
             `;
           }).join('');
           
+          grid.innerHTML = dynamicGridHTML + grid.innerHTML;
+          
           if (timeline) {
-              timeline.innerHTML = `
-                <!-- The vertical line -->
-                <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full hidden md:block"></div>
-                ${otherEvents.map((event, index) => {
+              const dynamicTimelineHTML = otherEvents.map((event, index) => {
                   let pUrl = event.poster_url;
                   if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
                     pUrl = 'LOGOS/fusion.jpeg';
@@ -1075,21 +1034,11 @@ document.addEventListener('DOMContentLoaded', () => {
                       </div>
                     </div>
                   `;
-                }).join('')}
-              `;
-          }
-        } else {
-          grid.innerHTML = `
-            <div class="col-span-full py-20 flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] rounded-[24px] bg-[var(--surface-2)]/50">
-              <div class="w-16 h-16 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6">
-                <i data-lucide="calendar-x" class="w-8 h-8 text-[var(--accent)]"></i>
-              </div>
-              <h3 class="font-syne font-semibold text-xl text-[var(--text-primary)] mb-2">No Live Events</h3>
-              <p class="font-dm-sans text-[var(--text-secondary)] text-center max-w-[400px]">There are currently no upcoming live events. Check back later or host your own!</p>
-            </div>
-          `;
-          if(timeline) {
-            timeline.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No live events to show on timeline.</div>';
+              }).join('');
+              
+              // Find the vertical line div and insert the dynamic events right after it so they appear above the static one
+              const lineHTML = `<div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full hidden md:block"></div>`;
+              timeline.innerHTML = lineHTML + dynamicTimelineHTML + timeline.innerHTML.replace(/<div class="absolute left-\[32px\].*?<\/div>/, '');
           }
         }
         if (window.lucide) window.lucide.createIcons();
