@@ -961,19 +961,12 @@ header nav.nav-scrolled {
 
 /* Features Section Redesign */
 .features-section {
-  background: linear-gradient(180deg, #000000 0%, #0E1726 30%, #152238 70%, #0E1726 100%);
+  background: transparent;
   position: relative;
 }
 
 .features-border-top::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #10B981 50%, transparent 100%);
-  opacity: 0.5;
+  display: none;
 }
 
 .features-eyebrow {
@@ -1390,4 +1383,163 @@ button:active {
 
 .footer-link:hover {
   color: #10B981;
+}
+
+/* --- Events UX Redesign --- */
+
+/* Carousel Styles */
+.hero-carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  pointer-events: none;
+  transform: scale(1.02);
+}
+.hero-carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Timeline View Styles */
+.timeline-view {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+.timeline-view::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-node {
+  position: relative;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 2rem;
+  transform: translateX(-50%);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  z-index: 10;
+}
+
+/* Digital Ticket Cards */
+.ticket-card {
+  position: relative;
+  background: var(--gradient-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+}
+.ticket-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 20px var(--accent-glow);
+  border-color: var(--accent);
+}
+.ticket-card:hover .ticket-poster {
+  transform: scale(1.05);
+}
+.ticket-dashed-line {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.1) 50%, transparent 50%);
+  background-size: 2px 10px;
+  background-repeat: repeat-y;
+  z-index: 5;
+}
+
+/* --- Events UX Redesign Additions --- */
+.events-section-bg {
+  position: relative;
+  background-color: transparent;
+}
+
+.events-section-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(62, 207, 142, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+  border-radius: 24px;
+}
+
+/* Subtle dot pattern */
+.events-section-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+  pointer-events: none;
+}
+
+.float-slow {
+  animation: floatSlow 10s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: floatFast 7s ease-in-out infinite reverse;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes floatFast {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(-10deg); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(90deg, transparent, rgba(62, 207, 142, 0.05), transparent);
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.mix-blend-screen {
+  mix-blend-mode: screen;
 }

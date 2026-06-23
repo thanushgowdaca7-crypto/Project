@@ -288,26 +288,92 @@ window.Pages = {
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Leading the institution towards excellence in engineering education and innovation.</p>
             </div>
             
-            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-purple" style="animation-delay: 150ms;">
-              <div class="w-24 h-24 rounded-full border-4 border-[var(--purple)] p-1 mb-6 shadow-[0_0_20px_rgba(139,108,247,0.3)]">
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 150ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--purple)]"></i>
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
+              </div>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Sudhakar M</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Dean, Academics</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Overseeing academic curriculum, excellence and standard protocols.</p>
+            </div>
+
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 300ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
+              </div>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Rajesh T</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">Dean, Student Welfare</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Fostering a supportive, engaging and inclusive student environment.</p>
+            </div>
+
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 450ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Pooja M R</h4>
-              <p class="font-ibm-mono text-[12px] text-[var(--purple)] mb-4">HOD, CSE</p>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, CSE</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Driving research and development in Computer Science and Engineering.</p>
             </div>
             
-            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-success" style="animation-delay: 300ms;">
-              <div class="w-24 h-24 rounded-full border-4 border-[var(--success)] p-1 mb-6 shadow-[0_0_20px_rgba(62,207,142,0.3)]">
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 600ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <i data-lucide="user" class="w-10 h-10 text-[var(--success)]"></i>
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Gururaj H L</h4>
-              <p class="font-ibm-mono text-[12px] text-[var(--success)] mb-4">HOD, ISE</p>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, ISE</p>
               <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Fostering innovation and emerging technologies in Information Science.</p>
+            </div>
+
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 750ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
+              </div>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Ravi Kumar V</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, ME</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Leading advancements in Mechanical Engineering and Robotics.</p>
+            </div>
+            
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 900ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
+              </div>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Gopal Reddy</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, EEE</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Driving research and development in Electrical and Electronics Engineering.</p>
+            </div>
+
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 1050ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
+              </div>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Shruti M</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, ECE</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Driving innovation in Electronics and Communication Systems.</p>
+            </div>
+            
+            <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 1200ms;">
+              <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
+                <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
+                  <i data-lucide="user" class="w-10 h-10 text-[var(--accent)]"></i>
+                </div>
+              </div>
+              <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Naveen P</h4>
+              <p class="font-ibm-mono text-[12px] text-[var(--accent)] mb-4">HOD, CE</p>
+              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Pioneering sustainable infrastructure in Civil Engineering.</p>
             </div>
           </div>
         </div>
@@ -325,31 +391,71 @@ window.Pages = {
           
           <div class="animate-marquee gap-6 items-center py-4">
             <!-- Items duplicated for seamless scrolling -->
-            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-accent hover-float shrink-0 text-white shadow-[0_0_20px_var(--accent-glow)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--accent)]"></i> <span class="ml-2 font-syne font-bold">Hackathon 2026</span>
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_var(--accent-glow)] relative overflow-hidden group border border-[var(--accent)]/30">
+              <img src="images/hackathon_2026.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Hackathon 2026">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="terminal" class="w-10 h-10 text-[var(--accent)] mb-3 drop-shadow-[0_0_10px_var(--accent-glow)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-xl drop-shadow-md">Hackathon 2026</span>
+              </div>
             </div>
-            <div class="w-[400px] h-[250px] glass-panel rounded-2xl flex items-center justify-center glow-purple hover-float shrink-0 text-white shadow-[0_0_20px_rgba(139,108,247,0.2)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--purple)]"></i> <span class="ml-2 font-syne font-bold">Tech Symposium</span>
+            <div class="w-[400px] h-[250px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_rgba(139,108,247,0.3)] relative overflow-hidden group border border-[var(--purple)]/30">
+              <img src="images/tech_symposium.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Tech Symposium">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="mic" class="w-12 h-12 text-[var(--purple)] mb-3 drop-shadow-[0_0_10px_rgba(139,108,247,0.8)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-2xl drop-shadow-md">Tech Symposium</span>
+              </div>
             </div>
-            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-danger hover-float shrink-0 text-white shadow-[0_0_20px_rgba(240,82,82,0.2)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--danger)]"></i> <span class="ml-2 font-syne font-bold">Cultural Fest</span>
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_rgba(240,82,82,0.3)] relative overflow-hidden group border border-[var(--danger)]/30">
+              <img src="images/cultural_fest.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Cultural Fest">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="music" class="w-10 h-10 text-[var(--danger)] mb-3 drop-shadow-[0_0_10px_rgba(240,82,82,0.8)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-xl drop-shadow-md">Cultural Fest</span>
+              </div>
             </div>
-            <div class="w-[350px] h-[220px] glass-panel rounded-2xl flex items-center justify-center glow-success hover-float shrink-0 text-white shadow-[0_0_20px_rgba(62,207,142,0.2)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--success)]"></i> <span class="ml-2 font-syne font-bold">Robotics Lab</span>
+            <div class="w-[350px] h-[220px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_rgba(62,207,142,0.3)] relative overflow-hidden group border border-[var(--success)]/30">
+              <img src="images/robotics_lab.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Robotics Lab">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="cpu" class="w-12 h-12 text-[var(--success)] mb-3 drop-shadow-[0_0_10px_rgba(62,207,142,0.8)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-2xl drop-shadow-md">Robotics Lab</span>
+              </div>
             </div>
             
             <!-- Duplicates -->
-            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-accent hover-float shrink-0 text-white shadow-[0_0_20px_var(--accent-glow)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--accent)]"></i> <span class="ml-2 font-syne font-bold">Hackathon 2026</span>
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_var(--accent-glow)] relative overflow-hidden group border border-[var(--accent)]/30">
+              <img src="images/hackathon_2026.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Hackathon 2026">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="terminal" class="w-10 h-10 text-[var(--accent)] mb-3 drop-shadow-[0_0_10px_var(--accent-glow)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-xl drop-shadow-md">Hackathon 2026</span>
+              </div>
             </div>
-            <div class="w-[400px] h-[250px] glass-panel rounded-2xl flex items-center justify-center glow-purple hover-float shrink-0 text-white shadow-[0_0_20px_rgba(139,108,247,0.2)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--purple)]"></i> <span class="ml-2 font-syne font-bold">Tech Symposium</span>
+            <div class="w-[400px] h-[250px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_rgba(139,108,247,0.3)] relative overflow-hidden group border border-[var(--purple)]/30">
+              <img src="images/tech_symposium.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Tech Symposium">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="mic" class="w-12 h-12 text-[var(--purple)] mb-3 drop-shadow-[0_0_10px_rgba(139,108,247,0.8)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-2xl drop-shadow-md">Tech Symposium</span>
+              </div>
             </div>
-            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center glow-danger hover-float shrink-0 text-white shadow-[0_0_20px_rgba(240,82,82,0.2)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--danger)]"></i> <span class="ml-2 font-syne font-bold">Cultural Fest</span>
+            <div class="w-[300px] h-[200px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_rgba(240,82,82,0.3)] relative overflow-hidden group border border-[var(--danger)]/30">
+              <img src="images/cultural_fest.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Cultural Fest">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="music" class="w-10 h-10 text-[var(--danger)] mb-3 drop-shadow-[0_0_10px_rgba(240,82,82,0.8)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-xl drop-shadow-md">Cultural Fest</span>
+              </div>
             </div>
-            <div class="w-[350px] h-[220px] glass-panel rounded-2xl flex items-center justify-center glow-success hover-float shrink-0 text-white shadow-[0_0_20px_rgba(62,207,142,0.2)]">
-              <i data-lucide="image" class="w-12 h-12 text-[var(--success)]"></i> <span class="ml-2 font-syne font-bold">Robotics Lab</span>
+            <div class="w-[350px] h-[220px] glass-panel rounded-2xl flex items-center justify-center hover-float shrink-0 text-white shadow-[0_0_20px_rgba(62,207,142,0.3)] relative overflow-hidden group border border-[var(--success)]/30">
+              <img src="images/robotics_lab.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity duration-500" alt="Robotics Lab">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02000d] via-transparent to-[#02000d]/60 pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col items-center justify-center pointer-events-none">
+                <i data-lucide="cpu" class="w-12 h-12 text-[var(--success)] mb-3 drop-shadow-[0_0_10px_rgba(62,207,142,0.8)] group-hover:scale-110 transition-transform duration-300"></i>
+                <span class="font-syne font-bold text-2xl drop-shadow-md">Robotics Lab</span>
+              </div>
             </div>
           </div>
         </div>
@@ -448,257 +554,90 @@ window.Pages = {
   `,
 
   events: () => `
-    <div id="events" class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-16 flex-1 flex flex-col events-section-bg rounded-[24px]">
+    <div id="events" class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-12 flex-1 flex flex-col events-section-bg rounded-[24px] overflow-hidden">
       
-      <!-- Hero Header -->
-      <div class="relative w-full rounded-[32px] overflow-hidden bg-[var(--surface-2)]/30 border border-[var(--border)] p-10 md:p-16 mb-12 flex flex-col md:flex-row items-center justify-between gap-8 group shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--accent)]/10 rounded-full blur-[120px] pointer-events-none transform translate-x-1/2 -translate-y-1/2 transition-transform duration-1000 group-hover:scale-110"></div>
-        
-        <div class="relative z-10 max-w-[600px] text-center md:text-left reveal-card features-header">
-          <span class="features-eyebrow">CAMPUS BUZZ</span>
-          <h1 class="features-heading font-syne font-extrabold mt-4" id="events-title">
-            Events & <span class="text-gradient-emerald">Fest</span>
-          </h1>
-          <p class="font-dm-sans text-[16px] md:text-[18px] text-[var(--text-secondary)] leading-relaxed mb-8 max-w-[480px] mx-auto md:mx-0 mt-6">Stay in the loop with the latest technical fests, hackathons, seminars, and vibrant campus activities happening at VVCE.</p>
-          <button id="btn-add-event" class="btn-primary shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)] px-8 py-4 text-[16px] flex items-center justify-center gap-2 md:justify-start mx-auto md:mx-0 transition-all hover:-translate-y-1">
-            <i data-lucide="calendar-plus" class="w-5 h-5"></i> Host an Event
-          </button>
-        </div>
-        
-        <div class="relative z-10 hidden md:block">
-           <div class="w-[280px] h-[280px] relative">
-              <div class="absolute inset-0 border border-[var(--accent)]/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-              <div class="absolute inset-4 border border-[var(--purple)]/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-              <div class="absolute inset-8 border border-[#64CEFB]/10 rounded-full animate-[spin_8s_linear_infinite]"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                 <div class="w-24 h-24 bg-gradient-to-br from-[var(--surface-2)] to-[var(--bg)] border border-[var(--border)] rounded-2xl flex items-center justify-center shadow-2xl rotate-12 hover:rotate-0 transition-transform duration-500 backdrop-blur-md">
-                    <i data-lucide="sparkles" class="w-10 h-10 text-[var(--accent)] drop-shadow-[0_0_10px_var(--accent-glow)]"></i>
-                 </div>
-              </div>
-           </div>
-        </div>
-      </div>
-
+      <!-- Floating Background Elements -->
+      <img src="event_crystal.png" alt="" class="absolute top-[10%] left-[-5%] w-[300px] h-auto object-contain mix-blend-screen opacity-60 float-slow pointer-events-none z-0" />
+      <img src="event_orb.png" alt="" class="absolute top-[40%] right-[-10%] w-[400px] h-auto object-contain mix-blend-screen opacity-50 float-fast pointer-events-none z-0" />
+      
       <!-- Featured Event Container -->
-      <div id="featured-event-container" class="mb-16">
-         <!-- Injected by app.js -->
+      <div id="featured-event-container" class="mb-4 w-full relative z-10">
+         <div class="w-full h-[400px] flex items-center justify-center bg-[var(--surface-2)] rounded-[24px] shadow-lg border border-[var(--border)]">
+           <i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--accent)]"></i>
+         </div>
       </div>
 
-      <!-- Upcoming Events Grid -->
-      <div class="flex items-center justify-between mb-8 border-b border-[var(--border)] pb-4">
-        <h2 class="font-syne font-semibold text-[28px] text-[var(--text-primary)] flex items-center gap-3">
-          <i data-lucide="compass" class="w-6 h-6 text-[var(--purple)]"></i> Explore More
-        </h2>
+      <!-- Marquee Section -->
+      <div class="marquee-container mb-12 relative z-10 rounded-[12px]">
+        <div class="marquee-content flex gap-8 pr-8 text-[11px] font-ibm-mono text-[var(--text-muted)] uppercase tracking-[0.2em] font-bold">
+          <span class="text-[var(--accent)]">* FUSION X 2026 *</span>
+          <span>TECH TALKS</span>
+          <span class="text-[var(--purple)]">CULTURAL NIGHT</span>
+          <span>HACKATHONS</span>
+          <span>WORKSHOPS</span>
+          <span class="text-[var(--accent)]">* FUSION X 2026 *</span>
+          <span>TECH TALKS</span>
+          <span class="text-[var(--purple)]">CULTURAL NIGHT</span>
+          <span>HACKATHONS</span>
+          <span>WORKSHOPS</span>
+          <span class="text-[var(--accent)]">* FUSION X 2026 *</span>
+          <span>TECH TALKS</span>
+          <span class="text-[var(--purple)]">CULTURAL NIGHT</span>
+          <span>HACKATHONS</span>
+          <span>WORKSHOPS</span>
+        </div>
+        <div class="marquee-content flex gap-8 pr-8 text-[11px] font-ibm-mono text-[var(--text-muted)] uppercase tracking-[0.2em] font-bold" aria-hidden="true">
+          <span class="text-[var(--accent)]">* FUSION X 2026 *</span>
+          <span>TECH TALKS</span>
+          <span class="text-[var(--purple)]">CULTURAL NIGHT</span>
+          <span>HACKATHONS</span>
+          <span>WORKSHOPS</span>
+          <span class="text-[var(--accent)]">* FUSION X 2026 *</span>
+          <span>TECH TALKS</span>
+          <span class="text-[var(--purple)]">CULTURAL NIGHT</span>
+          <span>HACKATHONS</span>
+          <span>WORKSHOPS</span>
+          <span class="text-[var(--accent)]">* FUSION X 2026 *</span>
+          <span>TECH TALKS</span>
+          <span class="text-[var(--purple)]">CULTURAL NIGHT</span>
+          <span>HACKATHONS</span>
+          <span>WORKSHOPS</span>
+        </div>
       </div>
 
-      <div id="dynamic-events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-[100px]">
-        <!-- Skeletons while loading -->
-        <div class="card-global p-6 animate-pulse">
-           <div class="w-full h-40 bg-[var(--surface-2)] rounded-lg mb-6"></div>
-           <div class="h-6 bg-[var(--surface-2)] rounded w-3/4 mb-4"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-full mb-2"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-5/6 mb-8"></div>
-           <div class="h-10 bg-[var(--surface-2)] rounded-xl w-full"></div>
-        </div>
-        <div class="card-global p-6 animate-pulse" style="animation-delay: 150ms">
-           <div class="w-full h-40 bg-[var(--surface-2)] rounded-lg mb-6"></div>
-           <div class="h-6 bg-[var(--surface-2)] rounded w-3/4 mb-4"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-full mb-2"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-5/6 mb-8"></div>
-           <div class="h-10 bg-[var(--surface-2)] rounded-xl w-full"></div>
-        </div>
-        <div class="card-global p-6 animate-pulse hidden lg:block" style="animation-delay: 300ms">
-           <div class="w-full h-40 bg-[var(--surface-2)] rounded-lg mb-6"></div>
-           <div class="h-6 bg-[var(--surface-2)] rounded w-3/4 mb-4"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-full mb-2"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-5/6 mb-8"></div>
-           <div class="h-10 bg-[var(--surface-2)] rounded-xl w-full"></div>
-            <div class="w-full h-40 bg-[var(--surface-2)] rounded-lg mb-6"></div>
-           <div class="h-6 bg-[var(--surface-2)] rounded w-3/4 mb-4"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-full mb-2"></div>
-           <div class="h-4 bg-[var(--surface-2)] rounded w-5/6 mb-8"></div>
-           <div class="h-10 bg-[var(--surface-2)] rounded-xl w-full"></div>
-        </div>
-      </div>
-      </div>
-
-      <!-- Upcoming Club Events -->
-      <div class="mt-[120px] relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-[var(--accent)]/5 blur-[150px] rounded-full pointer-events-none"></div>
-        
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[var(--border)] relative z-10 reveal-card">
-          <h2 class="font-syne font-bold text-[28px] text-[var(--text-primary)] flex items-center gap-4">
-            <div class="w-10 h-10 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] flex items-center justify-center shadow-md">
-              <i data-lucide="users-2" class="w-5 h-5 text-[#64CEFB]"></i>
-            </div>
-            Club Events
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+      <!-- Actions Bar -->
+      <div class="sticky top-[80px] z-30 bg-[var(--bg)]/80 backdrop-blur-xl border border-[var(--border)] rounded-[20px] p-3 mb-10 flex items-center justify-end shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+        <div class="flex items-center gap-4">
+          <button id="btn-add-event" class="btn-primary py-2 px-4 text-sm flex items-center gap-2 shadow-[0_0_15px_var(--accent-glow)] rounded-[12px]">
+            <i data-lucide="calendar-plus" class="w-4 h-4"></i> Host Event
+          </button>
           
-          <!-- Card 1 -->
-          <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group" style="animation-delay: 120ms;">
-            <div class="event-card-inner flex flex-col h-full pointer-events-none">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--accent)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--accent)]/20 transition-colors"></div>
-              
-              <div class="mb-4"><span class="event-date-badge inline-block">Next Wed, 4 PM</span></div>
-              
-              <h3 class="event-title mb-3">Open Source Contribution Bootcamp</h3>
-              <p class="event-desc mb-6 flex-1 line-clamp-3">Join us for a comprehensive workshop on contributing to open source projects. Learn git workflows and make your first PR!</p>
-              
-              <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
-                <div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium">
-                  <i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>
-                  <span>Lab 1, CS Block</span>
-                </div>
-              </div>
-            </div>
-            
-            <a href="#" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto">
-              Learn More <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
-            </a>
+          <div class="flex items-center bg-[var(--surface-2)] rounded-[12px] p-1 border border-[var(--border)] h-full">
+            <button id="view-grid" class="view-toggle active p-2 rounded-[10px] bg-[var(--surface)] text-[var(--accent)] shadow-sm transition-all" title="Grid View">
+              <i data-lucide="layout-grid" class="w-4 h-4"></i>
+            </button>
+            <button id="view-timeline" class="view-toggle p-2 rounded-[10px] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)] transition-all" title="Timeline View">
+              <i data-lucide="list" class="w-4 h-4"></i>
+            </button>
           </div>
-
-          <!-- Card 2 -->
-          <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group" style="animation-delay: 240ms;">
-            <div class="event-card-inner flex flex-col h-full pointer-events-none">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--danger)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--danger)]/20 transition-colors"></div>
-              
-              <div class="mb-4"><span class="event-date-badge inline-block">Friday, 2 PM</span></div>
-              
-              <h3 class="event-title mb-3">Model Rocketry Workshop</h3>
-              <p class="event-desc mb-6 flex-1 line-clamp-3">Build and launch your own model rocket! A hands-on experience covering aerodynamics and propulsion.</p>
-              
-              <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
-                <div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium">
-                  <i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>
-                  <span>Mechanical Block</span>
-                </div>
-              </div>
-            </div>
-            
-            <a href="#" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto">
-              Learn More <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[rgba(97,19,161,0.7)] group" style="animation-delay: 360ms;">
-            <div class="event-card-inner flex flex-col h-full pointer-events-none">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--purple)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--purple)]/20 transition-colors"></div>
-              
-              <div class="mb-4"><span class="event-date-badge inline-block" style="background: rgba(97,19,161,0.12); border-color: rgba(97,19,161,0.25); color: #B288FF;">Last Week</span></div>
-              
-              <h3 class="event-title mb-3">AI in Healthcare Seminar</h3>
-              <p class="event-desc mb-6 flex-1 line-clamp-3">Exploring the intersection of artificial intelligence and modern medicine. Guest lecture by Dr. Alan.</p>
-              
-              <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
-                <div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium">
-                  <i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>
-                  <span>Main Auditorium</span>
-                </div>
-              </div>
-            </div>
-            
-            <a href="#" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto" style="color: #B288FF;">
-              View Recording <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[var(--warning)]/40 hover:shadow-[0_8px_30px_rgba(240,162,42,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--warning)]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--warning)]/20 transition-colors"></div>
-            
-            <div class="flex flex-col mb-5 relative z-10">
-              <div class="w-12 h-12 rounded-[12px] bg-[var(--warning)]/10 text-[var(--warning)] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                <i data-lucide="camera" class="w-6 h-6"></i>
-              </div>
-              <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[var(--warning)] mb-2 flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[var(--warning)]"></span> Photography
-              </span>
-              <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[var(--warning)] transition-colors">SteelWool Photography</h3>
-              <p class="font-dm-sans text-[13px] text-[var(--text-secondary)] mt-2">Ignite your creativity! Capture stunning long-exposure shots and experience the magic of painting with light.</p>
-              
-              <div class="mt-4 flex gap-2">
-                 <a href="https://forms.gle/p86xdWU9DHSd1NXE8" target="_blank" class="btn-primary text-[12px] py-1.5 px-4 h-auto inline-flex items-center gap-2">
-                   Register <i data-lucide="external-link" class="w-3 h-3"></i>
-                 </a>
-              </div>
-            </div>
-            
-            <div class="flex flex-col gap-2 mt-auto pt-6 border-t border-[var(--border)] relative z-10">
-              <div class="flex items-center gap-3 text-[14px] text-[var(--text-secondary)]">
-                <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans font-medium">May 25th 2026, 5:30 PM Onwards</span>
-              </div>
-              <div class="flex items-center justify-between gap-3 text-[14px] text-[var(--text-secondary)]">
-                <div class="flex items-center gap-3">
-                  <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                  <span class="font-dm-sans font-medium">Basketball Court</span>
-                </div>
-                <div class="text-[10px] bg-[var(--surface)] px-2 py-1 rounded border border-[var(--border)] text-center">
-                  Contact: Sahaj & Gagan
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 5 (FUSIONX) -->
-          <div class="group card-global p-8 flex flex-col h-full min-h-[280px] border border-[var(--border)] hover:border-[#64CEFB]/40 hover:shadow-[0_8px_30px_rgba(100,206,251,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-gradient-to-b from-[var(--surface-2)] to-transparent lg:col-span-2">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-[#64CEFB]/10 blur-[40px] rounded-full pointer-events-none group-hover:bg-[#64CEFB]/20 transition-colors"></div>
-            
-            <div class="flex flex-col md:flex-row gap-6 relative z-10 h-full">
-              <!-- Content -->
-              <div class="flex-1 flex flex-col">
-                <div class="w-12 h-12 rounded-[12px] bg-[#64CEFB]/10 text-[#64CEFB] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-inner">
-                  <i data-lucide="code" class="w-6 h-6"></i>
-                </div>
-                <span class="font-ibm-mono text-[11px] font-bold tracking-widest uppercase text-[#64CEFB] mb-2 flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#64CEFB]"></span> Hackathon
-                </span>
-                <h3 class="font-syne font-bold text-[26px] text-[var(--text-primary)] leading-[1.3] group-hover:text-[#64CEFB] transition-colors">FUSIONX 1.0</h3>
-                <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mt-2 flex-1">A 24-hour National Level Hackathon. Build, innovate, and compete across 5 domains. Prize Pool: ₹85,000+!</p>
-                
-                <div class="mt-6 flex flex-wrap gap-2">
-                  <a href="https://fusionx-hackathon.vercel.app" target="_blank" class="btn-primary text-[12px] py-2 px-5 h-auto inline-flex items-center gap-2">
-                    Register Now <i data-lucide="external-link" class="w-3 h-3"></i>
-                  </a>
-                  <div class="text-[11px] bg-[var(--surface)] px-3 py-2 rounded border border-[var(--border)] inline-flex items-center gap-2">
-                     <i data-lucide="info" class="w-3 h-3 text-[var(--text-muted)]"></i>
-                     Fee: ₹699/team
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Meta Data / Details -->
-              <div class="md:w-64 flex flex-col justify-end gap-3 mt-4 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-[var(--border)] md:pl-6">
-                 <img src="fusion.jpg" class="w-full h-32 md:h-48 object-cover rounded-xl border border-[var(--border)] mb-4 shadow-md" />
-                 
-                <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]">
-                  <i data-lucide="calendar-clock" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                  <span class="font-dm-sans">29th & 30th May</span>
-                </div>
-                <div class="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]">
-                  <i data-lucide="map-pin" class="w-4 h-4 text-[var(--text-muted)]"></i>
-                  <span class="font-dm-sans">Kempegowda Sports Complex</span>
-                </div>
-                <div class="flex flex-col gap-1 mt-2 p-2 bg-[var(--surface)] border border-[var(--border)] rounded text-[11px] text-[var(--text-secondary)]">
-                   <div class="font-bold text-[var(--text-primary)]">Contact:</div>
-                   <div>Anna Swamy: +91 9481219405</div>
-                   <div>Misba Saleha: +91 7019828677</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+      </div>
+
+      <!-- Events Container Grid -->
+      <div id="dynamic-events-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-[100px] transition-all duration-500">
+         <div class="col-span-full py-20 flex justify-center"><i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--text-muted)]"></i></div>
+      </div>
+
+      <!-- Events Container Timeline (Hidden by default) -->
+      <div id="dynamic-events-timeline" class="hidden flex-col gap-8 mb-[100px] relative transition-all duration-500 max-w-4xl mx-auto w-full">
+         <!-- The vertical line -->
+         <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full"></div>
+         <div class="col-span-full py-20 flex justify-center"><i data-lucide="loader-2" class="w-10 h-10 animate-spin text-[var(--text-muted)]"></i></div>
       </div>
       
       <!-- Add Event Modal -->
       <div id="add-event-modal" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
         <div id="close-add-event-modal-bg" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
-        
         <div class="w-full flex min-h-full items-center justify-center p-4 sm:p-6 relative z-10 pointer-events-none">
           <div class="relative w-full max-w-2xl mx-auto bg-[#0d121f] border border-white/10 rounded-[24px] p-8 shadow-[0_0_50px_rgba(0,0,0,0.6)] pointer-events-auto my-8">
             <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
@@ -710,9 +649,7 @@ window.Pages = {
                 <i data-lucide="x" class="w-5 h-5"></i>
               </button>
             </div>
-            
             <form id="add-event-form" class="space-y-6">
-              <!-- Poster Upload -->
               <div>
                 <label class="block text-sm font-dm-sans text-gray-300 mb-2">Event Poster</label>
                 <div class="relative w-full h-[180px] border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center hover:border-[var(--accent)] transition-colors bg-black/40 cursor-pointer overflow-hidden group">
@@ -725,8 +662,6 @@ window.Pages = {
                   <img id="event-poster-preview" class="absolute inset-0 w-full h-full object-cover hidden pointer-events-none" />
                 </div>
               </div>
-
-              <!-- Title & Venue -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label class="block text-sm font-dm-sans text-gray-300 mb-2">Event Title *</label>
@@ -737,8 +672,6 @@ window.Pages = {
                   <input type="text" id="event-venue" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g. Main Auditorium">
                 </div>
               </div>
-
-              <!-- Date, Time, Duration -->
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label class="block text-sm font-dm-sans text-gray-300 mb-2">Date</label>
@@ -753,8 +686,6 @@ window.Pages = {
                   <input type="text" id="event-duration" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g. 2 Hours">
                 </div>
               </div>
-
-              <!-- Registration Link -->
               <div>
                 <label class="block text-sm font-dm-sans text-gray-300 mb-2">Registration Link <span class="text-gray-500">(Google Form / Website)</span></label>
                 <div class="relative">
@@ -762,14 +693,10 @@ window.Pages = {
                   <input type="url" id="event-link" class="w-full bg-black/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="https://forms.gle/...">
                 </div>
               </div>
-
-              <!-- Description -->
               <div>
                 <label class="block text-sm font-dm-sans text-gray-300 mb-2">Description</label>
                 <textarea id="event-desc" rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all resize-y" placeholder="Describe your event..."></textarea>
               </div>
-
-              <!-- Submit -->
               <div class="pt-6 mt-6 border-t border-white/10 flex justify-end">
                 <button type="submit" id="submit-event-btn" class="btn-primary px-8 py-3.5 text-[16px] font-bold flex items-center gap-2 shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)] hover:-translate-y-1 transition-all">
                   <i data-lucide="check-circle" class="w-5 h-5"></i> Publish Event
@@ -779,7 +706,6 @@ window.Pages = {
           </div>
         </div>
       </div>
-
     </div>
   `,
 
@@ -1522,193 +1448,4 @@ window.Pages = {
       </div>
     </div>
   `,
-
-  'teaching-journal': () => `
-    <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-12 flex-1 flex flex-col mt-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 fade-up" style="animation-delay: 0ms;">
-        <div>
-          <h1 class="font-syne font-bold text-[32px] text-[var(--text-primary)] mb-2">Teaching Journal</h1>
-          <p class="font-dm-sans text-[14px] text-[var(--text-secondary)]">Daily academic diary with CO/PO mapping for audit tracking.</p>
-        </div>
-        ${window.State.user?.role === 'FACULTY' ? `
-          <button id="btn-add-journal" class="btn-primary shrink-0 flex items-center gap-2">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-            <span>Add Entry</span>
-          </button>
-        ` : ''}
-      </div>
-
-      <div class="grid grid-cols-1 gap-6 fade-up" style="animation-delay: 100ms;" id="journal-list">
-        <!-- Injected by app.js -->
-      </div>
-      
-      <!-- Add Entry Modal (Faculty Only) -->
-      ${window.State.user?.role === 'FACULTY' ? `
-      <div id="add-journal-modal" class="fixed inset-0 z-[9999] hidden flex-col overflow-y-auto">
-        <div id="close-journal-modal-bg" class="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer transition-opacity"></div>
-        <div class="w-full flex min-h-full items-center justify-center p-4 sm:p-6 relative z-10 pointer-events-none">
-          <div class="relative w-full max-w-2xl mx-auto bg-[#0d121f] border border-white/10 rounded-[24px] p-8 shadow-[0_0_50px_rgba(0,0,0,0.6)] pointer-events-auto my-8">
-            <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-              <h2 class="font-syne font-bold text-[26px] text-white flex items-center gap-3">
-                <i data-lucide="book-open" class="w-6 h-6 text-[var(--accent)]"></i>
-                New Journal Entry
-              </h2>
-              <button id="close-journal-modal-btn" class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-2 transition-all">
-                <i data-lucide="x" class="w-5 h-5"></i>
-              </button>
-            </div>
-            
-            <form id="journal-form" class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Date *</label>
-                  <input type="date" id="journal-date" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all text-sm [color-scheme:dark]">
-                </div>
-                <div>
-                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Course / Subject *</label>
-                  <input type="text" id="journal-course" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g. Computer Networks">
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-sm font-dm-sans text-gray-300 mb-2">What was Taught (Concepts) *</label>
-                <textarea id="journal-concepts" required rows="3" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all resize-none" placeholder="Brief description of topics covered..."></textarea>
-              </div>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Course Outcome (CO) Addressed *</label>
-                  <select id="journal-co" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all appearance-none">
-                    <option value="" disabled selected>Select CO</option>
-                    <option value="CO1">CO1</option>
-                    <option value="CO2">CO2</option>
-                    <option value="CO3">CO3</option>
-                    <option value="CO4">CO4</option>
-                    <option value="CO5">CO5</option>
-                    <option value="CO6">CO6</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-dm-sans text-gray-300 mb-2">Program Outcome (PO) Addressed</label>
-                  <input type="text" id="journal-po" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="E.g. PO1, PO2, PSO1">
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-sm font-dm-sans text-gray-300 mb-2">Reference Used</label>
-                <input type="text" id="journal-reference" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] focus:outline-none transition-all" placeholder="Textbook Name, Page No, or Link">
-              </div>
-
-              <div class="pt-4 border-t border-white/10 flex justify-end gap-4">
-                <button type="button" class="px-6 py-3 rounded-xl font-dm-sans font-medium text-white bg-white/5 hover:bg-white/10 transition-colors" id="btn-cancel-journal">Cancel</button>
-                <button type="submit" class="btn-primary py-3 px-8 text-[15px] shadow-[0_0_20px_var(--accent-glow)] flex items-center gap-2" id="btn-submit-journal">
-                  <span>Save Entry</span> <i data-lucide="check" class="w-4 h-4"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      ` : ''}
-    </div>
-  `,
-
-  community: () => `
-    <div id="community" class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8 py-16 flex-1 flex flex-col community-section-bg rounded-[24px]">
-      
-      <!-- Hero Header -->
-      <div class="relative z-10 max-w-[600px] text-center md:text-left reveal-card features-header mb-12">
-        <span class="features-eyebrow">CAMPUS CONNECT</span>
-        <h1 class="features-heading font-syne font-extrabold mt-4">
-          Student <span class="text-gradient-emerald">Community</span>
-        </h1>
-        <p class="font-dm-sans text-[16px] md:text-[18px] text-[var(--text-secondary)] leading-relaxed mt-4">Join the conversation. Share updates, ask questions, and connect with your peers across VVCE.</p>
-      </div>
-
-      <!-- Filters -->
-      <div class="flex flex-wrap items-center gap-3 mb-10 reveal-card">
-        <button class="community-filter-btn active">All Discussions</button>
-        <button class="community-filter-btn">Announcements</button>
-        <button class="community-filter-btn">Q&A</button>
-        <button class="community-filter-btn">Projects</button>
-      </div>
-
-      <!-- Feed Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="community-feed">
-        
-        <!-- Post 1 -->
-        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 100ms;">
-          <div class="community-card-inner pointer-events-none">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="community-avatar">
-                <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-full h-full rounded-full object-cover">
-              </div>
-              <div>
-                <h4 class="community-username">Rahul S.</h4>
-                <span class="community-timestamp">2 hours ago</span>
-              </div>
-            </div>
-            <p class="community-post-content">
-              Hey everyone! We're putting together a team for the upcoming Smart India Hackathon. If you have experience with React and Node.js, drop a comment below or DM me. Let's build something awesome! 🚀
-            </p>
-          </div>
-        </div>
-
-        <!-- Post 2 -->
-        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 200ms;">
-          <div class="community-card-inner pointer-events-none">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="community-avatar">
-                <img src="https://i.pravatar.cc/150?img=47" alt="Avatar" class="w-full h-full rounded-full object-cover">
-              </div>
-              <div>
-                <h4 class="community-username">Priya M.</h4>
-                <span class="community-timestamp">5 hours ago</span>
-              </div>
-            </div>
-            <p class="community-post-content">
-              Just uploaded the complete notes for Module 3 of Computer Networks to the Study Hub. Make sure to check them out before next week's internals. Good luck! 📚
-            </p>
-          </div>
-        </div>
-
-        <!-- Post 3 -->
-        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 300ms;">
-          <div class="community-card-inner pointer-events-none">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="community-avatar">
-                <img src="https://i.pravatar.cc/150?img=33" alt="Avatar" class="w-full h-full rounded-full object-cover">
-              </div>
-              <div>
-                <h4 class="community-username">Karthik V.</h4>
-                <span class="community-timestamp">Yesterday</span>
-              </div>
-            </div>
-            <p class="community-post-content">
-              Does anyone have the syllabus copy for the open elective "Cyber Security"? The link on the college portal seems to be broken. Thanks in advance!
-            </p>
-          </div>
-        </div>
-
-        <!-- Post 4 -->
-        <div class="community-card-3d community-reveal reveal-card glass-card p-[24px] rounded-[16px] relative group" style="animation-delay: 400ms;">
-          <div class="community-card-inner pointer-events-none">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="community-avatar">
-                <img src="https://i.pravatar.cc/150?img=5" alt="Avatar" class="w-full h-full rounded-full object-cover">
-              </div>
-              <div>
-                <h4 class="community-username">Prof. Sharma</h4>
-                <span class="community-timestamp">2 days ago</span>
-              </div>
-            </div>
-            <p class="community-post-content">
-              Reminder: The deadline for submitting your final year project abstracts is this Friday by 5 PM. No late submissions will be accepted. Ensure your guide has approved the topic.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  `
 };

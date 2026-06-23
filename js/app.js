@@ -128,20 +128,19 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'departments', label: t('nav_departments') },
       { id: 'campus-map', label: t('nav_campus_map') },
       { id: 'events', label: t('nav_events') },
-      { id: 'community', label: t('nav_community') },
       { id: 'lost-and-found', label: t('nav_lost_found') },
       { id: 'notes', label: 'Study Hub' },
-      { id: 'teaching-journal', label: 'Teaching Journal' }
+      { id: 'https://ioncudos.in/vvce_lms_student/', label: 'Ioncudos', external: true }
     ];
 
     const desktopNavLinks = navLinks.map(link => `
-      <a href="#${link.id}" class="nav-link relative font-dm-sans text-[14px] transition-colors ${hash === '#' + link.id ? 'active text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}">
+      <a href="${link.external ? link.id : '#' + link.id}" ${link.external ? 'target="_blank" rel="noopener noreferrer"' : ''} class="nav-link relative font-dm-sans text-[14px] transition-colors ${hash === '#' + link.id ? 'active text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}">
         ${link.label}
       </a>
     `).join('');
 
     const mobileNavLinks = navLinks.map(link => `
-      <a href="#${link.id}" class="mobile-stagger mobile-nav-link block font-dm-sans text-[24px] py-4 border-b border-[var(--border)] transition-colors ${hash === '#' + link.id ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}">
+      <a href="${link.external ? link.id : '#' + link.id}" ${link.external ? 'target="_blank" rel="noopener noreferrer"' : ''} class="mobile-stagger mobile-nav-link block font-dm-sans text-[24px] py-4 border-b border-[var(--border)] transition-colors ${hash === '#' + link.id ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}">
         ${link.label}
       </a>
     `).join('');
@@ -503,37 +502,6 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
       }, 1000);
-    } else if (page === 'community') {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
-
-      const communityCards = document.querySelectorAll('.community-card-3d');
-      communityCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = ((y - centerY) / centerY) * -5; // Max tilt: 5deg
-          const rotateY = ((x - centerX) / centerX) * 5;
-
-          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-        });
-      });
     } else if (page === 'login') {
       const loginForm = document.getElementById('loginForm');
       if (loginForm) {
@@ -883,6 +851,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const grid = document.getElementById('dynamic-events-grid');
+      const timeline = document.getElementById('dynamic-events-timeline');
+      const viewGridBtn = document.getElementById('view-grid');
+      const viewTimelineBtn = document.getElementById('view-timeline');
+      
+      let currentView = 'grid'; // grid or timeline
+
+      if (viewGridBtn && viewTimelineBtn && grid && timeline) {
+        viewGridBtn.addEventListener('click', () => {
+          if(currentView === 'grid') return;
+          currentView = 'grid';
+          viewGridBtn.classList.add('bg-[var(--surface)]', 'text-[var(--accent)]');
+          viewGridBtn.classList.remove('text-[var(--text-muted)]', 'hover:text-[var(--text-primary)]', 'hover:bg-[var(--surface)]');
+          viewTimelineBtn.classList.remove('bg-[var(--surface)]', 'text-[var(--accent)]');
+          viewTimelineBtn.classList.add('text-[var(--text-muted)]', 'hover:text-[var(--text-primary)]', 'hover:bg-[var(--surface)]');
+          grid.classList.remove('hidden');
+          timeline.classList.add('hidden');
+          timeline.classList.remove('flex');
+        });
+
+        viewTimelineBtn.addEventListener('click', () => {
+          if(currentView === 'timeline') return;
+          currentView = 'timeline';
+          viewTimelineBtn.classList.add('bg-[var(--surface)]', 'text-[var(--accent)]');
+          viewTimelineBtn.classList.remove('text-[var(--text-muted)]', 'hover:text-[var(--text-primary)]', 'hover:bg-[var(--surface)]');
+          viewGridBtn.classList.remove('bg-[var(--surface)]', 'text-[var(--accent)]');
+          viewGridBtn.classList.add('text-[var(--text-muted)]', 'hover:text-[var(--text-primary)]', 'hover:bg-[var(--surface)]');
+          grid.classList.add('hidden');
+          timeline.classList.remove('hidden');
+          timeline.classList.add('flex');
+        });
+      }
       const addBtn = document.getElementById('btn-add-event');
       const addModal = document.getElementById('add-event-modal');
       const addForm = document.getElementById('add-event-form');
@@ -947,7 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
             time: '5:30 PM Onwards',
             venue: 'Basketball Court',
             duration: '',
-            poster_url: 'steelwool.jpg',
+            poster_url: 'LOGOS/Pixel.jpeg',
             registration_link: 'https://forms.gle/p86xdWU9DHSd1NXE8'
           };
 
@@ -990,12 +989,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${featuredEvent.venue ? `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-[10px] bg-[var(--surface-2)] flex items-center justify-center text-[var(--warning)] shadow-sm"><i data-lucide="map-pin" class="w-4 h-4"></i></div><span class="font-dm-sans font-medium text-[14px] text-[var(--text-primary)]">${featuredEvent.venue}</span></div>` : ''}
                   </div>
 
-                  <div class="relative z-10 mt-auto pt-4">
+                  <div class="relative z-10 mt-auto pt-4 flex items-center justify-between">
                     ${featuredEvent.registration_link ? `
                       <a href="${featuredEvent.registration_link}" target="_blank" class="btn-primary py-3 px-8 text-[15px] shadow-[0_4px_14px_0_rgba(62,207,142,0.39)] hover:shadow-[0_6px_20px_rgba(62,207,142,0.23)] hover:-translate-y-1 transition-all inline-flex items-center gap-2">
                         Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
                       </a>
-                    ` : ''}
+                    ` : '<div></div>'}
+                    
+                    <div class="flex flex-col items-end">
+                      <span class="font-ibm-mono text-[10px] text-[var(--accent)] uppercase tracking-widest mb-1 shadow-sm">Starts In</span>
+                      <div class="flex gap-2 font-syne font-bold text-xl text-white">
+                        <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">12<span class="text-[10px] ml-1 text-white/50">d</span></div>
+                        <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">04<span class="text-[10px] ml-1 text-white/50">h</span></div>
+                        <div class="bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-[10px] border border-[var(--accent)]/30 shadow-[0_0_15px_var(--accent-glow)]">45<span class="text-[10px] ml-1 text-white/50">m</span></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1007,16 +1015,16 @@ document.addEventListener('DOMContentLoaded', () => {
               // Inject local poster for FUSION X if missing from database
               let pUrl = event.poster_url;
               if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
-                pUrl = 'fusion.jpg';
+                pUrl = 'LOGOS/fusion.jpeg';
               }
 
               const delay = index * 120;
               return `
-                <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group" style="animation-delay: ${delay}ms;">
+                <div class="event-card-3d events-reveal reveal-card glass-card p-[24px] rounded-[16px] flex flex-col h-full border-l-[3px] border-l-[#10B981] group hover:shadow-[0_12px_40px_var(--accent-glow)] transition-all" style="animation-delay: ${delay}ms;">
                   <div class="event-card-inner flex-1 flex flex-col pointer-events-none">
-                    <div class="relative overflow-hidden rounded-lg mb-6 w-full">
+                    <div class="relative overflow-hidden rounded-[12px] mb-6 w-full shadow-md">
                       ${pUrl
-                  ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-500 group-hover:scale-110" />`
+                  ? `<img src="${pUrl}" class="w-full h-[200px] object-cover transition-transform duration-700 group-hover:scale-[1.15]" />`
                   : `<div class="w-full h-[200px] bg-[var(--surface-2)] flex flex-col items-center justify-center text-[var(--text-muted)]"><i data-lucide="image" class="w-8 h-8 mb-2"></i><span class="text-xs">No Poster</span></div>`}
                       
                       <button onclick="window.deleteEvent('${event.id}')" class="absolute top-3 right-3 z-20 bg-black/50 hover:bg-[var(--danger)] text-white p-2 rounded-full backdrop-blur-md transition-all shadow-lg opacity-0 group-hover:opacity-100 hover:scale-110 pointer-events-auto" title="Delete Event">
@@ -1024,29 +1032,99 @@ document.addEventListener('DOMContentLoaded', () => {
                       </button>
                     </div>
                     
-                    ${event.date ? `<div class="mb-4"><span class="event-date-badge inline-block">${event.date}</span></div>` : ''}
+                    ${event.date ? `<div class="mb-4"><span class="font-ibm-mono text-[10px] text-[var(--bg)] bg-[var(--accent)] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-md shadow-sm">${event.date}</span></div>` : ''}
                     
-                    <h3 class="event-title mb-3">${event.title}</h3>
-                    <p class="event-desc mb-6 flex-1 line-clamp-3">${event.description || ''}</p>
+                    <h3 class="font-syne font-bold text-[22px] text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">${event.title}</h3>
+                    <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] mb-6 flex-1 line-clamp-3">${event.description || ''}</p>
                     
                     <div class="flex flex-col gap-2 mb-6 pointer-events-auto">
-                      ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="clock" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i>${event.time}</div>` : ''}
-                      ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><i data-lucide="map-pin" class="w-[14px] h-[14px] text-[var(--text-muted)]"></i><span class="truncate">${event.venue}</span></div>` : ''}
+                      ${event.time ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)]"><i data-lucide="clock" class="w-[14px] h-[14px]"></i></div>${event.time}</div>` : ''}
+                      ${event.venue ? `<div class="flex items-center gap-3 text-[13px] text-[var(--text-primary)] font-medium"><div class="w-8 h-8 rounded-lg bg-[var(--surface-2)] flex items-center justify-center text-[var(--purple)]"><i data-lucide="map-pin" class="w-[14px] h-[14px]"></i></div><span class="truncate">${event.venue}</span></div>` : ''}
                     </div>
                   </div>
                   
                   ${event.registration_link ? `
-                    <a href="${event.registration_link}" target="_blank" class="event-cta-link mt-auto inline-flex items-center gap-2 group/link pointer-events-auto">
-                      Register <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
-                    </a>
+                    <div class="mt-auto pt-4 border-t border-[var(--border)]">
+                      <a href="${event.registration_link}" target="_blank" class="text-[14px] font-dm-sans text-[var(--accent)] hover:text-white transition-colors inline-flex items-center gap-2 group/link pointer-events-auto font-medium">
+                        Register Now <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+                      </a>
+                    </div>
                   ` : ''}
                 </div>
               `;
             }).join('');
+            
+            if (timeline) {
+               timeline.innerHTML = `
+                 <!-- The vertical line -->
+                 <div class="absolute left-[32px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--accent)] via-[var(--purple)] to-transparent opacity-30 md:-translate-x-1/2 rounded-full hidden md:block"></div>
+                 ${otherEvents.map((event, index) => {
+                    let pUrl = event.poster_url;
+                    if (event.title && event.title.toLowerCase().includes('fusion') && !pUrl) {
+                      pUrl = 'LOGOS/fusion.jpeg';
+                    }
+                    const isEven = index % 2 === 0;
+                    return `
+                      <div class="reveal-card relative flex flex-col md:flex-row items-center justify-between w-full mb-8 z-10 group" style="animation-delay: ${index * 100}ms">
+                        <!-- Node -->
+                        <div class="absolute left-[32px] md:left-[50%] w-4 h-4 rounded-full bg-[var(--accent)] shadow-[0_0_15px_var(--accent-glow)] md:-translate-x-1/2 border-4 border-[#0d121f] z-20 transition-transform group-hover:scale-150"></div>
+                        
+                        <div class="${isEven ? 'md:w-5/12 md:pr-12 md:text-right' : 'md:w-5/12 md:pl-12 md:order-last'} w-full pl-16 md:pl-0">
+                           <div class="glass-card p-6 rounded-2xl hover:border-[var(--accent)] transition-all hover:shadow-[0_10px_30px_var(--accent-glow)] group-hover:-translate-y-1">
+                             <div class="flex items-center gap-2 mb-3 ${isEven ? 'md:justify-end' : ''}">
+                               <span class="text-[var(--accent)] font-ibm-mono text-[12px] font-bold tracking-widest uppercase bg-[var(--accent)]/10 px-3 py-1 rounded-md border border-[var(--accent)]/20">${event.date || 'TBA'}</span>
+                             </div>
+                             <h3 class="font-syne text-[22px] font-bold text-white mb-2">${event.title}</h3>
+                             <p class="font-dm-sans text-sm text-[var(--text-secondary)] line-clamp-2 mb-4">${event.description || ''}</p>
+                             <div class="flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)] font-dm-sans ${isEven ? 'md:justify-end' : ''}">
+                               ${event.time ? `<span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3 text-[var(--accent)]"></i> ${event.time}</span>` : ''}
+                               ${event.venue ? `<span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3 text-[var(--purple)]"></i> ${event.venue}</span>` : ''}
+                             </div>
+                           </div>
+                        </div>
+                      </div>
+                    `;
+                 }).join('')}
+               `;
+            }
           } else {
             grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
+            if(timeline) {
+              timeline.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No other upcoming events.</div>';
+            }
           }
           if (window.lucide) window.lucide.createIcons();
+          
+          // Re-attach observers and tilt listeners for new dynamic content
+          setTimeout(() => {
+            const observer = new IntersectionObserver((entries, obs) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('revealed');
+                  obs.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.reveal-card').forEach(card => observer.observe(card));
+
+            const eventCards = document.querySelectorAll('.event-card-3d');
+            eventCards.forEach(card => {
+              card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -6;
+                const rotateY = ((x - centerX) / centerX) * 6;
+                card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+              });
+              card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+              });
+            });
+          }, 100);
+
         } catch (e) {
           console.error("Error fetching events:", e);
           grid.innerHTML = '<div class="col-span-full text-red-400">Failed to load events.</div>';
@@ -1858,152 +1936,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSubmit.textContent = originalText;
             btnSubmit.disabled = false;
           }
-        });
-      }
-    } else if (page === 'teaching-journal') {
-      const grid = document.getElementById('journal-list');
-      const btnAdd = document.getElementById('btn-add-journal');
-      const modalAdd = document.getElementById('add-journal-modal');
-      const formJournal = document.getElementById('journal-form');
-
-      let journals = JSON.parse(localStorage.getItem('vvce_journals') || '[]');
-
-      // Inject demo entries for 2nd Sem ECE if not present
-      if (!journals.some(j => j.id === 'demo1')) {
-        journals.unshift(
-          {
-            id: 'demo1',
-            date: '2026-05-23',
-            course: 'Basic Electronics (ECE - 2nd Sem)',
-            concepts: 'Introduction to PN Junction Diodes. Forward and reverse bias characteristics, Zener diode operation and applications as a voltage regulator.',
-            co: 'CO1',
-            po: 'PO1, PO2',
-            reference: 'Electronic Devices and Circuit Theory - Boylestad, Chapter 2',
-            facultyId: 'Dr. Chandrashekar M Patil'
-          },
-          {
-            id: 'demo2',
-            date: '2026-05-22',
-            course: 'Digital System Design (ECE - 2nd Sem)',
-            concepts: "Boolean Algebra theorems. De Morgan's laws, Simplification of logical expressions using Karnaugh Maps (K-Map) up to 4 variables.",
-            co: 'CO2',
-            po: 'PO1, PO3',
-            reference: 'Digital Design - Morris Mano, Chapter 3',
-            facultyId: 'Dr. T P Surekha'
-          },
-          {
-            id: 'demo3',
-            date: '2026-05-21',
-            course: 'Engineering Mathematics - II (2nd Sem)',
-            concepts: 'Ordinary Differential Equations of higher order. Linear differential equations with constant coefficients, finding complimentary function and particular integral.',
-            co: 'CO3',
-            po: 'PO1, PO2',
-            reference: 'Higher Engineering Mathematics - B.S. Grewal, Chapter 13',
-            facultyId: 'Dr. Suchitra M'
-          },
-          {
-            id: 'demo4',
-            date: '2026-05-20',
-            course: 'Basic Electronics (ECE - 2nd Sem)',
-            concepts: 'Bipolar Junction Transistors (BJT). NPN and PNP configurations, CB, CE, and CC configurations, and input/output characteristics of CE configuration.',
-            co: 'CO2',
-            po: 'PO1, PO2, PSO1',
-            reference: 'Electronic Devices and Circuit Theory - Boylestad, Chapter 4',
-            facultyId: 'Dr. Chandrashekar M Patil'
-          }
-        );
-        localStorage.setItem('vvce_journals', JSON.stringify(journals));
-      }
-
-      const renderJournals = () => {
-        if (!grid) return;
-        if (journals.length === 0) {
-          grid.innerHTML = '<div class="col-span-full py-12 text-center text-[var(--text-muted)] font-dm-sans">No journal entries found.</div>';
-          return;
-        }
-
-        // Sort descending by date
-        const sorted = [...journals].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        grid.innerHTML = sorted.map(j => `
-          <div class="card-global p-6 flex flex-col hover:border-[var(--accent)] transition-colors relative overflow-hidden group">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--accent)]/5 blur-[40px] rounded-full pointer-events-none group-hover:bg-[var(--accent)]/10 transition-colors"></div>
-            
-            <div class="flex justify-between items-start mb-4 relative z-10">
-              <span class="font-dm-sans text-[11px] px-[8px] py-[2px] rounded-full bg-[var(--purple)]/10 text-[var(--purple)] uppercase tracking-wider font-semibold border border-[var(--purple)]/20">${j.date}</span>
-              <span class="font-ibm-mono text-[11px] text-[var(--text-muted)]">By: ${j.facultyId}</span>
-            </div>
-            
-            <h3 class="font-syne font-semibold text-[20px] text-[var(--text-primary)] mb-1 relative z-10">${j.course}</h3>
-            
-            <div class="mt-4 mb-4 relative z-10">
-              <p class="font-dm-sans text-[14px] text-[var(--text-secondary)] bg-[var(--surface-2)] p-4 rounded-xl border border-[var(--border)]">${j.concepts}</p>
-            </div>
-            
-            <div class="mt-auto pt-4 border-t border-[var(--border)] flex flex-wrap gap-4 items-center relative z-10">
-              <div class="flex items-center gap-2">
-                <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase">CO Addressed:</span>
-                <span class="font-dm-sans font-bold text-[12px] text-[#64CEFB]">${j.co}</span>
-              </div>
-              ${j.po ? `
-              <div class="flex items-center gap-2">
-                <span class="font-ibm-mono text-[10px] text-[var(--text-muted)] uppercase">PO/PSO:</span>
-                <span class="font-dm-sans font-bold text-[12px] text-[#3ECF8E]">${j.po}</span>
-              </div>
-              ` : ''}
-              ${j.reference ? `
-              <div class="flex items-center gap-2 w-full mt-2">
-                <i data-lucide="book" class="w-3 h-3 text-[var(--text-muted)]"></i>
-                <span class="font-dm-sans text-[12px] text-[var(--text-secondary)] italic">${j.reference}</span>
-              </div>
-              ` : ''}
-            </div>
-          </div>
-        `).join('');
-
-        if (window.lucide) window.lucide.createIcons();
-      };
-
-      renderJournals();
-
-      if (btnAdd) {
-        btnAdd.addEventListener('click', () => {
-          modalAdd.classList.remove('hidden');
-          modalAdd.classList.add('flex');
-        });
-      }
-
-      const closeEls = ['close-journal-modal-btn', 'close-journal-modal-bg', 'btn-cancel-journal'];
-      closeEls.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('click', () => {
-          modalAdd.classList.add('hidden');
-          modalAdd.classList.remove('flex');
-        });
-      });
-
-      if (formJournal) {
-        formJournal.addEventListener('submit', (e) => {
-          e.preventDefault();
-
-          const newEntry = {
-            id: Date.now().toString(),
-            date: document.getElementById('journal-date').value,
-            course: document.getElementById('journal-course').value,
-            concepts: document.getElementById('journal-concepts').value,
-            co: document.getElementById('journal-co').value,
-            po: document.getElementById('journal-po').value,
-            reference: document.getElementById('journal-reference').value,
-            facultyId: window.State.user?.id || 'Unknown Faculty'
-          };
-
-          journals.push(newEntry);
-          localStorage.setItem('vvce_journals', JSON.stringify(journals));
-
-          modalAdd.classList.add('hidden');
-          modalAdd.classList.remove('flex');
-          formJournal.reset();
-          renderJournals();
         });
       }
     }
