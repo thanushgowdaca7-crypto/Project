@@ -280,7 +280,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 0ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20B.%20Sadashive%20Gowda.png" alt="Dr. B. Sadashive Gowda" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-b-sadashive-gowda.png" alt="Dr. B. Sadashive Gowda" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. B. Sadashive Gowda</h4>
@@ -291,7 +291,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 150ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Shobha%20Shankar.png" alt="Dr. Shoba Shankar" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-shobha-shankar.png" alt="Dr. Shoba Shankar" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Shoba Shankar</h4>
@@ -302,7 +302,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 300ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20G%20V%20Naveen%20Prakash.png" alt="Dr. G V Naveen Prakash" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-g-v-naveen-prakash.png" alt="Dr. G V Naveen Prakash" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. G V Naveen Prakash</h4>
@@ -313,7 +313,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 450ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Pooja%20M%20R.png" alt="Dr. Pooja M R" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-pooja-m-r.png" alt="Dr. Pooja M R" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Pooja M R</h4>
@@ -324,7 +324,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 600ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Prema%20N%20S.png" alt="Dr. Prema N S" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-prema-n-s.png" alt="Dr. Prema N S" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Prema N S</h4>
@@ -335,7 +335,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 750ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Vinay%20K%20B.png" alt="Dr. Vinay K B" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-vinay-k-b.png" alt="Dr. Vinay K B" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Vinay K B</h4>
@@ -346,7 +346,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 900ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Gopal%20Reddy.png" alt="Dr. Gopal Reddy" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-gopal-reddy.png" alt="Dr. Gopal Reddy" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Gopal Reddy</h4>
@@ -357,7 +357,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 1050ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Chandrashekar%20M%20Patil.png" alt="Dr. Chandrashekar M Patil" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-chandrashekar-m-patil.png" alt="Dr. Chandrashekar M Patil" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Chandrashekar M Patil</h4>
@@ -368,7 +368,7 @@ window.Pages = {
             <div class="reveal-card glass-panel p-8 text-center flex flex-col items-center hover-float glow-accent" style="animation-delay: 1200ms;">
               <div class="w-24 h-24 rounded-full border-4 border-[var(--accent)] p-1 mb-6 shadow-[0_0_20px_var(--accent-glow)]">
                 <div class="w-full h-full rounded-full bg-[var(--surface-2)] flex items-center justify-center overflow-hidden">
-                  <img src="LOGOS/Dr.%20Shilpa%20B%20S.png" alt="Dr. Shilpa B S" class="w-full h-full object-cover" />
+                  <img src="LOGOS/dr-shilpa-b-s.png" alt="Dr. Shilpa B S" class="w-full h-full object-cover" />
                 </div>
               </div>
               <h4 class="font-syne font-bold text-[20px] text-[var(--text-primary)]">Dr. Shilpa B S</h4>
