@@ -1378,9 +1378,10 @@ window.Pages = {
     </div>
 
     <!-- Upload Notes Modal -->
-    <div id="modal-upload-notes" class="fixed inset-0 z-[100] hidden items-center justify-center">
-      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm modal-backdrop" id="modal-upload-notes-backdrop"></div>
-      <div class="relative bg-[var(--surface)] border border-[var(--border)] rounded-[24px] p-8 w-full max-w-lg shadow-2xl mx-4 modal-content">
+    <div id="modal-upload-notes" class="fixed inset-0 z-[100] hidden flex-col overflow-y-auto">
+      <div class="fixed inset-0 bg-black/60 backdrop-blur-sm modal-backdrop" id="modal-upload-notes-backdrop"></div>
+      <div class="w-full flex min-h-full items-center justify-center p-4 sm:p-6 relative z-10 pointer-events-none">
+        <div class="relative bg-[var(--surface)] border border-[var(--border)] rounded-[24px] p-8 w-full max-w-lg shadow-2xl mx-auto pointer-events-auto my-8 modal-content">
         <button id="modal-upload-notes-close" class="absolute top-6 right-6 btn-icon">
           <i data-lucide="x" class="w-5 h-5 text-[var(--text-muted)] hover:text-[var(--text-primary)]"></i>
         </button>
@@ -1447,6 +1448,7 @@ window.Pages = {
           </button>
         </form>
       </div>
+     </div>
     </div>
   `,
 };
